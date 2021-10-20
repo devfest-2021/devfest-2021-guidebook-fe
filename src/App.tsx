@@ -1,10 +1,16 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
+import { SWRConfig } from 'swr';
+import { Sample } from './components/sample';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <SWRConfig>
+        <Sample />
+      </SWRConfig>
+    </ThemeProvider>
   );
 }
 
