@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import JoinBtn from './JoinBtn';
+import JoinButton from './JoinButton';
 
 const EmailInputBox = styled.div`
   min-width: 80%;
@@ -59,11 +59,11 @@ const EmailInput = () => {
         <BoxStyle>
           <BoxMainTitle>이메일 입력</BoxMainTitle>
           <BoxSubTitle>
-            이메일을 입력해주세요! &nbsp;<HighLightSign>*</HighLightSign>
+            이메일을 입력해주세요! <HighLightSign>*</HighLightSign>
           </BoxSubTitle>
           <StyledInput />
           <BtnElement>
-            <JoinBtn />
+            <JoinButton />
           </BtnElement>
         </BoxStyle>
       </EmailInputBox>

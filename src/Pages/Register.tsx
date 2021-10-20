@@ -13,7 +13,7 @@ const StyledLogin = styled.div`
 const Register = () => {
   return (
     <StyledLogin>
-      <RegisterInput />{' '}
+      <RegisterInput />
     </StyledLogin>
   );
 };

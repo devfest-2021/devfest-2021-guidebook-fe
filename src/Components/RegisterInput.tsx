@@ -1,5 +1,5 @@
 import React from 'react';
-import JoinBtn from './JoinBtn';
+import JoinButton from './JoinButton';
 import styled from 'styled-components';
 
 const EmailInputBox = styled.div`
@@ -20,12 +20,12 @@ const BoxStyle = styled.div`
   margin-top: 22px;
   width: 90%;
 `;
-const SnsBox = styled.div`
+const SnsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
-const BtnElement = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 10%;
@@ -68,7 +68,7 @@ const RegisterInput = () => {
             이메일을 입력해주세요! &nbsp;<HighLightSign>*</HighLightSign>
           </BoxSubTitle>
           <StyledInput />
-          <SnsBox>
+          <SnsWrapper>
             <div>
               <BoxSubTitle>Github</BoxSubTitle>
               <StyledInput />
@@ -77,16 +77,16 @@ const RegisterInput = () => {
               <BoxSubTitle>Instagram</BoxSubTitle>
               <StyledInput placeholder={'@OOO'} />
             </div>
-          </SnsBox>
+          </SnsWrapper>
           <BoxSubTitle>응원의 한마디</BoxSubTitle>
           <StyledInput />
           <BoxSubTitle>참가자 이름</BoxSubTitle>
           <StyledInput />
           <BoxSubTitle>소속</BoxSubTitle>
           <StyledInput />
-          <BtnElement>
-            <JoinBtn />
-          </BtnElement>
+          <ButtonWrapper>
+            <JoinButton />
+          </ButtonWrapper>
         </BoxStyle>
       </EmailInputBox>
     </>

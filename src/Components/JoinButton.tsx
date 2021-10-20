@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledJoinBtn = styled.button`
+const StyledJoinButton = styled.button`
   background: #55af7a;
   color: #fff;
   font-size: 21px;
@@ -17,12 +17,12 @@ const StyledJoinBtn = styled.button`
   }
 `;
 
-const JoinBtn = () => {
+const JoinButton = () => {
   return (
     <div>
-      <StyledJoinBtn>참석하기</StyledJoinBtn>
+      <StyledJoinButton>참석하기</StyledJoinButton>
     </div>
   );
 };
 
-export default JoinBtn;
+export default JoinButton;

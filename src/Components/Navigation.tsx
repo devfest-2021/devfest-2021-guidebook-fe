@@ -15,12 +15,12 @@ const NavAlign = styled.div`
   margin: auto;
 `;
 
-const StyledNav = styled.div`
+const StyledNav = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-around;
 `;
-const HeaderBtn = styled.li`
+const HeaderButton = styled.li`
   display: flex;
   align-items: center;
   margin: 0px 5px;
@@ -50,18 +50,18 @@ const Navigation = () => {
     <NavDesign>
       <NavAlign>
         <StyledNav>
-          <HeaderBtn>
+          <HeaderButton>
             <StyledLink to={'/Section'}>세션</StyledLink>
-          </HeaderBtn>
-          <HeaderBtn>
+          </HeaderButton>
+          <HeaderButton>
             {/* 방명록 연결 */}
             <StyledLink to={'/Section'}>방명록</StyledLink>
-          </HeaderBtn>
+          </HeaderButton>
         </StyledNav>
         <StyledNav>
-          <HeaderBtn>
+          <HeaderButton>
             <StyledLink to={'/Register'}>프로필 만들기</StyledLink>
-          </HeaderBtn>
+          </HeaderButton>
         </StyledNav>
       </NavAlign>
     </NavDesign>
