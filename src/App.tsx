@@ -13,7 +13,6 @@ function App() {
         <Sample />
       </SWRConfig>
     </ThemeProvider>
-
   );
 }
 
