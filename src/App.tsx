@@ -13,8 +13,8 @@ function App() {
 
       <Switch>
         <Route exact path="/" component={Section} />
-        <Route exact path="/Register" component={Register} />
-        <Route exact path="/Section" component={Section} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/section" component={Section} />
       </Switch>
     </>
   );
