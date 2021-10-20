@@ -1,5 +1,5 @@
 import React from 'react';
-import EmailInput from '../Components/EmailInput';
+import EmailInput from './EmailInput';
 import styled from 'styled-components';
 
 const StyledLogin = styled.div`

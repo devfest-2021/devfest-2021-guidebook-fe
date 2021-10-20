@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterInput from '../Components/RegisterInput';
+import RegisterInput from './RegisterInput';
 import styled from 'styled-components';
 
 const StyledLogin = styled.div`
