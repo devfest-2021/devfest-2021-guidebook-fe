@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const FilterSection = styled.div``;
+
 export const SessionList = styled.section`
   margin-top: 100px;
   display: flex;
@@ -58,7 +60,7 @@ export const BottomSection = styled.div`
 
 export const DateSection = styled.div``;
 
-export const Date = styled.span`
+export const DateSpan = styled.span`
   background-color: #f5f5f5;
   color: #959595;
   padding: 5px 12px;
