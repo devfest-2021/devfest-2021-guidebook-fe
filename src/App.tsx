@@ -4,13 +4,17 @@ import './App.css';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import { SWRConfig } from 'swr';
-import { Sample } from './components/sample/index';
+import { Main } from './components/main';
+import { LayoutContainer } from './styles/layout';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <SWRConfig>
-        <Sample />
+        <Switch>
+          <Route path={''} component={Main} />
+          <Route path={'/main'} component={Main} />
+        </Switch>
       </SWRConfig>
     </ThemeProvider>
   );
