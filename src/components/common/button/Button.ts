@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const StyledJoinButton = styled.button`
@@ -17,12 +16,4 @@ const StyledJoinButton = styled.button`
   }
 `;
 
-const JoinButton = () => {
-  return (
-    <div>
-      <StyledJoinButton>참석하기</StyledJoinButton>
-    </div>
-  );
-};
-
-export default JoinButton;
+export { StyledJoinButton };
