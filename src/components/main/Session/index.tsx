@@ -12,22 +12,39 @@ import {
   SessionList,
   Logo,
   FilterSection,
+  Modal,
+  Overlay,
+  ModalWrapper,
+  CardContentInModal,
 } from './styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { sessionList } from 'src/api/mock';
 import { format } from 'date-fns';
 import { Application, DatePicker } from 'react-rainbow-components';
 import './customStyle.css';
+import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
+import OutsideClickHandler from 'src/utils/hooks/OutsideClickHandler';
 
 export const Session = () => {
   // how to use swr
   // const { data } = useGetSessions();
   const [range, setRange] = useState<Date>();
+  const [selectedId, setSelectedId] = useState<number | undefined>(0);
+  const [selected, setSelected] = useState({
+    title: '',
+    description: '',
+    logoImgUrl: '',
+    startAt: 0,
+  });
   const data = sessionList;
 
   useEffect(() => {
     console.log(range);
   }, [range]);
+
+  useEffect(() => {
+    console.log(selectedId);
+  }, [selectedId]);
 
   const theme = {
     rainbow: {
@@ -59,23 +76,58 @@ export const Session = () => {
           />
         </Application>
       </FilterSection>
-      <SessionList>
-        {data.map((session) => (
-          <SessionCard key={session.id}>
-            <TopSection>
-              <CardTitle>{session.title}</CardTitle>
-              <Logo src={session.logoImgUrl}></Logo>
-            </TopSection>
-            <CardContent>{session.description}</CardContent>
-            <BottomSection>
-              <DateSection>
-                <DateSpan>{format(session.startAt, 'MM-dd')}</DateSpan>
-              </DateSection>
-              <AttendButton>출석</AttendButton>
-            </BottomSection>
-          </SessionCard>
-        ))}
-      </SessionList>
+      <AnimateSharedLayout type="crossfade">
+        <SessionList>
+          {data.map((session) => (
+            <SessionCard
+              key={session.id}
+              onClick={() => {
+                setSelected(session);
+                setSelectedId(session.id);
+              }}
+              layoutId={String(session.id)}
+            >
+              <TopSection>
+                <CardTitle>{session.title}</CardTitle>
+                <Logo src={session.logoImgUrl}></Logo>
+              </TopSection>
+              <CardContent>{session.description}</CardContent>
+              <BottomSection>
+                <DateSection>
+                  <DateSpan>{format(session.startAt, 'MM-dd')}</DateSpan>
+                </DateSection>
+                <AttendButton>출석</AttendButton>
+              </BottomSection>
+            </SessionCard>
+          ))}
+        </SessionList>
+
+        <AnimatePresence>
+          {selectedId && selected && (
+            <ModalWrapper>
+              <OutsideClickHandler
+                outsideClick={() => setSelectedId(undefined)}
+              >
+                <Modal layoutId={String(selectedId)}>
+                  <TopSection>
+                    <CardTitle>{selected.title}</CardTitle>
+                    <Logo src={selected.logoImgUrl}></Logo>
+                  </TopSection>
+                  <CardContentInModal>
+                    {selected.description}
+                  </CardContentInModal>
+                  <BottomSection>
+                    <DateSection>
+                      <DateSpan>{format(selected.startAt, 'MM-dd')}</DateSpan>
+                    </DateSection>
+                    <AttendButton>출석</AttendButton>
+                  </BottomSection>
+                </Modal>
+              </OutsideClickHandler>
+            </ModalWrapper>
+          )}
+        </AnimatePresence>
+      </AnimateSharedLayout>
     </LayoutContainer>
   );
 };

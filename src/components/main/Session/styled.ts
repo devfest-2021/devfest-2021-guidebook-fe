@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const FilterSection = styled.div``;
 
@@ -8,7 +9,7 @@ export const SessionList = styled.section`
   flex-wrap: wrap;
 `;
 
-export const SessionCard = styled.div`
+export const SessionCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   width: 33.33%;
@@ -23,6 +24,45 @@ export const SessionCard = styled.div`
     min-width: 100%;
     width: 100%;
   }
+`;
+
+export const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  will-change: opacity;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease;
+`;
+
+export const ModalWrapper = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  will-change: opacity;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.5s ease;
+  z-index: 999;
+`;
+
+export const Modal = styled(motion.div)`
+  border: 1px solid ${(props) => props.theme.color.gray350};
+  width: 440px;
+  overflow: hidden;
+  padding: 60px 0;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-sizing: border-box;
 `;
 
 export const TopSection = styled.div`
@@ -50,6 +90,10 @@ export const CardContent = styled.p`
   font-size: 500;
   color: #555;
   margin-bottom: 20px;
+`;
+
+export const CardContentInModal = styled(CardContent)`
+  margin-bottom: 28px;
 `;
 
 export const BottomSection = styled.div`
