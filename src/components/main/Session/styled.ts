@@ -26,18 +26,6 @@ export const SessionCard = styled(motion.div)`
   }
 `;
 
-export const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 100%;
-  will-change: opacity;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.3);
-  transition: background 0.5s ease;
-`;
-
 export const ModalWrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
@@ -67,16 +55,23 @@ export const Modal = styled(motion.div)`
 
 export const TopSection = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  align-items: end;
+  margin-bottom: 10px;
+`;
+
+export const TopTextSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 12px;
+`;
+
+export const Organizer = styled.span`
+  font-size: 13px;
+  color: ${(props) => props.theme.color.gray350};
 `;
 
 export const Logo = styled.img`
   width: 44px;
   height: 44px;
-  position: relative;
-  top: -10px;
   border-radius: 50%;
 `;
 
@@ -89,7 +84,7 @@ export const CardContent = styled.p`
   font-weight: 500;
   font-size: 500;
   color: #555;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 `;
 
 export const CardContentInModal = styled(CardContent)`

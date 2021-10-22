@@ -13,9 +13,10 @@ import {
   Logo,
   FilterSection,
   Modal,
-  Overlay,
   ModalWrapper,
   CardContentInModal,
+  TopTextSection,
+  Organizer,
 } from './styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { sessionList } from 'src/api/mock';
@@ -35,6 +36,7 @@ export const Session = () => {
     description: '',
     logoImgUrl: '',
     startAt: 0,
+    organizer: '',
   });
   const data = sessionList;
 
@@ -88,15 +90,20 @@ export const Session = () => {
               layoutId={String(session.id)}
             >
               <TopSection>
-                <CardTitle>{session.title}</CardTitle>
                 <Logo src={session.logoImgUrl}></Logo>
+                <TopTextSection>
+                  <CardTitle>{session.title}</CardTitle>
+                  <Organizer>{session.organizer}</Organizer>
+                </TopTextSection>
               </TopSection>
               <CardContent>{session.description}</CardContent>
               <BottomSection>
                 <DateSection>
                   <DateSpan>{format(session.startAt, 'MM-dd')}</DateSpan>
                 </DateSection>
-                <AttendButton>출석</AttendButton>
+                <AttendButton onClick={(e) => e.stopPropagation()}>
+                  출석
+                </AttendButton>
               </BottomSection>
             </SessionCard>
           ))}
@@ -110,9 +117,13 @@ export const Session = () => {
               >
                 <Modal layoutId={String(selectedId)}>
                   <TopSection>
-                    <CardTitle>{selected.title}</CardTitle>
                     <Logo src={selected.logoImgUrl}></Logo>
+                    <TopTextSection>
+                      <CardTitle>{selected.title}</CardTitle>
+                      <Organizer>{selected.organizer}</Organizer>
+                    </TopTextSection>
                   </TopSection>
+
                   <CardContentInModal>
                     {selected.description}
                   </CardContentInModal>
