@@ -17,7 +17,6 @@ function App() {
         <Switch>
           <Route path={''} component={Main} />
           <Route path={'/main'} component={Main} />
-          <Route exact path={'/signup'} component={Signup} />
         </Switch>
       </SWRConfig>
     </ThemeProvider>
