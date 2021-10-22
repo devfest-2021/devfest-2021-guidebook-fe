@@ -56,6 +56,36 @@ export const Session = () => {
     },
   };
 
+  const listItemAnimate = {
+    start: {
+      scale: 0,
+    },
+    end: {
+      scale: 1,
+    },
+    exit: {
+      scale: 0,
+    },
+  };
+
+  const listAnimate = {
+    start: {
+      scale: 0,
+    },
+    end: {
+      scale: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+    exit: {
+      scale: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
   return (
     <LayoutContainer>
       <FilterSection>
@@ -79,33 +109,39 @@ export const Session = () => {
         </Application>
       </FilterSection>
       <AnimateSharedLayout type="crossfade">
-        <SessionList>
+        <SessionList variants={listAnimate} initial="start" animate="end">
           {data.map((session) => (
-            <SessionCard
-              key={session.id}
-              onClick={() => {
-                setSelected(session);
-                setSelectedId(session.id);
-              }}
-              layoutId={String(session.id)}
-            >
-              <TopSection>
-                <Logo src={session.logoImgUrl}></Logo>
-                <TopTextSection>
-                  <CardTitle>{session.title}</CardTitle>
-                  <Organizer>{session.organizer}</Organizer>
-                </TopTextSection>
-              </TopSection>
-              <CardContent>{session.description}</CardContent>
-              <BottomSection>
-                <DateSection>
-                  <DateSpan>{format(session.startAt, 'MM-dd')}</DateSpan>
-                </DateSection>
-                <AttendButton onClick={(e) => e.stopPropagation()}>
-                  출석
-                </AttendButton>
-              </BottomSection>
-            </SessionCard>
+            <AnimatePresence key={session.id}>
+              <SessionCard
+                key={session.id}
+                onClick={() => {
+                  setSelected(session);
+                  setSelectedId(session.id);
+                }}
+                variants={listItemAnimate}
+                layoutId={String(session.id)}
+              >
+                <TopSection>
+                  <Logo src={session.logoImgUrl}></Logo>
+                  <TopTextSection>
+                    <CardTitle>{session.title}</CardTitle>
+                    <Organizer>{session.organizer}</Organizer>
+                  </TopTextSection>
+                </TopSection>
+                <CardContent>{session.description}</CardContent>
+                <BottomSection>
+                  <DateSection>
+                    <DateSpan>{format(session.startAt, 'MM-dd')}</DateSpan>
+                  </DateSection>
+                  <AttendButton
+                    onClick={(e) => e.stopPropagation()}
+                    whileTap={{ scale: 3 }}
+                  >
+                    출석
+                  </AttendButton>
+                </BottomSection>
+              </SessionCard>
+            </AnimatePresence>
           ))}
         </SessionList>
 

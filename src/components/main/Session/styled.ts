@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 
 export const FilterSection = styled.div``;
 
-export const SessionList = styled.section`
+export const SessionList = styled(motion.section)`
   margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
 `;
 
 export const SessionCard = styled(motion.div)`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   width: 33.33%;
@@ -51,6 +52,11 @@ export const Modal = styled(motion.div)`
   border-radius: 12px;
   padding: 32px;
   box-sizing: border-box;
+  @media screen and (max-width: ${(props) => props.theme.windowSize.tablet}px) {
+    min-width: 80%;
+    width: 90%;
+    margin: 0 20px;
+  }
 `;
 
 export const TopSection = styled.div`
@@ -108,7 +114,7 @@ export const DateSpan = styled.span`
   font-weight: 400;
 `;
 
-export const AttendButton = styled.button`
+export const AttendButton = styled(motion.button)`
   background-color: #55af7a;
   color: white;
   border: 0;
