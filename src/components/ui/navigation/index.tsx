@@ -14,11 +14,11 @@ const Navigation = () => {
       <NavAlign>
         <NavTaskWrapper>
           <NavTask>
-            <StyledLink to={'/session'}>세션</StyledLink>
+            <StyledLink to={'/main/session'}>세션</StyledLink>
           </NavTask>
           <NavTask>
             {/* 방명록 연결 */}
-            <StyledLink to={'/session'}>방명록</StyledLink>
+            <StyledLink to={'/main/guestbook'}>방명록</StyledLink>
           </NavTask>
         </NavTaskWrapper>
         <NavTaskWrapper>
