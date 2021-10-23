@@ -3,22 +3,23 @@ import { MainTitle, SubTitle, HighLightSign } from '../../common/text/Title';
 import { StyledInput } from '../../common/input/InputBox';
 import { StyledJoinButton } from '../../common/button/Button';
 import {
-  BoxElementWrapper,
-  StyledBox,
   SnsWrapper,
   SnsElementWrapper,
   ButtonWrapper,
-  BoxSizeWrapper,
+  ModalOverlay,
+  ModalInner,
+  ModalWrapper,
 } from '../../common/wrapper/Wrapper';
 
-const Signup = () => {
+const Modal = () => {
   return (
-    <BoxSizeWrapper>
-      <StyledBox>
-        <BoxElementWrapper>
+    <>
+      <ModalOverlay />
+      <ModalWrapper>
+        <ModalInner>
           <MainTitle>프로필 입력하기</MainTitle>
           <SubTitle>
-            이메일을 입력해주세요! &nbsp;<HighLightSign>*</HighLightSign>
+            이메일을 입력해주세요!<HighLightSign>*</HighLightSign>
           </SubTitle>
           <StyledInput />
           <SnsWrapper>
@@ -40,10 +41,10 @@ const Signup = () => {
           <ButtonWrapper>
             <StyledJoinButton>참석하기</StyledJoinButton>
           </ButtonWrapper>
-        </BoxElementWrapper>
-      </StyledBox>
-    </BoxSizeWrapper>
+        </ModalInner>
+      </ModalWrapper>
+    </>
   );
 };
 
-export default Signup;
+export default Modal;

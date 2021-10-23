@@ -18,29 +18,14 @@ const BoxSizeWrapper = styled.div`
     height: 70%;
   }
 `;
-const StyledBox = styled.div`
-  border-color: #aaaaaa;
-  border-radius: 20px;
-  border-width: 2px;
-  border-style: solid;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-`;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 5%;
+  margin-top: 6%;
   margin-bottom: 5%;
 `;
-const BoxElementWrapper = styled.div`
-  display: inline-block;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-top: 22px;
-  width: 90%;
-`;
+
 const SnsWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -50,12 +35,70 @@ const SnsWrapper = styled.div`
 const SnsElementWrapper = styled.div`
   width: 46%;
 `;
+const ModalWrapper = styled.div`
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
+  outline: 0;
+`;
 
+const ModalOverlay = styled.div`
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+`;
+
+const ModalInner = styled.div`
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  border-radius: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 auto;
+
+  @media (min-width: 320px) {
+    width: 300px;
+    height: 500px;
+    padding: 10px 10px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
+    width: 300px;
+    height: 500px;
+    padding: 10px 10px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
+    width: 60%;
+    height: 65%;
+    padding: 3% 4%;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
+    width: 50%;
+    height: 50%;
+  }
+    
+  }
+`;
 export {
   BoxSizeWrapper,
-  StyledBox,
   ButtonWrapper,
-  BoxElementWrapper,
   SnsWrapper,
   SnsElementWrapper,
+  ModalWrapper,
+  ModalOverlay,
+  ModalInner,
 };

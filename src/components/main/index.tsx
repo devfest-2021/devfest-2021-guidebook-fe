@@ -4,6 +4,7 @@ import { SampleWrapper } from './styled';
 import { Route, Switch } from 'react-router';
 import { Guestbook } from './Guestbook';
 import { Session } from './Session';
+import Modal from '../pages/Modal';
 
 export const Main = () => {
   // how to use swr

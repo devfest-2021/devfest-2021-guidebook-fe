@@ -22,9 +22,32 @@ const NavTaskWrapper = styled.ul`
 `;
 
 const StyledLink = styled(Link)`
-  text-decoration: inherit;
+  text-decoration: none;
   color: inherit;
   list-style: none;
+  &:hover {
+    color: #4e4e4e;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  &:focus {
+    text-decoration: none;
+    color: #b8b8b8;
+  }
+`;
+const OpenModal = styled.div`
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+  &:hover {
+    color: #4e4e4e;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  &:focus {
+    text-decoration: none;
+    color: #b8b8b8;
+  }
 `;
 const NavTask = styled.li`
   display: flex;
@@ -36,10 +59,8 @@ const NavTask = styled.li`
   font-style: normal;
   font-size: 24px;
   word-break: keep-all;
-  &:hover {
-    color: #404040;
-    font-weight: bold;
-  }
+  list-style: none;
+  text-decoration: none;
   @media (max-width: ${(props) => props.theme.windowSize.desk}px) {
     font-size: 24px;
   }
@@ -50,4 +71,4 @@ const NavTask = styled.li`
     font-size: 20px;
   }
 `;
-export { NavAlign, NavDesign, NavTaskWrapper, StyledLink, NavTask };
+export { NavAlign, NavDesign, NavTaskWrapper, StyledLink, NavTask, OpenModal };

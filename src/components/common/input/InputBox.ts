@@ -11,9 +11,14 @@ export const StyledInput = styled.input`
   padding: 0px 10px;
   margin: 0px;
   font-size: 20px;
+
+  @media (min-width: 320px) {
+    height: 40px;
+    font-size: 15px;
+  }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
-    height: 50px;
-    font-size: 20px;
+    height: 40px;
+    font-size: 15px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     height: 55px;
