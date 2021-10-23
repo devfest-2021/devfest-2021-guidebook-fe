@@ -118,3 +118,190 @@ export const sessionList = [
     logoImgUrl: 'https://picsum.photos/200',
   },
 ];
+
+export const guidebookList = [
+  {
+    id: 1,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+  {
+    id: 6,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+  {
+    id: 7,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: '이정윤',
+    affiliation: '라인',
+    description:
+      '평소에 취업준비때문에 스트레스를 많이 받아서 선배분들의 얻고자 참가하게됐습니다. devfest 화이팅~~ 맥주도 잘 묵고 가겠습니다~ ',
+    profileImageUrl: 'https://picsum.photos/200',
+    githubId: '',
+    instagramId: '',
+    List: [
+      {
+        id: 1,
+        name: '비어모각코',
+      },
+      {
+        id: 2,
+        name: '나는 어쩌다 개발자',
+      },
+      {
+        id: 3,
+        name: '나는 어쩌다 개발자',
+      },
+    ],
+  },
+];

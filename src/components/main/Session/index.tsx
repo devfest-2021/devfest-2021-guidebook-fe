@@ -6,10 +6,10 @@ import {
   CardTitle,
   SessionCard,
   TopSection,
-  DateSpan,
-  DateSection,
+  Chip,
+  ChipSection,
   AttendButton,
-  SessionList,
+  List,
   Logo,
   FilterSection,
   Modal,
@@ -109,7 +109,7 @@ export const Session = () => {
         </Application>
       </FilterSection>
       <AnimateSharedLayout type="crossfade">
-        <SessionList variants={listAnimate} initial="start" animate="end">
+        <List variants={listAnimate} initial="start" animate="end">
           {data.map((session) => (
             <AnimatePresence key={session.id}>
               <SessionCard
@@ -130,9 +130,9 @@ export const Session = () => {
                 </TopSection>
                 <CardContent>{session.description}</CardContent>
                 <BottomSection>
-                  <DateSection>
-                    <DateSpan>{format(session.startAt, 'MM-dd')}</DateSpan>
-                  </DateSection>
+                  <ChipSection>
+                    <Chip>{format(session.startAt, 'MM-dd')}</Chip>
+                  </ChipSection>
                   <AttendButton
                     onClick={(e) => e.stopPropagation()}
                     whileTap={{ scale: 3 }}
@@ -143,7 +143,7 @@ export const Session = () => {
               </SessionCard>
             </AnimatePresence>
           ))}
-        </SessionList>
+        </List>
 
         <AnimatePresence>
           {selectedId && selected && (
@@ -164,9 +164,9 @@ export const Session = () => {
                     {selected.description}
                   </CardContentInModal>
                   <BottomSection>
-                    <DateSection>
-                      <DateSpan>{format(selected.startAt, 'MM-dd')}</DateSpan>
-                    </DateSection>
+                    <ChipSection>
+                      <Chip>{format(selected.startAt, 'MM-dd')}</Chip>
+                    </ChipSection>
                     <AttendButton>출석</AttendButton>
                   </BottomSection>
                 </Modal>

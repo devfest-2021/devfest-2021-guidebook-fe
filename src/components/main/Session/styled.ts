@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const FilterSection = styled.div``;
 
-export const SessionList = styled(motion.section)`
+export const List = styled(motion.section)`
   margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
@@ -75,15 +75,25 @@ export const Organizer = styled.span`
   color: ${(props) => props.theme.color.gray350};
 `;
 
+export const SmallLogo = styled.img`
+  height: 20px;
+`;
+
 export const Logo = styled.img`
   width: 44px;
   height: 44px;
   border-radius: 50%;
 `;
 
+export const CardTitleSection = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const CardTitle = styled.h3`
   font-size: 18px;
   font-weight: bold;
+  margin-right: 8px;
 `;
 
 export const CardContent = styled.p`
@@ -103,15 +113,20 @@ export const BottomSection = styled.div`
   align-items: center;
 `;
 
-export const DateSection = styled.div``;
+export const ChipSection = styled.div`
+  overflow: scroll;
+  white-space: nowrap;
+`;
 
-export const DateSpan = styled.span`
+export const Chip = styled.span`
   background-color: #f5f5f5;
   color: #959595;
   padding: 5px 12px;
   font-size: 15px;
   border-radius: 6px;
   font-weight: 400;
+  display: inline-block;
+  margin-right: 8px;
 `;
 
 export const AttendButton = styled(motion.button)`
