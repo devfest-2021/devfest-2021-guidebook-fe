@@ -1,29 +1,49 @@
 import styled from 'styled-components';
 
+const StyledBox = styled.div`
+  border-color: #aaaaaa;
+  border-radius: 20px;
+  border-width: 2px;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+`;
+const BoxElementWrapper = styled.div`
+  display: inline-block;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 22px;
+  width: 90%;
+`;
 const BoxSizeWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  @media (min-width: 320px) {
+    width: 90%;
+    height: 50%;
+  }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     width: 90%;
-    height: 76%;
+    height: 40%;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     width: 60%;
-    height: 75%;
+    height: 40%;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
     width: 50%;
-    height: 70%;
+    height: 30%;
   }
 `;
-
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 6%;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 `;
 
 const SnsWrapper = styled.div`
@@ -46,7 +66,6 @@ const ModalWrapper = styled.div`
   left: 0;
   z-index: 1000;
   overflow: auto;
-  outline: 0;
 `;
 
 const ModalOverlay = styled.div`
@@ -60,7 +79,6 @@ const ModalOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 999;
 `;
-
 const ModalInner = styled.div`
   box-sizing: border-box;
   position: relative;
@@ -70,7 +88,8 @@ const ModalInner = styled.div`
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
   @media (min-width: 320px) {
     width: 300px;
     height: 500px;
@@ -79,7 +98,7 @@ const ModalInner = styled.div`
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     width: 300px;
     height: 500px;
-    padding: 10px 10px;
+    padding: 3% 10px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     width: 60%;
@@ -95,10 +114,12 @@ const ModalInner = styled.div`
 `;
 export {
   BoxSizeWrapper,
+  BoxElementWrapper,
   ButtonWrapper,
   SnsWrapper,
   SnsElementWrapper,
   ModalWrapper,
   ModalOverlay,
   ModalInner,
+  StyledBox,
 };

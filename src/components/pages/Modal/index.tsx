@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MainTitle, SubTitle, HighLightSign } from '../../common/text/Title';
 import { StyledInput } from '../../common/input/InputBox';
 import { StyledJoinButton } from '../../common/button/Button';
@@ -12,6 +12,7 @@ import {
 } from '../../common/wrapper/Wrapper';
 
 const Modal = () => {
+  const [userInfomation, setUserInfomation] = useState();
   return (
     <>
       <ModalOverlay />
@@ -21,23 +22,23 @@ const Modal = () => {
           <SubTitle>
             이메일을 입력해주세요!<HighLightSign>*</HighLightSign>
           </SubTitle>
-          <StyledInput />
+          <StyledInput name={'email'} />
           <SnsWrapper>
             <SnsElementWrapper>
               <SubTitle>Github</SubTitle>
-              <StyledInput />
+              <StyledInput name={'github'} />
             </SnsElementWrapper>
             <SnsElementWrapper>
               <SubTitle>Instagram</SubTitle>
-              <StyledInput placeholder={'@OOO'} />
+              <StyledInput name={'instagram'} placeholder={'@OOO'} />
             </SnsElementWrapper>
           </SnsWrapper>
           <SubTitle>응원의 한마디</SubTitle>
           <StyledInput />
           <SubTitle>참가자 이름</SubTitle>
-          <StyledInput />
+          <StyledInput name={'fullName'} />
           <SubTitle>소속</SubTitle>
-          <StyledInput />
+          <StyledInput name={'school'} />
           <ButtonWrapper>
             <StyledJoinButton>참석하기</StyledJoinButton>
           </ButtonWrapper>

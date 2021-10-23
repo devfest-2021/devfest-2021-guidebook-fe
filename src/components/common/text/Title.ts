@@ -29,8 +29,12 @@ const SubTitle = styled.div`
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 6px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
+    margin-top: 20px;
+    margin-bottom: 6px;
     font-size: 20px;
   }
 `;

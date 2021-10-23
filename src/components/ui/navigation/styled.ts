@@ -57,10 +57,10 @@ const NavTask = styled.li`
   cursor: pointer;
   color: #b8b8b8;
   font-style: normal;
-  font-size: 24px;
   word-break: keep-all;
   list-style: none;
   text-decoration: none;
+
   @media (max-width: ${(props) => props.theme.windowSize.desk}px) {
     font-size: 24px;
   }
@@ -69,6 +69,9 @@ const NavTask = styled.li`
   }
   @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
     font-size: 20px;
+  }
+  @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
+    font-size: 19px;
   }
 `;
 export { NavAlign, NavDesign, NavTaskWrapper, StyledLink, NavTask, OpenModal };
