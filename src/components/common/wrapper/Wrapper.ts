@@ -20,12 +20,15 @@ const BoxElementWrapper = styled.div`
   }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     margin-top: 15px;
+    margin-bottom: 10px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 `;
 const BoxSizeWrapper = styled.div`
@@ -38,7 +41,7 @@ const BoxSizeWrapper = styled.div`
     height: 50%;
   }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
-    width: 90%;
+    width: 350px;
     height: 40%;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
@@ -47,7 +50,7 @@ const BoxSizeWrapper = styled.div`
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
     width: 600px;
-    height: 30%;
+    height: 500px;
   }
 `;
 const ButtonWrapper = styled.div`
@@ -59,15 +62,13 @@ const ButtonWrapper = styled.div`
   }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     margin-top: 15px;
-    margin-bottom: 15px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     margin-top: 20px;
-    margin-bottom: 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 35px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -123,16 +124,17 @@ const ModalInner = styled.div`
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     width: 300px;
     height: 510px;
-    padding: 3% 10px;
+    padding: 20px 10px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     width: 60%;
     height: 700px;
-    padding: 3% 4%;
+    padding: 20px 40px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    width: 50%;
-    height: 760px;
+    width: 700px;
+    height: 850px;
+    padding: 50px 50px;
   }
     
   }

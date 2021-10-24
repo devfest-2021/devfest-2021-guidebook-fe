@@ -18,10 +18,12 @@ const StyledJoinButton = styled.button`
     padding: 6px 10px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
-    font-size: 20px;
+    font-size: 23px;
+    padding: 6px 10px;
   }
   @media (min-width: : ${(props) => props.theme.windowSize.desk}px) {
-    font-size: 20px;
+    font-size: 23px;
+    padding: 6px 10px;
   }
 `;
 

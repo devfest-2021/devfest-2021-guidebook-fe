@@ -9,16 +9,15 @@ import {
 } from './styled';
 import Modal from './Modal';
 
-export interface modalOpenProps {
-  modalOpen: boolean;
-}
-
-const Navigation = () => {
+const Navigation: React.FC = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const modalHandle = () => {
+    setModalOpen(!modalOpen);
+  };
 
   return (
     <NavDesign>
-      {modalOpen ? <Modal /> : null}
+      {modalOpen ? <Modal modalHandle={modalHandle} /> : null}
       <NavAlign>
         <NavTaskWrapper>
           <NavTask>
