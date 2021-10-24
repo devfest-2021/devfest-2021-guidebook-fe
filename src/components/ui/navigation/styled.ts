@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NavDesign = styled.div`
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.03);
+  position: static;
 `;
 const NavAlign = styled.div`
   display: flex;

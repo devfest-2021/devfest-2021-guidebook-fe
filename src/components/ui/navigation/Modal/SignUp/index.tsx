@@ -5,9 +5,9 @@ import {
   HighLightSign,
   Close,
   StyledErrorMessage,
-} from '../../../common/text/Title';
-import { StyledInput } from '../../../common/input/InputBox';
-import { StyledJoinButton } from '../../../common/button/Button';
+} from '../../../../common/text/Title';
+import { StyledInput } from '../../../../common/input/InputBox';
+import { StyledJoinButton } from '../../../../common/button/Button';
 import { Form, useFormik, FormikProvider } from 'formik';
 
 import * as Yup from 'yup';
@@ -19,11 +19,12 @@ import {
   ModalOverlay,
   ModalInner,
   ModalWrapper,
-} from '../../../common/wrapper/Wrapper';
+} from '../../../../common/wrapper/Wrapper';
 type NavigationInterface = {
   modalHandle: () => void;
+  visible: string;
 };
-const SignUp: React.FC<NavigationInterface> = ({ modalHandle }) => {
+const SignUp: React.FC<NavigationInterface> = ({ modalHandle, visible }) => {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -48,11 +49,12 @@ const SignUp: React.FC<NavigationInterface> = ({ modalHandle }) => {
         .min(2, '2글자이상 작성해주세요')
         .max(15, '2~15사이의 길이로 입력해주세요')
         .required('필수입력란입니다.'),
+      promise: Yup.string().min(10, '10글자 이상 작성해주세요'),
     }),
   });
   return (
     <div>
-      <ModalOverlay />
+      <ModalOverlay visible={visible} />
       <ModalWrapper>
         <ModalInner>
           <FormikProvider value={formik}>
@@ -96,6 +98,7 @@ const SignUp: React.FC<NavigationInterface> = ({ modalHandle }) => {
                 <HighLightSign />
               </SubTitle>
               <StyledInput name={'promise'} type={'promise'} />
+              <StyledErrorMessage name="promise" component="div" />
               <SubTitle>소속</SubTitle>
               <StyledInput name={'group'} type={'group'} />
 

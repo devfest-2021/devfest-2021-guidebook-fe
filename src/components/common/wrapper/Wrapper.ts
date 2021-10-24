@@ -1,57 +1,64 @@
 import styled from 'styled-components';
 
-const StyledBox = styled.div`
-  border-color: #aaaaaa;
-  border-radius: 20px;
-  border-width: 2px;
-  border-style: solid;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
+const StyledBox = styled.div<{ visible: string }>`
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
 `;
 const BoxElementWrapper = styled.div`
-  display: inline-block;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 90%;
-  @media (min-width: 320px) {
-    margin-top: 10px;
-  }
-  @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
-    margin-top: 15px;
-    margin-bottom: 10px;
-  }
-  @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-`;
-const BoxSizeWrapper = styled.div`
-  position: absolute;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  border-radius: 20px;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
+  margin: 0 auto;
+  //max-height: calc(100vh - 200px);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  overflow-y: auto;
   @media (min-width: 320px) {
-    width: 90%;
-    height: 50%;
+    width: 300px;
+    height: 230px;
+    padding: 35px 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     width: 350px;
-    height: 40%;
+    height: 260px;
+    padding: 45px 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
-    width: 60%;
-    height: 40%;
+    width: 480px;
+    height: 350px;
+    padding: 60px 30px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    width: 600px;
-    height: 500px;
+    width: 480px;
+    height: 350px;
+    padding: 60px 30px;
   }
+`;
+const BoxSizeWrapper = styled.div`
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
 `;
 const ButtonWrapper = styled.div`
   display: flex;
@@ -67,7 +74,6 @@ const ButtonWrapper = styled.div`
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
     margin-top: 40px;
-    margin-bottom: 10px;
   }
 `;
 
@@ -93,7 +99,8 @@ const ModalWrapper = styled.div`
   overflow: auto;
 `;
 
-const ModalOverlay = styled.div`
+const ModalOverlay = styled.div<{ visible: string }>`
+  display: ${(props) => (props.visible ? 'block' : 'none')};
   box-sizing: border-box;
   display: block;
   position: fixed;
@@ -114,6 +121,9 @@ const ModalInner = styled.div`
   transform: translateY(-50%);
   margin: 0 auto;
   //max-height: calc(100vh - 200px);
+  &::-webkit-scrollbar{
+    display: none;
+  }
   overflow-y: auto;
   @media (min-width: 320px) {
     width: 300px;
