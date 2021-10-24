@@ -1,16 +1,23 @@
-import React from 'react';
-
+import React, { ReactNode, useState } from 'react';
 import {
   NavDesign,
   NavAlign,
   StyledLink,
   NavTaskWrapper,
   NavTask,
+  OpenModal,
 } from './styled';
+import Modal from './Modal';
 
-const Navigation = () => {
+const Navigation: React.FC = () => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const modalHandle = () => {
+    setModalOpen(!modalOpen);
+  };
+
   return (
     <NavDesign>
+      {modalOpen ? <Modal modalHandle={modalHandle} /> : null}
       <NavAlign>
         <NavTaskWrapper>
           <NavTask>
@@ -23,7 +30,9 @@ const Navigation = () => {
         </NavTaskWrapper>
         <NavTaskWrapper>
           <NavTask>
-            <StyledLink to={'/signup'}>프로필 만들기</StyledLink>
+            <OpenModal onClick={() => setModalOpen(!modalOpen)}>
+              프로필 만들기
+            </OpenModal>
           </NavTask>
         </NavTaskWrapper>
       </NavAlign>

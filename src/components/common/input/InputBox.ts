@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Field } from 'formik';
 
-export const StyledInput = styled.input`
+export const StyledInput = styled(Field)`
   border-radius: 10px;
   border-color: #aaaaaa;
   border-width: 2px;
@@ -10,17 +11,21 @@ export const StyledInput = styled.input`
   width: 100%;
   padding: 0px 10px;
   margin: 0px;
-  font-size: 20px;
+
+  @media (min-width: 320px) {
+    height: 40px;
+    font-size: 15px;
+  }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
-    height: 50px;
-    font-size: 20px;
+    height: 40px;
+    font-size: 15px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     height: 55px;
-    font-size: 22px;
+    font-size: 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
     height: 60px;
-    font-size: 22px;
+    font-size: 25px;
   }
 `;
