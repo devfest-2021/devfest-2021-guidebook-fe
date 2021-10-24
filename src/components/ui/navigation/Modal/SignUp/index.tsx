@@ -9,7 +9,7 @@ import {
 import { StyledInput } from '../../../../common/input/InputBox';
 import { StyledJoinButton } from '../../../../common/button/Button';
 import { Form, useFormik, FormikProvider } from 'formik';
-
+import { atom, useSetRecoilState, RecoilRoot } from 'recoil';
 import * as Yup from 'yup';
 
 import {
@@ -52,6 +52,7 @@ const SignUp: React.FC<NavigationInterface> = ({ modalHandle, visible }) => {
       promise: Yup.string().min(10, '10글자 이상 작성해주세요'),
     }),
   });
+
   return (
     <div>
       <ModalOverlay visible={visible} />
