@@ -14,8 +14,19 @@ const BoxElementWrapper = styled.div`
   display: inline-block;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 22px;
   width: 90%;
+  @media (min-width: 320px) {
+    margin-top: 10px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
+    margin-top: 15px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
+    margin-top: 20px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
+    margin-top: 20px;
+  }
 `;
 const BoxSizeWrapper = styled.div`
   position: absolute;
@@ -35,15 +46,29 @@ const BoxSizeWrapper = styled.div`
     height: 40%;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    width: 50%;
+    width: 600px;
     height: 30%;
   }
 `;
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: 6%;
-  margin-bottom: 3%;
+  @media (min-width: 320px) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 const SnsWrapper = styled.div`
@@ -88,7 +113,7 @@ const ModalInner = styled.div`
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  max-height: calc(100vh - 200px);
+  //max-height: calc(100vh - 200px);
   overflow-y: auto;
   @media (min-width: 320px) {
     width: 300px;
@@ -97,17 +122,17 @@ const ModalInner = styled.div`
   }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     width: 300px;
-    height: 500px;
+    height: 510px;
     padding: 3% 10px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     width: 60%;
-    height: 65%;
+    height: 700px;
     padding: 3% 4%;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
     width: 50%;
-    height: 50%;
+    height: 760px;
   }
     
   }

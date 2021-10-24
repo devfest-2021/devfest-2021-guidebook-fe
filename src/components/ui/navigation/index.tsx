@@ -7,10 +7,18 @@ import {
   NavTask,
   OpenModal,
 } from './styled';
+import Modal from './Modal';
 
-const Navigation: React.FC = ({ setModal }: any) => {
+export interface modalOpenProps {
+  modalOpen: boolean;
+}
+
+const Navigation = () => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
   return (
     <NavDesign>
+      {modalOpen ? <Modal /> : null}
       <NavAlign>
         <NavTaskWrapper>
           <NavTask>
@@ -23,7 +31,9 @@ const Navigation: React.FC = ({ setModal }: any) => {
         </NavTaskWrapper>
         <NavTaskWrapper>
           <NavTask>
-            <OpenModal onClick={() => setModal}>프로필 만들기</OpenModal>
+            <OpenModal onClick={() => setModalOpen(!modalOpen)}>
+              프로필 만들기
+            </OpenModal>
           </NavTask>
         </NavTaskWrapper>
       </NavAlign>

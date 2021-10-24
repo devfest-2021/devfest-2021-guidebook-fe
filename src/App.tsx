@@ -5,25 +5,19 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import { SWRConfig } from 'swr';
 import { Main } from './components/main';
-import Signin from './components/pages/Signin';
+import Login from './components/main/Signin';
 
 import { LayoutContainer } from './styles/layout';
 import Navigation from './components/ui/navigation/index';
-import Modal from './components/pages/Modal';
+import Modal from './components/ui/navigation/Modal';
 
 function App() {
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
-  const setModal: any = (): void => {
-    setModalOpen(!modalOpen);
-  };
   return (
     <ThemeProvider theme={theme}>
       <SWRConfig>
-        {modalOpen ? <Modal /> : null}
-        {/*<Modal />*/}
         <Navigation />
         <Switch>
-          <Route path={''} component={Signin} />
+          <Route path={''} component={Main} />
           <Route path={'/main'} component={Main} />
         </Switch>
       </SWRConfig>

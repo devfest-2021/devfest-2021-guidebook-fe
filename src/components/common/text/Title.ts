@@ -17,6 +17,7 @@ const SubTitle = styled.div`
   display: flex;
   font-size: 20px;
   flex-direction: row;
+  align-items: center;
   @media (min-width: 320px) {
     font-size: 15px;
     margin-top: 12px;
@@ -39,6 +40,11 @@ const SubTitle = styled.div`
   }
 `;
 const HighLightSign = styled.div`
-  color: #ff0000;
+  display: inline-block;
+  margin: 0 0 2px 6px;
+  width: 6px;
+  height: 6px;
+  background: #f44336;
+  border-radius: 3px;
 `;
 export { MainTitle, SubTitle, HighLightSign };

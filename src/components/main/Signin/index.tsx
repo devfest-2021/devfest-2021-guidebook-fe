@@ -9,14 +9,14 @@ import { HighLightSign, MainTitle, SubTitle } from '../../common/text/Title';
 import { StyledInput } from '../../common/input/InputBox';
 import { StyledJoinButton } from '../../common/button/Button';
 
-const Login = (): JSX.Element => {
+const Signin = (): JSX.Element => {
   return (
     <BoxSizeWrapper>
       <StyledBox>
         <BoxElementWrapper>
           <MainTitle>이메일 입력</MainTitle>
           <SubTitle>
-            이메일을 입력해주세요! <HighLightSign>*</HighLightSign>
+            이메일을 입력해주세요! <HighLightSign />
           </SubTitle>
           <StyledInput />
           <ButtonWrapper>
@@ -28,4 +28,4 @@ const Login = (): JSX.Element => {
   );
 };
 
-export default Login;
+export default Signin;

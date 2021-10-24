@@ -61,17 +61,17 @@ const NavTask = styled.li`
   list-style: none;
   text-decoration: none;
 
-  @media (max-width: ${(props) => props.theme.windowSize.desk}px) {
-    font-size: 24px;
-  }
-  @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
-    font-size: 24px;
-  }
-  @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
+  @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     font-size: 20px;
   }
-  @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
+  @media (min-width: 320px) {
     font-size: 19px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
+    font-size: 24px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
+    font-size: 25px;
   }
 `;
 export { NavAlign, NavDesign, NavTaskWrapper, StyledLink, NavTask, OpenModal };
