@@ -5,7 +5,7 @@ import {
   StyledLink,
   NavTaskWrapper,
   NavTask,
-  OpenModal,
+  OpenedModal,
 } from './styled';
 import Modal from './Modal';
 
@@ -30,9 +30,9 @@ const Navigation: React.FC = () => {
         </NavTaskWrapper>
         <NavTaskWrapper>
           <NavTask>
-            <OpenModal onClick={() => setModalOpen(!modalOpen)}>
+            <OpenedModal onClick={() => setModalOpen(!modalOpen)}>
               프로필 만들기
-            </OpenModal>
+            </OpenedModal>
           </NavTask>
         </NavTaskWrapper>
       </NavAlign>

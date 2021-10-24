@@ -57,17 +57,16 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   @media (min-width: 320px) {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
-    margin-top: 15px;
-  }
-  @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     margin-top: 20px;
   }
+  @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
+    margin-top: 23px;
+  }
+  @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
+    margin-top: 40px;
+  }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    margin-top: 35px;
+    margin-top: 40px;
     margin-bottom: 10px;
   }
 `;
@@ -110,7 +109,7 @@ const ModalInner = styled.div`
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 20px;
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
@@ -118,23 +117,23 @@ const ModalInner = styled.div`
   overflow-y: auto;
   @media (min-width: 320px) {
     width: 300px;
-    height: 500px;
+    height: 510px;
     padding: 10px 10px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
-    width: 300px;
-    height: 510px;
+    width: 350px;
+    height: 530px;
     padding: 20px 10px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
-    width: 60%;
-    height: 700px;
-    padding: 20px 40px;
+    width: 500px;
+    height: 670px;
+    padding: 20px 30px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    width: 700px;
-    height: 850px;
-    padding: 50px 50px;
+    width: 500px;
+    height: 675px;
+    padding: 20px 30px;
   }
     
   }
