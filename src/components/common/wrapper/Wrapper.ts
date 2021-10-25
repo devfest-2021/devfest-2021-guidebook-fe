@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const StyledBox = styled.div<{ visible: string }>`
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+const StyledBox = styled.div`
+  display: block;
   box-sizing: border-box;
   display: block;
   position: fixed;
@@ -99,8 +99,8 @@ const ModalWrapper = styled.div`
   overflow: auto;
 `;
 
-const ModalOverlay = styled.div<{ visible: string }>`
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+const ModalOverlay = styled.div`
+  display: block;
   box-sizing: border-box;
   display: block;
   position: fixed;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useGetSessions } from 'src/api/hooks/useGetArticles';
 import {
   BottomSection,
   CardContent,

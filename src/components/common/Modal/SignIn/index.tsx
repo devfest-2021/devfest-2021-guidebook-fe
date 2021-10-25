@@ -1,26 +1,21 @@
 import React, { useEffect } from 'react';
 import {
-  BoxSizeWrapper,
   ButtonWrapper,
   BoxElementWrapper,
   StyledBox,
   ModalOverlay,
-} from '../../../../common/wrapper/Wrapper';
+} from '../../wrapper/Wrapper';
 import {
   HighLightSign,
   MainTitle,
   StyledErrorMessage,
   SubTitle,
-} from '../../../../common/text/Title';
-import { StyledInput } from '../../../../common/input/InputBox';
-import { StyledJoinButton } from '../../../../common/button/Button';
-import { Formik, FormikHelpers, Form, useFormik, FormikProvider } from 'formik';
+} from '../../text/Title';
+import { StyledInput } from '../../input/InputBox';
+import { StyledJoinButton } from '../../button/Button';
+import { Form, useFormik, FormikProvider } from 'formik';
 import * as Yup from 'yup';
-type NavigationInterface = {
-  modalHandle: () => void;
-  visible: string;
-};
-const Signin: React.FC<NavigationInterface> = ({ modalHandle, visible }) => {
+const Signin = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -48,13 +43,8 @@ const Signin: React.FC<NavigationInterface> = ({ modalHandle, visible }) => {
   }, []);
   return (
     <div>
-      <ModalOverlay
-        onClick={() => {
-          modalHandle();
-        }}
-        visible={visible}
-      />
-      <StyledBox visible={visible}>
+      <ModalOverlay />
+      <StyledBox>
         <BoxElementWrapper>
           <FormikProvider value={formik}>
             <Form>
