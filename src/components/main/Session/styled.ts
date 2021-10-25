@@ -116,6 +116,9 @@ export const BottomSection = styled.div`
 export const ChipSection = styled.div`
   overflow: scroll;
   white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Chip = styled.span`

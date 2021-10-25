@@ -48,7 +48,9 @@ const SignUp = () => {
         .min(2, '2글자이상 작성해주세요')
         .max(15, '2~15사이의 길이로 입력해주세요')
         .required('필수입력란입니다.'),
-      promise: Yup.string().min(10, '10글자 이상 작성해주세요'),
+      promise: Yup.string()
+        .min(10, '10글자 이상 작성해주세요')
+        .required('필수입력란입니다.'),
     }),
   });
 
