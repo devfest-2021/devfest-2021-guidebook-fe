@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import Api from '../index';
-import { SessionType } from '../types';
+import { sessionList } from '../mock';
 
 async function getSessions(_: string) {
   const res = await Api.getSessions();
@@ -8,9 +8,12 @@ async function getSessions(_: string) {
 }
 
 export function useGetSessions() {
-  const { data, error } = useSWR<SessionType>([`articles`], getSessions);
+  const { data, error } = useSWR<typeof sessionList>(
+    [`/session-list`],
+    getSessions,
+  );
   return {
-    data: data,
+    data: data && data,
     error,
     loading: !error && !data,
   };

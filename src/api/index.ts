@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { SessionType } from './types';
+import { sessionList } from './mock';
 
 export class GuestBookApi {
   private API: string;
   constructor() {
-    this.API = 'https://....';
+    this.API = 'http://ec2-3-135-39-120.us-east-2.compute.amazonaws.com:3000';
   }
 
   getSessions = () => {
-    return axios.get<SessionType>(``);
+    return axios.get<typeof sessionList>(`${this.API}/session-list`);
   };
 }
 
