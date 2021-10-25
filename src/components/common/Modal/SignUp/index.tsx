@@ -21,8 +21,13 @@ import {
 } from '../../wrapper/Wrapper';
 import { useRecoilState } from 'recoil';
 import { modalState, MODAL_KEY } from 'src/store/modal';
+
+import Api from 'src/api/index';
+import { userState } from 'src/store/user';
+
 const SignUp = () => {
   const [modal, setModal] = useRecoilState(modalState);
+  const [user, setUser] = useRecoilState(userState);
 
   const formik = useFormik({
     initialValues: {
@@ -35,7 +40,14 @@ const SignUp = () => {
     },
     //교체예정
     onSubmit: async (values) => {
-      alert(JSON.stringify(values, null, 5));
+      try {
+        const response = await Api.signUp(values);
+        setUser({ ...user, ...response.data });
+        setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false });
+      } catch (error: any) {
+        setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false });
+        // 에러 얼럿 띄우기
+      }
     },
     validationSchema: Yup.object({
       email: Yup.string()

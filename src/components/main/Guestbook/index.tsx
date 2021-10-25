@@ -20,12 +20,11 @@ import { guidebookList } from 'src/api/mock';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import githubLogo from 'src/assets/github.png';
 import instagramLogo from 'src/assets/instagram.png';
+import { useGetGuestBook } from 'src/api/hooks/useGetGuestBook';
 
 export const Guestbook = () => {
-  // how to use swr
-  // const { data } = useGetSessions();
+  const { data } = useGetGuestBook();
   const [range, setRange] = useState<Date>();
-  const data = guidebookList;
 
   useEffect(() => {
     console.log(range);
@@ -74,35 +73,36 @@ export const Guestbook = () => {
       <FilterSection></FilterSection>
       <AnimateSharedLayout type="crossfade">
         <List variants={listAnimate} initial="start" animate="end">
-          {data.map((guidebook) => (
-            <AnimatePresence key={guidebook.id}>
-              <SessionCard
-                key={guidebook.id}
-                variants={listItemAnimate}
-                layoutId={String(guidebook.id)}
-              >
-                <TopSection>
-                  <Logo src={guidebook.profileImageUrl}></Logo>
-                  <TopTextSection>
-                    <CardTitleSection>
-                      <CardTitle>{guidebook.name}</CardTitle>
-                      <SmallLogo src={githubLogo}></SmallLogo>
-                      <SmallLogo src={instagramLogo}></SmallLogo>
-                    </CardTitleSection>
-                    <Organizer>{guidebook.affiliation}</Organizer>
-                  </TopTextSection>
-                </TopSection>
-                <CardContent>{guidebook.description}</CardContent>
-                <BottomSection>
-                  <ChipSection>
-                    {guidebook.List.map((session) => (
-                      <Chip key={session.id}>{session.name}</Chip>
-                    ))}
-                  </ChipSection>
-                </BottomSection>
-              </SessionCard>
-            </AnimatePresence>
-          ))}
+          {data &&
+            data.map((guidebook) => (
+              <AnimatePresence key={guidebook.id}>
+                <SessionCard
+                  key={guidebook.id}
+                  variants={listItemAnimate}
+                  layoutId={String(guidebook.id)}
+                >
+                  <TopSection>
+                    <Logo src={guidebook.profileImageUrl}></Logo>
+                    <TopTextSection>
+                      <CardTitleSection>
+                        <CardTitle>{guidebook.name}</CardTitle>
+                        <SmallLogo src={githubLogo}></SmallLogo>
+                        <SmallLogo src={instagramLogo}></SmallLogo>
+                      </CardTitleSection>
+                      <Organizer>{guidebook.affiliation}</Organizer>
+                    </TopTextSection>
+                  </TopSection>
+                  <CardContent>{guidebook.description}</CardContent>
+                  <BottomSection>
+                    <ChipSection>
+                      {guidebook.List.map((session) => (
+                        <Chip key={session.id}>{session.name}</Chip>
+                      ))}
+                    </ChipSection>
+                  </BottomSection>
+                </SessionCard>
+              </AnimatePresence>
+            ))}
         </List>
       </AnimateSharedLayout>
     </LayoutContainer>

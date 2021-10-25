@@ -1,4 +1,6 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+const { persistAtom } = recoilPersist();
 
 const MODAL = 'modal';
 export const MODAL_KEY = {
@@ -14,4 +16,5 @@ export const ModalState = {
 export const modalState = atom<typeof ModalState>({
   key: MODAL,
   default: ModalState,
+  effects_UNSTABLE: [persistAtom],
 });

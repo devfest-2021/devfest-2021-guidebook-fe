@@ -25,13 +25,20 @@ import './customStyle.css';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import OutsideClickHandler from 'src/utils/hooks/OutsideClickHandler';
 import { useGetSessions } from 'src/api/hooks/useGetArticles';
-
+import { listAnimate, listItemAnimate } from 'src/styles/framer';
+import { useRecoilState } from 'recoil';
+import { MODAL_KEY, userState } from 'src/store/user';
+import { modalState } from 'src/store/modal';
+import Api from 'src/api';
 export const Session = () => {
   // how to use swr
   // const { data } = useGetSessions();
   // console.log(data);
   const [range, setRange] = useState<Date>();
   const [selectedId, setSelectedId] = useState<number | undefined>(0);
+  const [user, setUser] = useRecoilState(userState);
+  const [modal, setModal] = useRecoilState(modalState);
+
   const [selected, setSelected] = useState({
     title: '',
     description: '',
@@ -45,10 +52,6 @@ export const Session = () => {
     console.log(range);
   }, [range]);
 
-  useEffect(() => {
-    console.log(selectedId);
-  }, [selectedId]);
-
   const theme = {
     rainbow: {
       palette: {
@@ -57,34 +60,18 @@ export const Session = () => {
     },
   };
 
-  const listItemAnimate = {
-    start: {
-      scale: 0,
-    },
-    end: {
-      scale: 1,
-    },
-    exit: {
-      scale: 0,
-    },
-  };
+  useEffect(() => {
+    if (!user.user_id) {
+      setModal({ ...modal, [MODAL_KEY.SIGN_IN]: true });
+    }
+  }, [user]);
 
-  const listAnimate = {
-    start: {
-      scale: 0,
-    },
-    end: {
-      scale: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-    exit: {
-      scale: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
+  const handleOnClick = async (sessionId: number) => {
+    try {
+      await Api.attend({ userId: user.user_id, sessionId: sessionId });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -136,7 +123,10 @@ export const Session = () => {
                       <Chip>{format(session.startAt, 'MM-dd')}</Chip>
                     </ChipSection>
                     <AttendButton
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOnClick(session.id);
+                      }}
                       whileTap={{ scale: 3 }}
                     >
                       출석
@@ -169,7 +159,14 @@ export const Session = () => {
                     <ChipSection>
                       <Chip>{format(selected.startAt, 'MM-dd')}</Chip>
                     </ChipSection>
-                    <AttendButton>출석</AttendButton>
+                    <AttendButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOnClick(selectedId);
+                      }}
+                    >
+                      출석
+                    </AttendButton>
                   </BottomSection>
                 </Modal>
               </OutsideClickHandler>
