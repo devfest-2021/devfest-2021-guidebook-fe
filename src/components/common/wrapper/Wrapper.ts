@@ -29,23 +29,19 @@ const BoxElementWrapper = styled.div`
   overflow-y: auto;
   @media (min-width: 320px) {
     width: 300px;
-    height: 230px;
     padding: 35px 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     width: 350px;
-    height: 260px;
     padding: 45px 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
     width: 480px;
-    height: 350px;
-    padding: 60px 30px;
+    padding: 24px 30px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
     width: 480px;
-    height: 350px;
-    padding: 60px 30px;
+    padding: 24px 30px;
   }
 `;
 const BoxSizeWrapper = styled.div`
