@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NavDesign = styled.div`
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.03);
+  position: static;
 `;
 const NavAlign = styled.div`
   display: flex;
@@ -35,7 +36,7 @@ const StyledLink = styled(Link)`
     color: #b8b8b8;
   }
 `;
-const OpenModal = styled.div`
+const OpenedModal = styled.div`
   text-decoration: none;
   color: inherit;
   list-style: none;
@@ -68,10 +69,17 @@ const NavTask = styled.li`
     font-size: 19px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
-    font-size: 24px;
+    font-size: 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    font-size: 25px;
+    font-size: 20px;
   }
 `;
-export { NavAlign, NavDesign, NavTaskWrapper, StyledLink, NavTask, OpenModal };
+export {
+  NavAlign,
+  NavDesign,
+  NavTaskWrapper,
+  StyledLink,
+  NavTask,
+  OpenedModal,
+};

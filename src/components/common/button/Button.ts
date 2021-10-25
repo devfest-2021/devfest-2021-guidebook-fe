@@ -11,19 +11,19 @@ const StyledJoinButton = styled.button`
   }
   @media (min-width: 320px) {
     font-size: 15px;
-    padding: 6px 10px;
+    padding: 7px 12px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
     font-size: 15px;
-    padding: 6px 10px;
+    padding: 7px 12px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
-    font-size: 23px;
-    padding: 6px 10px;
+    font-size: 15px;
+    padding: 7px 12px;
   }
-  @media (min-width: : ${(props) => props.theme.windowSize.desk}px) {
-    font-size: 23px;
-    padding: 6px 10px;
+  @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
+    font-size: 15px;
+    padding: 7px 12px;
   }
 `;
 

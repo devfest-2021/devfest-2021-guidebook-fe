@@ -5,11 +5,11 @@ import {
   HighLightSign,
   Close,
   StyledErrorMessage,
-} from '../../../common/text/Title';
-import { StyledInput } from '../../../common/input/InputBox';
-import { StyledJoinButton } from '../../../common/button/Button';
-import { Formik, Form, useFormik, FormikProvider } from 'formik';
-
+} from '../../../../common/text/Title';
+import { StyledInput } from '../../../../common/input/InputBox';
+import { StyledJoinButton } from '../../../../common/button/Button';
+import { Form, useFormik, FormikProvider } from 'formik';
+import { atom, useSetRecoilState, RecoilRoot } from 'recoil';
 import * as Yup from 'yup';
 
 import {
@@ -19,30 +19,12 @@ import {
   ModalOverlay,
   ModalInner,
   ModalWrapper,
-} from '../../../common/wrapper/Wrapper';
-import { Button } from 'react-rainbow-components';
-
-// interface userInfo {
-//   email: string;
-//   github: string;
-//   instagram: string;
-//   promise: string;
-//   nickname: string;
-//   group: string;
-// }
-// const [userInfomation, setUserInfomation] = useState<userInfo>({
-//   email: '',
-//   github: '',
-//   instagram: '',
-//   promise: '',
-//   nickname: '',
-//   group: '',
-// });
-
+} from '../../../../common/wrapper/Wrapper';
 type NavigationInterface = {
   modalHandle: () => void;
+  visible: string;
 };
-const Modal: React.FC<NavigationInterface> = ({ modalHandle }) => {
+const SignUp: React.FC<NavigationInterface> = ({ modalHandle, visible }) => {
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -52,6 +34,7 @@ const Modal: React.FC<NavigationInterface> = ({ modalHandle }) => {
       nickname: '',
       group: '',
     },
+    //교체예정
     onSubmit: async (values) => {
       alert(JSON.stringify(values, null, 5));
     },
@@ -66,15 +49,13 @@ const Modal: React.FC<NavigationInterface> = ({ modalHandle }) => {
         .min(2, '2글자이상 작성해주세요')
         .max(15, '2~15사이의 길이로 입력해주세요')
         .required('필수입력란입니다.'),
-      group: Yup.string()
-        .min(2, '2글자이상 작성해주세요')
-        .max(15, '2~15사이의 길이로 입력해주세요')
-        .required('필수입력란입니다.'),
+      promise: Yup.string().min(10, '10글자 이상 작성해주세요'),
     }),
   });
+
   return (
     <div>
-      <ModalOverlay />
+      <ModalOverlay visible={visible} />
       <ModalWrapper>
         <ModalInner>
           <FormikProvider value={formik}>
@@ -88,18 +69,24 @@ const Modal: React.FC<NavigationInterface> = ({ modalHandle }) => {
                 />
               </SnsWrapper>
               <SubTitle>
-                이메일을 입력해주세요!
+                이메일
                 <HighLightSign />
               </SubTitle>
               <StyledInput name={'email'} type={'email'} />
               <StyledErrorMessage name="email" component="div" />
+              <SubTitle>
+                참가자 이름
+                <HighLightSign />
+              </SubTitle>
+              <StyledInput name={'name'} type={'name'} />
+              <StyledErrorMessage name="name" component="div" />
               <SnsWrapper>
                 <SnsElementWrapper>
-                  <SubTitle>Github</SubTitle>
+                  <SubTitle>github</SubTitle>
                   <StyledInput name={'github'} type={'github'} />
                 </SnsElementWrapper>
                 <SnsElementWrapper>
-                  <SubTitle>Instagram</SubTitle>
+                  <SubTitle>instagram</SubTitle>
                   <StyledInput
                     name={'instagram'}
                     type={'github'}
@@ -107,20 +94,15 @@ const Modal: React.FC<NavigationInterface> = ({ modalHandle }) => {
                   />
                 </SnsElementWrapper>
               </SnsWrapper>
-              <SubTitle>응원의 한마디</SubTitle>
+              <SubTitle>
+                응원의 한마디
+                <HighLightSign />
+              </SubTitle>
               <StyledInput name={'promise'} type={'promise'} />
-              <SubTitle>
-                참가자 이름
-                <HighLightSign />
-              </SubTitle>
-              <StyledInput name={'name'} type={'name'} />
-              <StyledErrorMessage name="name" component="div" />
-              <SubTitle>
-                소속
-                <HighLightSign />
-              </SubTitle>
+              <StyledErrorMessage name="promise" component="div" />
+              <SubTitle>소속</SubTitle>
               <StyledInput name={'group'} type={'group'} />
-              <StyledErrorMessage name={'group'} component={'div'} />
+
               <ButtonWrapper>
                 <StyledJoinButton name={'submit'} type={'submit'}>
                   참석하기
@@ -134,4 +116,4 @@ const Modal: React.FC<NavigationInterface> = ({ modalHandle }) => {
   );
 };
 
-export default Modal;
+export default SignUp;

@@ -4,7 +4,7 @@ import { Field } from 'formik';
 export const StyledInput = styled(Field)`
   border-radius: 10px;
   border-color: #aaaaaa;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   box-sizing: border-box;
   height: 50px;
@@ -21,11 +21,11 @@ export const StyledInput = styled(Field)`
     font-size: 15px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
-    height: 55px;
+    height: 50px;
     font-size: 20px;
   }
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
-    height: 60px;
-    font-size: 25px;
+    height: 50px;
+    font-size: 20px;
   }
 `;
