@@ -101,6 +101,7 @@ export const CardContent = styled.p`
   font-size: 15px;
   color: #555;
   margin-bottom: 24px;
+  height: 90px;
 `;
 
 export const CardContentInModal = styled(CardContent)`

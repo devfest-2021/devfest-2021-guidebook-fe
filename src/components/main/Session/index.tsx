@@ -18,36 +18,35 @@ import {
   Organizer,
 } from './styled';
 import { LayoutContainer } from 'src/styles/layout';
-import { sessionList } from 'src/api/mock';
 import { format } from 'date-fns';
 import { Application, DatePicker } from 'react-rainbow-components';
 import './customStyle.css';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import OutsideClickHandler from 'src/utils/hooks/OutsideClickHandler';
 import { useGetSessions } from 'src/api/hooks/useGetArticles';
-
+import { listAnimate, listItemAnimate } from 'src/styles/framer';
+import { useRecoilState } from 'recoil';
+import { MODAL_KEY, userState } from 'src/store/user';
+import { modalState } from 'src/store/modal';
+import Api from 'src/api';
 export const Session = () => {
-  // how to use swr
-  // const { data } = useGetSessions();
-  // console.log(data);
+  const { data } = useGetSessions();
   const [range, setRange] = useState<Date>();
   const [selectedId, setSelectedId] = useState<number | undefined>(0);
+  const [user, setUser] = useRecoilState(userState);
+  const [modal, setModal] = useRecoilState(modalState);
+
   const [selected, setSelected] = useState({
     title: '',
     description: '',
     logoImgUrl: '',
-    startAt: 0,
+    start_at: 0,
     organizer: '',
   });
-  const data = sessionList;
 
   useEffect(() => {
     console.log(range);
   }, [range]);
-
-  useEffect(() => {
-    console.log(selectedId);
-  }, [selectedId]);
 
   const theme = {
     rainbow: {
@@ -57,35 +56,22 @@ export const Session = () => {
     },
   };
 
-  const listItemAnimate = {
-    start: {
-      scale: 0,
-    },
-    end: {
-      scale: 1,
-    },
-    exit: {
-      scale: 0,
-    },
-  };
+  useEffect(() => {
+    if (!user.user_id) {
+      setModal({ ...modal, [MODAL_KEY.SIGN_IN]: true });
+    }
+  }, [user]);
 
-  const listAnimate = {
-    start: {
-      scale: 0,
-    },
-    end: {
-      scale: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-    exit: {
-      scale: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
+  const handleOnClick = async (sessionId: number) => {
+    try {
+      await Api.attend({ userId: user.user_id, sessionId: sessionId });
+    } catch (error) {
+      console.log(error);
+    }
   };
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <LayoutContainer>
@@ -113,15 +99,15 @@ export const Session = () => {
         <List variants={listAnimate} initial="start" animate="end">
           {data &&
             data.map((session) => (
-              <AnimatePresence key={session.id}>
+              <AnimatePresence key={session.session_id}>
                 <SessionCard
-                  key={session.id}
+                  key={session.session_id}
                   onClick={() => {
                     setSelected(session);
-                    setSelectedId(session.id);
+                    setSelectedId(session.session_id);
                   }}
                   variants={listItemAnimate}
-                  layoutId={String(session.id)}
+                  layoutId={String(session.session_id)}
                 >
                   <TopSection>
                     <Logo src={session.logoImgUrl}></Logo>
@@ -133,10 +119,13 @@ export const Session = () => {
                   <CardContent>{session.description}</CardContent>
                   <BottomSection>
                     <ChipSection>
-                      <Chip>{format(session.startAt, 'MM-dd')}</Chip>
+                      <Chip>{format(new Date(session.start_at), 'MM-dd')}</Chip>
                     </ChipSection>
                     <AttendButton
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOnClick(session.session_id);
+                      }}
                       whileTap={{ scale: 3 }}
                     >
                       출석
@@ -167,9 +156,18 @@ export const Session = () => {
                   </CardContentInModal>
                   <BottomSection>
                     <ChipSection>
-                      <Chip>{format(selected.startAt, 'MM-dd')}</Chip>
+                      <Chip>
+                        {format(new Date(selected.start_at), 'MM-dd')}
+                      </Chip>
                     </ChipSection>
-                    <AttendButton>출석</AttendButton>
+                    <AttendButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOnClick(selectedId);
+                      }}
+                    >
+                      출석
+                    </AttendButton>
                   </BottomSection>
                 </Modal>
               </OutsideClickHandler>

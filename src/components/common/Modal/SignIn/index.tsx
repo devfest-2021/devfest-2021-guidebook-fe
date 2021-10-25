@@ -15,13 +15,35 @@ import { StyledInput } from '../../input/InputBox';
 import { StyledJoinButton } from '../../button/Button';
 import { Form, useFormik, FormikProvider } from 'formik';
 import * as Yup from 'yup';
+import Api from 'src/api/index';
+import { useRecoilState } from 'recoil';
+import { modalState, MODAL_KEY } from 'src/store/modal';
+import { userState } from 'src/store/user';
+
+const NOT_REGISTERED = '등록되지 않은 email';
+
 const Signin = () => {
+  const [modal, setModal] = useRecoilState(modalState);
+  const [user, setUser] = useRecoilState(userState);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     onSubmit: async (values) => {
-      alert(JSON.stringify(values, null, 5));
+      try {
+        const response = await Api.signIn(values);
+        setUser({ ...user, ...response.data });
+        setModal({ ...modal, [MODAL_KEY.SIGN_IN]: false });
+      } catch (error: any) {
+        if (error && error.response.data.detail === NOT_REGISTERED) {
+          setModal({ [MODAL_KEY.SIGN_IN]: false, [MODAL_KEY.SIGN_UP]: true });
+        }
+      }
     },
     validationSchema: Yup.object({
       email: Yup.string()
