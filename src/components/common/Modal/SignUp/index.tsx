@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   MainTitle,
   SubTitle,
@@ -8,7 +8,7 @@ import {
 } from '../../text/Title';
 import { StyledInput } from '../../input/InputBox';
 import { StyledJoinButton } from '../../button/Button';
-import { Form, useFormik, FormikProvider } from 'formik';
+import { Form, useFormik, FormikProvider, getIn } from 'formik';
 import * as Yup from 'yup';
 
 import {
@@ -24,6 +24,10 @@ import { modalState, MODAL_KEY } from 'src/store/modal';
 
 import Api from 'src/api/index';
 import { userState } from 'src/store/user';
+import { Simulate } from 'react-dom/test-utils';
+import { getStyles } from '../modalError';
+
+const error = Simulate.error;
 
 const SignUp = () => {
   const [modal, setModal] = useRecoilState(modalState);
@@ -49,6 +53,11 @@ const SignUp = () => {
         // 에러 얼럿 띄우기
       }
     },
+    // validate: (values) => {
+    //   const errors = {};
+    //   if (!values.email) errors.email = 'Required';
+    //   return errors;
+    // },
     validationSchema: Yup.object({
       email: Yup.string()
         .matches(
@@ -56,13 +65,23 @@ const SignUp = () => {
           '이메일 형식에 맞게 작성해주세요',
         )
         .required('필수입력란입니다.'),
-      name: Yup.string()
+      nickname: Yup.string()
         .min(2, '2글자이상 작성해주세요')
         .max(15, '2~15사이의 길이로 입력해주세요')
         .required('필수입력란입니다.'),
-      promise: Yup.string().min(10, '10글자 이상 작성해주세요'),
+      promise: Yup.string()
+        .min(10, '10글자 이상 작성해주세요')
+        .required('필수입력란입니다.'),
     }),
   });
+  useEffect(() => {
+    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = `position: ""; top: "";`;
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    };
+  }, []);
 
   return (
     <div>
@@ -83,14 +102,22 @@ const SignUp = () => {
                 이메일
                 <HighLightSign />
               </SubTitle>
-              <StyledInput name={'email'} type={'email'} />
+              <StyledInput
+                name={'email'}
+                type={'email'}
+                style={getStyles(formik.errors, 'email')}
+              />
               <StyledErrorMessage name="email" component="div" />
               <SubTitle>
                 참가자 이름
                 <HighLightSign />
               </SubTitle>
-              <StyledInput name={'name'} type={'name'} />
-              <StyledErrorMessage name="name" component="div" />
+              <StyledInput
+                name={'nickname'}
+                type={'nickname'}
+                style={getStyles(formik.errors, 'nickname')}
+              />
+              <StyledErrorMessage name="nickname" component="div" />
               <SnsWrapper>
                 <SnsElementWrapper>
                   <SubTitle>github</SubTitle>
@@ -98,18 +125,18 @@ const SignUp = () => {
                 </SnsElementWrapper>
                 <SnsElementWrapper>
                   <SubTitle>instagram</SubTitle>
-                  <StyledInput
-                    name={'instagram'}
-                    type={'github'}
-                    placeholder={'@OOO'}
-                  />
+                  <StyledInput name={'instagram'} type={'instagram'} />
                 </SnsElementWrapper>
               </SnsWrapper>
               <SubTitle>
                 응원의 한마디
                 <HighLightSign />
               </SubTitle>
-              <StyledInput name={'promise'} type={'promise'} />
+              <StyledInput
+                name={'promise'}
+                type={'promise'}
+                style={getStyles(formik.errors, 'promise')}
+              />
               <StyledErrorMessage name="promise" component="div" />
               <SubTitle>소속</SubTitle>
               <StyledInput name={'group'} type={'group'} />
