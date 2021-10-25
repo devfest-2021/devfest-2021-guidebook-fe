@@ -64,18 +64,19 @@ const Close = styled.div`
       width: 2px;
     }
     @media (min-width: ${(props) => props.theme.windowSize.mobile}px) {
-      top: 20px;
+      top: 22px;
       right: 30px;
       height: 25px;
       width: 2px;
     }
     @media (min-width: ${(props) => props.theme.windowSize.tablet}px) {
-      top: 20px;
+      top: 24px;
       right: 50px;
       height: 30px;
       width: 3px;
     }
     @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
+      top: 26px;
       right: 50px;
       height: 30px;
       width: 3px;
