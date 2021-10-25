@@ -4,3 +4,6 @@
   font-style: normal;
   margin: 0;
 }
+html {
+  background: white !important;
+}

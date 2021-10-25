@@ -83,6 +83,9 @@ export const Logo = styled.img`
   width: 44px;
   height: 44px;
   border-radius: 50%;
+  flex-shrink: 0;
+  background-color: white;
+  border-color: white;
 `;
 
 export const CardTitleSection = styled.div`
@@ -101,7 +104,14 @@ export const CardContent = styled.p`
   font-size: 15px;
   color: #555;
   margin-bottom: 24px;
-  height: 90px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-height: 1.5em;
+  max-height: 4.5em;
+  min-height: 4.5em;
+  overflow: hidden;
 `;
 
 export const CardContentInModal = styled(CardContent)`

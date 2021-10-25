@@ -5,9 +5,9 @@ export const sessionList = [
     organizer: '고려대학교',
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -16,9 +16,9 @@ export const sessionList = [
     organizer: '고려대학교',
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -28,9 +28,9 @@ export const sessionList = [
 
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -40,9 +40,9 @@ export const sessionList = [
 
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -52,9 +52,9 @@ export const sessionList = [
 
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -64,9 +64,9 @@ export const sessionList = [
 
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -76,9 +76,9 @@ export const sessionList = [
 
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -88,9 +88,9 @@ export const sessionList = [
 
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -100,9 +100,9 @@ export const sessionList = [
 
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
   {
@@ -112,9 +112,9 @@ export const sessionList = [
 
     description:
       '어쩌다 진로방향을 잡게되었는지, 혹은 의도하지 않았지만 어쩌다보니 이 일을 하게 되었다.. 그냥 지금 하고 있는 자리에 있게 된 배경을 들어보자.',
-    start_at: +new Date('2021-10-11'),
-    endAt: +new Date('2021-12-11'),
-    runningTime: +new Date('2021-12-12'),
+    start_at: '2021-11-11T19:00:00.000Z',
+    endAt: new Date('2021-12-11'),
+    running_time: 60,
     logoImgUrl: 'https://picsum.photos/200',
   },
 ];
