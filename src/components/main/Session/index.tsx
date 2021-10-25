@@ -9,7 +9,6 @@ import {
   ChipSection,
   AttendButton,
   List,
-  Logo,
   FilterSection,
   Modal,
   ModalWrapper,
@@ -18,7 +17,7 @@ import {
   Organizer,
 } from './styled';
 import { LayoutContainer } from 'src/styles/layout';
-import { format } from 'date-fns';
+import { add, format } from 'date-fns';
 import { Application, DatePicker } from 'react-rainbow-components';
 import './customStyle.css';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
@@ -29,6 +28,8 @@ import { useRecoilState } from 'recoil';
 import { MODAL_KEY, userState } from 'src/store/user';
 import { modalState } from 'src/store/modal';
 import Api from 'src/api';
+import { SchoolLogo } from './components/Logo';
+
 export const Session = () => {
   const { data } = useGetSessions();
   const [range, setRange] = useState<Date>();
@@ -40,8 +41,9 @@ export const Session = () => {
     title: '',
     description: '',
     logoImgUrl: '',
-    start_at: 0,
+    start_at: '',
     organizer: '',
+    running_time: 60,
   });
 
   useEffect(() => {
@@ -110,7 +112,7 @@ export const Session = () => {
                   layoutId={String(session.session_id)}
                 >
                   <TopSection>
-                    <Logo src={session.logoImgUrl}></Logo>
+                    <SchoolLogo name={session.organizer}></SchoolLogo>
                     <TopTextSection>
                       <CardTitle>{session.title}</CardTitle>
                       <Organizer>{session.organizer}</Organizer>
@@ -119,7 +121,25 @@ export const Session = () => {
                   <CardContent>{session.description}</CardContent>
                   <BottomSection>
                     <ChipSection>
-                      <Chip>{format(new Date(session.start_at), 'MM-dd')}</Chip>
+                      <Chip>
+                        {format(
+                          new Date(session.start_at.replace('.000Z', '')),
+                          'MM-dd',
+                        )}
+                      </Chip>
+                      <Chip>
+                        {format(
+                          new Date(session.start_at.replace('.000Z', '')),
+                          'HH:mm',
+                        )}
+                        ~
+                        {format(
+                          add(new Date(session.start_at.replace('.000Z', '')), {
+                            minutes: session.running_time,
+                          }),
+                          'HH:mm',
+                        )}
+                      </Chip>
                     </ChipSection>
                     <AttendButton
                       onClick={(e) => {
@@ -144,7 +164,7 @@ export const Session = () => {
               >
                 <Modal layoutId={String(selectedId)}>
                   <TopSection>
-                    <Logo src={selected.logoImgUrl}></Logo>
+                    <SchoolLogo name={selected.organizer}></SchoolLogo>
                     <TopTextSection>
                       <CardTitle>{selected.title}</CardTitle>
                       <Organizer>{selected.organizer}</Organizer>
@@ -157,7 +177,26 @@ export const Session = () => {
                   <BottomSection>
                     <ChipSection>
                       <Chip>
-                        {format(new Date(selected.start_at), 'MM-dd')}
+                        {format(
+                          new Date(selected.start_at.replace('.000Z', '')),
+                          'MM-dd',
+                        )}
+                      </Chip>
+                      <Chip>
+                        {format(
+                          new Date(selected.start_at.replace('.000Z', '')),
+                          'HH:mm',
+                        )}
+                        ~
+                        {format(
+                          add(
+                            new Date(selected.start_at.replace('.000Z', '')),
+                            {
+                              minutes: selected.running_time,
+                            },
+                          ),
+                          'HH:mm',
+                        )}
                       </Chip>
                     </ChipSection>
                     <AttendButton
