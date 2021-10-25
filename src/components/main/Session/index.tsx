@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useGetSessions } from 'src/api/hooks/useGetArticles';
 import {
   BottomSection,
   CardContent,
@@ -25,10 +24,12 @@ import { Application, DatePicker } from 'react-rainbow-components';
 import './customStyle.css';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import OutsideClickHandler from 'src/utils/hooks/OutsideClickHandler';
+import { useGetSessions } from 'src/api/hooks/useGetArticles';
 
 export const Session = () => {
   // how to use swr
   // const { data } = useGetSessions();
+  // console.log(data);
   const [range, setRange] = useState<Date>();
   const [selectedId, setSelectedId] = useState<number | undefined>(0);
   const [selected, setSelected] = useState({
@@ -110,39 +111,40 @@ export const Session = () => {
       </FilterSection>
       <AnimateSharedLayout type="crossfade">
         <List variants={listAnimate} initial="start" animate="end">
-          {data.map((session) => (
-            <AnimatePresence key={session.id}>
-              <SessionCard
-                key={session.id}
-                onClick={() => {
-                  setSelected(session);
-                  setSelectedId(session.id);
-                }}
-                variants={listItemAnimate}
-                layoutId={String(session.id)}
-              >
-                <TopSection>
-                  <Logo src={session.logoImgUrl}></Logo>
-                  <TopTextSection>
-                    <CardTitle>{session.title}</CardTitle>
-                    <Organizer>{session.organizer}</Organizer>
-                  </TopTextSection>
-                </TopSection>
-                <CardContent>{session.description}</CardContent>
-                <BottomSection>
-                  <ChipSection>
-                    <Chip>{format(session.startAt, 'MM-dd')}</Chip>
-                  </ChipSection>
-                  <AttendButton
-                    onClick={(e) => e.stopPropagation()}
-                    whileTap={{ scale: 3 }}
-                  >
-                    출석
-                  </AttendButton>
-                </BottomSection>
-              </SessionCard>
-            </AnimatePresence>
-          ))}
+          {data &&
+            data.map((session) => (
+              <AnimatePresence key={session.id}>
+                <SessionCard
+                  key={session.id}
+                  onClick={() => {
+                    setSelected(session);
+                    setSelectedId(session.id);
+                  }}
+                  variants={listItemAnimate}
+                  layoutId={String(session.id)}
+                >
+                  <TopSection>
+                    <Logo src={session.logoImgUrl}></Logo>
+                    <TopTextSection>
+                      <CardTitle>{session.title}</CardTitle>
+                      <Organizer>{session.organizer}</Organizer>
+                    </TopTextSection>
+                  </TopSection>
+                  <CardContent>{session.description}</CardContent>
+                  <BottomSection>
+                    <ChipSection>
+                      <Chip>{format(session.startAt, 'MM-dd')}</Chip>
+                    </ChipSection>
+                    <AttendButton
+                      onClick={(e) => e.stopPropagation()}
+                      whileTap={{ scale: 3 }}
+                    >
+                      출석
+                    </AttendButton>
+                  </BottomSection>
+                </SessionCard>
+              </AnimatePresence>
+            ))}
         </List>
 
         <AnimatePresence>

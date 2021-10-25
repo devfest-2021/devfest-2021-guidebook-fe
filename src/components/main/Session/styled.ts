@@ -98,7 +98,7 @@ export const CardTitle = styled.h3`
 
 export const CardContent = styled.p`
   font-weight: 500;
-  font-size: 500;
+  font-size: 15px;
   color: #555;
   margin-bottom: 24px;
 `;
