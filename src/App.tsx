@@ -16,7 +16,7 @@ function App() {
     key: 'modal',
     default: false,
   });
-  // const [modalOpen, setModalOpen] = useSetRecoilState<boolean>(modal);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const modalHandle = () => {
     setModalOpen(!modalOpen);
   };
