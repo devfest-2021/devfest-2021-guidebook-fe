@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   MainTitle,
   SubTitle,
   HighLightSign,
   Close,
   StyledErrorMessage,
-} from '../../../../common/text/Title';
-import { StyledInput } from '../../../../common/input/InputBox';
-import { StyledJoinButton } from '../../../../common/button/Button';
+} from '../../text/Title';
+import { StyledInput } from '../../input/InputBox';
+import { StyledJoinButton } from '../../button/Button';
 import { Form, useFormik, FormikProvider } from 'formik';
-import { atom, useSetRecoilState, RecoilRoot } from 'recoil';
 import * as Yup from 'yup';
 
 import {
@@ -19,12 +18,12 @@ import {
   ModalOverlay,
   ModalInner,
   ModalWrapper,
-} from '../../../../common/wrapper/Wrapper';
-type NavigationInterface = {
-  modalHandle: () => void;
-  visible: string;
-};
-const SignUp: React.FC<NavigationInterface> = ({ modalHandle, visible }) => {
+} from '../../wrapper/Wrapper';
+import { useRecoilState } from 'recoil';
+import { modalState, MODAL_KEY } from 'src/store/modal';
+const SignUp = () => {
+  const [modal, setModal] = useRecoilState(modalState);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -55,7 +54,7 @@ const SignUp: React.FC<NavigationInterface> = ({ modalHandle, visible }) => {
 
   return (
     <div>
-      <ModalOverlay visible={visible} />
+      <ModalOverlay />
       <ModalWrapper>
         <ModalInner>
           <FormikProvider value={formik}>
@@ -64,7 +63,7 @@ const SignUp: React.FC<NavigationInterface> = ({ modalHandle, visible }) => {
                 <MainTitle>프로필 입력하기</MainTitle>
                 <Close
                   onClick={() => {
-                    modalHandle();
+                    setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false });
                   }}
                 />
               </SnsWrapper>
