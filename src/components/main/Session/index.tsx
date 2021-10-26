@@ -57,13 +57,11 @@ export const Session = () => {
     },
   };
 
-  useEffect(() => {
+  const handleOnClick = async (sessionId: number) => {
     if (!user.user_id) {
       setModal({ ...modal, [MODAL_KEY.SIGN_IN]: true });
+      return;
     }
-  }, [user]);
-
-  const handleOnClick = async (sessionId: number) => {
     try {
       await Api.attend({ userId: user.user_id, sessionId: sessionId });
     } catch (error) {
