@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   BottomSection,
   CardContent,
@@ -16,57 +16,15 @@ import {
   SmallLogo,
 } from '../Session/styled';
 import { LayoutContainer } from 'src/styles/layout';
-import { guidebookList } from 'src/api/mock';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import githubLogo from 'src/assets/github.png';
 import instagramLogo from 'src/assets/instagram.png';
 import { useGetGuestBook } from 'src/api/hooks/useGetGuestBook';
+import DefaultImage from 'src/assets/school/14.jpg';
+import { listAnimate, listItemAnimate } from 'src/styles/framer';
 
 export const Guestbook = () => {
   const { data } = useGetGuestBook();
-  const [range, setRange] = useState<Date>();
-
-  useEffect(() => {
-    console.log(range);
-  }, [range]);
-
-  const theme = {
-    rainbow: {
-      palette: {
-        brand: '#55af7a',
-      },
-    },
-  };
-
-  const listItemAnimate = {
-    start: {
-      scale: 0,
-    },
-    end: {
-      scale: 1,
-    },
-    exit: {
-      scale: 0,
-    },
-  };
-
-  const listAnimate = {
-    start: {
-      scale: 0,
-    },
-    end: {
-      scale: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-    exit: {
-      scale: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
 
   return (
     <LayoutContainer>
@@ -75,14 +33,16 @@ export const Guestbook = () => {
         <List variants={listAnimate} initial="start" animate="end">
           {data &&
             data.map((guidebook) => (
-              <AnimatePresence key={guidebook.id}>
+              <AnimatePresence key={guidebook.user_id}>
                 <SessionCard
-                  key={guidebook.id}
+                  key={guidebook.user_id}
                   variants={listItemAnimate}
-                  layoutId={String(guidebook.id)}
+                  layoutId={String(guidebook.user_id)}
                 >
                   <TopSection>
-                    <Logo src={guidebook.profileImageUrl}></Logo>
+                    <Logo
+                      src={guidebook.profileImageUrl || DefaultImage}
+                    ></Logo>
                     <TopTextSection>
                       <CardTitleSection>
                         <CardTitle>{guidebook.name}</CardTitle>
@@ -95,8 +55,10 @@ export const Guestbook = () => {
                   <CardContent>{guidebook.description}</CardContent>
                   <BottomSection>
                     <ChipSection>
-                      {guidebook.List.map((session) => (
-                        <Chip key={session.id}>{session.name}</Chip>
+                      {guidebook.sessionList.map((session) => (
+                        <Chip key={session.session_id}>
+                          {session.session_name}
+                        </Chip>
                       ))}
                     </ChipSection>
                   </BottomSection>
