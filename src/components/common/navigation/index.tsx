@@ -26,13 +26,14 @@ const Navigation: React.FC = () => {
           </NavTask>
         </NavTaskWrapper>
         <NavTaskWrapper>
-          <NavTask>
+          {/* 프로필 생성되면 살려주세요 */}
+          {/* <NavTask>
             <OpenedModal
               onClick={() => setModal({ ...modal, [MODAL_KEY.SIGN_UP]: true })}
             >
               프로필 만들기
             </OpenedModal>
-          </NavTask>
+          </NavTask> */}
         </NavTaskWrapper>
       </NavAlign>
     </NavDesign>
