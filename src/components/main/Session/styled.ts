@@ -117,6 +117,8 @@ export const CardContent = styled.p`
 
 export const CardContentInModal = styled(CardContent)`
   margin-bottom: 28px;
+  max-height: 10em;
+  -webkit-line-clamp: 6;
 `;
 
 export const BottomSection = styled.div`
