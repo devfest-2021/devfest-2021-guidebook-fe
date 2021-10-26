@@ -3,7 +3,6 @@ import {
   MainTitle,
   SubTitle,
   HighLightSign,
-  Close,
   StyledErrorMessage,
 } from '../../text/Title';
 import { StyledInput } from '../../input/InputBox';
@@ -15,9 +14,6 @@ import {
   SnsWrapper,
   SnsElementWrapper,
   ButtonWrapper,
-  ModalOverlay,
-  ModalInner,
-  ModalWrapper,
 } from '../../wrapper/Wrapper';
 import { useRecoilState } from 'recoil';
 import { modalState, MODAL_KEY } from 'src/store/modal';

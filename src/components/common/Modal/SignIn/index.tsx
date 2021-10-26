@@ -20,6 +20,7 @@ import { useRecoilState } from 'recoil';
 import { modalState, MODAL_KEY } from 'src/store/modal';
 import { userState } from 'src/store/user';
 import { getStyles } from '../modalError';
+import { Modal, Button } from 'react-rainbow-components';
 
 const NOT_REGISTERED = '등록되지 않은 email';
 
@@ -65,30 +66,34 @@ const Signin = () => {
     };
   }, []);
   return (
-    <div>
-      <ModalOverlay />
-      <StyledBox>
-        <BoxElementWrapper>
-          <FormikProvider value={formik}>
-            <Form>
-              <MainTitle>이메일 입력하기</MainTitle>
-              <SubTitle>
-                이메일 <HighLightSign />
-              </SubTitle>
-              <StyledInput
-                type="email"
-                name="email"
-                style={getStyles(formik.errors, 'email')}
-              />
-              <StyledErrorMessage name="email" component="div" />
-              <ButtonWrapper>
-                <StyledJoinButton>참석하기</StyledJoinButton>
-              </ButtonWrapper>
-            </Form>
-          </FormikProvider>
-        </BoxElementWrapper>
-      </StyledBox>
-    </div>
+    <>
+      <Modal
+        isOpen={modal.signUp}
+        onRequestClose={() =>
+          setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false })
+        }
+        // style={}
+      >
+        <FormikProvider value={formik}>
+          <Form>
+            <MainTitle>이메일 입력하기</MainTitle>
+            <SubTitle>
+              이메일 <HighLightSign />
+            </SubTitle>
+            <StyledInput
+              type="email"
+              name="email"
+              value={formik.values.email}
+              style={getStyles(formik.errors, 'email')}
+            />
+            <StyledErrorMessage name="email" component="div" />
+            <ButtonWrapper>
+              <StyledJoinButton>참석하기</StyledJoinButton>
+            </ButtonWrapper>
+          </Form>
+        </FormikProvider>
+      </Modal>
+    </>
   );
 };
 

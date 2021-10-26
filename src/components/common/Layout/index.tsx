@@ -14,6 +14,7 @@ export const Layout = () => {
       <Navigation />
       {modal.signUp && <SignUp />}
       {modal.signIn && <SignIn />}
+      <SignIn />
       <Switch>
         <Route path={''} component={Main} />
       </Switch>

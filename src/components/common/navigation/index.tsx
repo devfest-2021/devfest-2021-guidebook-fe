@@ -21,7 +21,6 @@ const Navigation: React.FC = () => {
             <StyledLink to={'/'}>세션</StyledLink>
           </NavTask>
           <NavTask>
-            {/* 방명록 연결 */}
             <StyledLink to={'/guestbook'}>방명록</StyledLink>
           </NavTask>
         </NavTaskWrapper>
