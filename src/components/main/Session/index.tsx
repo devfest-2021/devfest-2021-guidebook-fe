@@ -31,15 +31,14 @@ import Api from 'src/api';
 import { SchoolLogo } from './components/Logo';
 
 export const Session = () => {
-  // 데이터확인되면 지우기
-  const { data } = useGetSessions({
-    startAt: +new Date('2021-11-01'),
-    endAt: +new Date('2021-11-02'),
-  });
-  const [range, setRange] = useState<Date>();
+  const [range, setRange] = useState<any>([]);
   const [selectedId, setSelectedId] = useState<number | undefined>(0);
   const [user, setUser] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
+  const { data } = useGetSessions({
+    startAt: range[0]?.getTime(),
+    endAt: range[1]?.getTime(),
+  });
 
   const [selected, setSelected] = useState({
     title: '',
@@ -49,10 +48,6 @@ export const Session = () => {
     organizer: '',
     running_time: 60,
   });
-
-  useEffect(() => {
-    console.log(range);
-  }, [range]);
 
   const theme = {
     rainbow: {
@@ -75,9 +70,6 @@ export const Session = () => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <LayoutContainer>
@@ -102,9 +94,9 @@ export const Session = () => {
         </Application>
       </FilterSection>
       <AnimateSharedLayout type="crossfade">
-        <List variants={listAnimate} initial="start" animate="end">
-          {data &&
-            data.map((session) => (
+        {data && (
+          <List variants={listAnimate} initial="start" animate="end">
+            {data.map((session) => (
               <AnimatePresence key={session.session_id}>
                 <SessionCard
                   key={session.session_id}
@@ -158,7 +150,8 @@ export const Session = () => {
                 </SessionCard>
               </AnimatePresence>
             ))}
-        </List>
+          </List>
+        )}
 
         <AnimatePresence>
           {selectedId && selected && (
