@@ -10037,7 +10037,7 @@ react-is@^17.0.1:
 
 react-rainbow-components@^1.27.0:
   version "1.27.0"
-  resolved "https://registry.npmjs.org/react-rainbow-components/-/react-rainbow-components-1.27.0.tgz#c4c50d070695b2ca9f5135ca2b171f5b19af1489"
+  resolved "https://registry.yarnpkg.com/react-rainbow-components/-/react-rainbow-components-1.27.0.tgz#c4c50d070695b2ca9f5135ca2b171f5b19af1489"
   integrity sha512-nCEC2Zw1Uc0qOS1iCRoAGHfXTLNaN3DFWRmLLnD32dC/3LP66dDALKvM2G6lsqHDT6CvcznwIJFQGJmcp8u3qg==
   dependencies:
     "@rainbow-modules/hooks" "^0.12.0"

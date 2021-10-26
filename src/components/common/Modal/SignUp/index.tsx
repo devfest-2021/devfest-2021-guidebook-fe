@@ -26,7 +26,7 @@ import Api from 'src/api/index';
 import { userState } from 'src/store/user';
 import { Simulate } from 'react-dom/test-utils';
 import { getStyles } from '../modalError';
-
+import { Modal, Button } from 'react-rainbow-components';
 const error = Simulate.error;
 
 const SignUp = () => {
@@ -75,7 +75,7 @@ const SignUp = () => {
     }),
   });
   useEffect(() => {
-    document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+    document.body.style.cssText = `top: -${window.scrollY}px`;
     return () => {
       const scrollY = document.body.style.top;
       document.body.style.cssText = `position: ""; top: "";`;
@@ -84,73 +84,76 @@ const SignUp = () => {
   }, []);
 
   return (
-    <div>
-      <ModalOverlay />
-      <ModalWrapper>
-        <ModalInner>
-          <FormikProvider value={formik}>
-            <Form>
-              <SnsWrapper>
-                <MainTitle>프로필 입력하기</MainTitle>
-                <Close
-                  onClick={() => {
-                    setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false });
-                  }}
-                />
-              </SnsWrapper>
-              <SubTitle>
-                이메일
-                <HighLightSign />
-              </SubTitle>
-              <StyledInput
-                name={'email'}
-                type={'email'}
-                style={getStyles(formik.errors, 'email')}
-              />
-              <StyledErrorMessage name="email" component="div" />
-              <SubTitle>
-                참가자 이름
-                <HighLightSign />
-              </SubTitle>
-              <StyledInput
-                name={'nickname'}
-                type={'nickname'}
-                style={getStyles(formik.errors, 'nickname')}
-              />
-              <StyledErrorMessage name="nickname" component="div" />
-              <SnsWrapper>
-                <SnsElementWrapper>
-                  <SubTitle>github</SubTitle>
-                  <StyledInput name={'github'} type={'github'} />
-                </SnsElementWrapper>
-                <SnsElementWrapper>
-                  <SubTitle>instagram</SubTitle>
-                  <StyledInput name={'instagram'} type={'instagram'} />
-                </SnsElementWrapper>
-              </SnsWrapper>
-              <SubTitle>
-                응원의 한마디
-                <HighLightSign />
-              </SubTitle>
-              <StyledInput
-                name={'promise'}
-                type={'promise'}
-                style={getStyles(formik.errors, 'promise')}
-              />
-              <StyledErrorMessage name="promise" component="div" />
-              <SubTitle>소속</SubTitle>
-              <StyledInput name={'group'} type={'group'} />
+    <>
+      <Modal
+        isOpen={modal.signUp}
+        onRequestClose={() =>
+          setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false })
+        }
+      >
+        <FormikProvider value={formik}>
+          <Form>
+            <MainTitle>프로필 입력하기</MainTitle>
+            <SubTitle>
+              이메일
+              <HighLightSign />
+            </SubTitle>
+            <StyledInput
+              name={'email'}
+              type={'email'}
+              style={getStyles(formik.errors, 'email')}
+            />
+            <StyledErrorMessage name="email" component="div" />
+            <SubTitle>
+              참가자 이름
+              <HighLightSign />
+            </SubTitle>
+            <StyledInput
+              name={'nickname'}
+              type={'nickname'}
+              style={getStyles(formik.errors, 'nickname')}
+            />
+            <StyledErrorMessage name="nickname" component="div" />
+            <SnsWrapper>
+              <SnsElementWrapper>
+                <SubTitle>github</SubTitle>
+                <StyledInput name={'github'} type={'github'} />
+              </SnsElementWrapper>
+              <SnsElementWrapper>
+                <SubTitle>instagram</SubTitle>
+                <StyledInput name={'instagram'} type={'instagram'} />
+              </SnsElementWrapper>
+            </SnsWrapper>
+            <SubTitle>
+              응원의 한마디
+              <HighLightSign />
+            </SubTitle>
+            <StyledInput
+              name={'promise'}
+              type={'promise'}
+              style={getStyles(formik.errors, 'promise')}
+            />
+            <StyledErrorMessage name="promise" component="div" />
+            <SubTitle>소속</SubTitle>
+            <StyledInput name={'group'} type={'group'} />
 
-              <ButtonWrapper>
-                <StyledJoinButton name={'submit'} type={'submit'}>
-                  참석하기
-                </StyledJoinButton>
-              </ButtonWrapper>
-            </Form>
-          </FormikProvider>
-        </ModalInner>
-      </ModalWrapper>
-    </div>
+            <ButtonWrapper>
+              <StyledJoinButton name={'submit'} type={'submit'}>
+                참석하기
+              </StyledJoinButton>
+            </ButtonWrapper>
+          </Form>
+        </FormikProvider>
+      </Modal>
+    </>
+    // <div>
+    //   <ModalOverlay />
+    //   <ModalWrapper>
+    //     <ModalInner>
+
+    //     </ModalInner>
+    //   </ModalWrapper>
+    // </div>
   );
 };
 
