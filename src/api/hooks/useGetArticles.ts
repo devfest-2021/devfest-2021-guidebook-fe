@@ -19,7 +19,10 @@ export function useGetSessions({
     startAt,
     endAt,
   };
-  const query = `session-list/filter?${qs.stringify(params)}`;
+  const stringParams = qs.stringify(params);
+  const query = stringParams
+    ? `session-list/filter?${qs.stringify(params)}`
+    : 'session-list';
   const { data, error } = useSWR<typeof sessionList>([query], getSessions);
   return {
     data: data && data,
