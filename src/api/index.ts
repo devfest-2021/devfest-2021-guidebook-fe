@@ -6,11 +6,11 @@ import { AttendRequest, SignInRequest, SignUpRequest } from './types';
 export class GuestBookApi {
   private API: string;
   constructor() {
-    this.API = 'http://ec2-3-135-39-120.us-east-2.compute.amazonaws.com:3000';
+    this.API = 'https://devksanbal.site';
   }
 
-  getSessions = () => {
-    return axios.get<typeof sessionList>(`${this.API}/session-list`);
+  getSessions = (url: string) => {
+    return axios.get<typeof sessionList>(`${this.API}/${url}`);
   };
 
   getGuestBooks = () => {

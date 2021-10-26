@@ -11,6 +11,7 @@ import 과기 from 'src/assets/school/9.svg';
 import 동의 from 'src/assets/school/10.png';
 import 대진 from 'src/assets/school/11.png';
 import 시립 from 'src/assets/school/12.png';
+import 숙명 from 'src/assets/school/13.png';
 import { Logo } from '../styled';
 
 interface Props {
@@ -24,13 +25,13 @@ const Url = (name: string) => {
   if (name === '이화여자대학교') {
     return 이화;
   }
-  if (name === '인하대학교') {
+  if (name === '인하대') {
     return 인하;
   }
-  if (name === '숭실대학교') {
+  if (name === '숭실대') {
     return 숭실;
   }
-  if (name === '성신여자대학교') {
+  if (name === '성신여대') {
     return 성신;
   }
   if (name === '한국외국어대학교') {
@@ -51,8 +52,11 @@ const Url = (name: string) => {
   if (name === '대진대학교') {
     return 대진;
   }
-  if (name === '서울시립대학교') {
+  if (name === '서울시립대') {
     return 시립;
+  }
+  if (name === '숙명여자대학교') {
+    return 숙명;
   }
   return '';
 };

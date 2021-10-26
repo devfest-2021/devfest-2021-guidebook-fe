@@ -31,7 +31,11 @@ import Api from 'src/api';
 import { SchoolLogo } from './components/Logo';
 
 export const Session = () => {
-  const { data } = useGetSessions();
+  // 데이터확인되면 지우기
+  const { data } = useGetSessions({
+    startAt: +new Date('2021-11-01'),
+    endAt: +new Date('2021-11-02'),
+  });
   const [range, setRange] = useState<Date>();
   const [selectedId, setSelectedId] = useState<number | undefined>(0);
   const [user, setUser] = useRecoilState(userState);

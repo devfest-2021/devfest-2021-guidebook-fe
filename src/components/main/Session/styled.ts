@@ -68,6 +68,7 @@ export const TopTextSection = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 12px;
+  height: 73px;
 `;
 
 export const Organizer = styled.span`
