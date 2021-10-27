@@ -27,13 +27,13 @@ const Url = (name: string) => {
   if (name === '이화여자대학교') {
     return 이화;
   }
-  if (name === '인하대') {
+  if (name === '인하대학교') {
     return 인하;
   }
-  if (name === '숭실대') {
+  if (name === '숭실대학교') {
     return 숭실;
   }
-  if (name === '성신여대') {
+  if (name === '성신여자대학교') {
     return 성신;
   }
   if (name === '한국외국어대학교') {
