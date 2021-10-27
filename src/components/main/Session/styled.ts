@@ -155,10 +155,19 @@ export const AttendButton = styled(motion.button)`
   border-radius: 6px;
 `;
 
+export const LottieContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const LottieWrapper = styled.div`
   position: fixed;
   width: 100%;
   top: 0;
+
+  @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
+    width: 50%;
+  }
 `;
 
 export const BigFloatingReactionItemContainer = styled(motion.div)`

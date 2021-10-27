@@ -16,6 +16,7 @@ import {
   TopTextSection,
   Organizer,
   LottieWrapper,
+  LottieContainer,
 } from './styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { add, format } from 'date-fns';
@@ -86,11 +87,13 @@ export const Session = () => {
 
   return (
     <LayoutContainer>
-      {!lottiePause && (
-        <LottieWrapper>
-          <Lottie options={defaultOptions} isPaused={lottiePause} />
-        </LottieWrapper>
-      )}
+      <LottieContainer>
+        {!lottiePause && (
+          <LottieWrapper>
+            <Lottie options={defaultOptions} isPaused={lottiePause} />
+          </LottieWrapper>
+        )}
+      </LottieContainer>
       <FilterSection>
         <Application
           className="rainbow-align-content_center rainbow-m-vertical_large  rainbow-m_auto"
