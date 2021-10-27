@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from 'src/components/common/navigation';
 import { Route, Switch } from 'react-router';
 import { Main } from 'src/components/main';
+import Admin from 'src/components/admin';
 import SignUp from 'src/components/common/Modal/SignUp';
 import { useRecoilState } from 'recoil';
 import { modalState } from 'src/store/modal';
@@ -15,6 +16,7 @@ export const Layout = () => {
       {modal.signUp && <SignUp />}
       {modal.signIn && <SignIn />}
       <Switch>
+        <Route path="/admin" component={Admin} />
         <Route path={''} component={Main} />
       </Switch>
     </>
