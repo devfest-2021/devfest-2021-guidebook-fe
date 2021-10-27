@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRecoilState } from 'recoil';
-import { modalState, MODAL_KEY } from 'src/store/modal';
-import { UserNameWrapper, NavTaskWrapper } from '../wrapper/Wrapper';
+import { MODAL_KEY, modalState } from 'src/store/modal';
+import { NavTaskWrapper, UserNameWrapper } from '../wrapper/Wrapper';
 import {
   NavDesign,
   NavInner,
-  StyledLink,
   NavTask,
-  OpenedModal,
   NavUserProfileImg,
+  OpenedModal,
+  StyledLink,
 } from './styled';
 import { NavUserEmail, NavUserName } from '../text/Title';
 import { userState } from '../../../store/user';
@@ -16,8 +16,7 @@ import { userState } from '../../../store/user';
 const Navigation: React.FC = () => {
   const [modal, setModal] = useRecoilState(modalState);
   const [user, setUser] = useRecoilState(userState);
-  // const [activeNav, setActiveNav] = useState<string>('session');
-  // console.log('activeNav: ' + activeNav);
+
   return (
     <NavDesign>
       <NavInner>

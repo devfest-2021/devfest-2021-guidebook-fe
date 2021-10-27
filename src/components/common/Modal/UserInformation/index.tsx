@@ -2,14 +2,13 @@ import React from 'react';
 import { Modal } from 'react-rainbow-components';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../../../store/user';
-import { MainTitle, SubTitle } from 'src/components/common/text/Title';
 import { MODAL_KEY, modalState } from '../../../../store/modal';
 import {
-  UserModalTaskWrapper,
-  UserModalUserInfoWrapper,
-  UserModalSubTitle,
-  UserModalTitle,
   UserModalStyledImg,
+  UserModalSubTitle,
+  UserModalTaskWrapper,
+  UserModalTitle,
+  UserModalUserInfoWrapper,
   UserModalWrapper,
 } from './styled';
 import { useGetGuestBook } from '../../../../api/hooks/useGetGuestBook';
