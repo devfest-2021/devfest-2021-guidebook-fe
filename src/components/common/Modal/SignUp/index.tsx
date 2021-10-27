@@ -23,6 +23,8 @@ import { userState } from 'src/store/user';
 import { Simulate } from 'react-dom/test-utils';
 import { getStyles } from '../modalError';
 import { Modal, Button } from 'react-rainbow-components';
+import '../customStyle.css';
+
 const error = Simulate.error;
 
 const SignUp = () => {

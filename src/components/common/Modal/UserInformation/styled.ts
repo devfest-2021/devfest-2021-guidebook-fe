@@ -4,8 +4,8 @@ const UserModalTitle = styled.div`
   font-size: 20px;
 `;
 const UserModalSubTitle = styled.div`
-  color: #b8b8b8;
-  font-size: 18px;
+  color: ${(props) => props.theme.color.gray500};
+  font-size: 16px;
 `;
 const UserModalTaskWrapper = styled.div`
   margin-top: 5px;
