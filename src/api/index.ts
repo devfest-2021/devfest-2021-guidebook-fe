@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { UserState } from 'src/store/user';
 import { guidebookList, sessionList } from './mock';
-import { AttendRequest, SignInRequest, SignUpRequest } from './types';
+import {
+  AttendRequest,
+  LikeRequest,
+  SignInRequest,
+  SignUpRequest,
+} from './types';
 
 export class GuestBookApi {
   private API: string;
@@ -31,6 +36,10 @@ export class GuestBookApi {
 
   attend = (payload: AttendRequest) => {
     return axios.post(`${this.API}/attendance/post`, payload);
+  };
+
+  like = (payload: LikeRequest) => {
+    return axios.post(`${this.API}/user/like`, payload);
   };
 }
 
