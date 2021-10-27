@@ -154,3 +154,18 @@ export const AttendButton = styled(motion.button)`
   font-size: 15px;
   border-radius: 6px;
 `;
+
+export const LottieWrapper = styled.div`
+  position: fixed;
+  width: 100%;
+  top: 0;
+`;
+
+export const BigFloatingReactionItemContainer = styled(motion.div)`
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 300px;
+  left: 30%;
+  pointer-events: none;
+`;

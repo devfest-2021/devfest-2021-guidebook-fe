@@ -144,7 +144,22 @@ const ModalInner = styled.div`
     
   }
 `;
+const NavTaskWrapper = styled.ul`
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding-left: 0px;
+`;
+
+const UserNameWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 15px;
+`;
 export {
+  NavTaskWrapper,
+  UserNameWrapper,
   BoxSizeWrapper,
   BoxElementWrapper,
   ButtonWrapper,

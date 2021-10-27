@@ -5,26 +5,19 @@ const NavDesign = styled.div`
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.03);
   position: static;
 `;
-const NavAlign = styled.div`
+const NavInner = styled.div`
   display: flex;
   flex: 1;
   width: 95%;
-  height: 70px;
+  height: 90px;
   justify-content: space-between;
   align-items: center;
   margin: auto;
 `;
 
-const NavTaskWrapper = styled.ul`
-  display: flex;
-  align-items: center;
-  list-style: none;
-  padding-left: 0px;
-`;
-
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  color: #b8b8b8;
   list-style: none;
   &:hover {
     color: #4e4e4e;
@@ -33,9 +26,11 @@ const StyledLink = styled(Link)`
   }
   &:focus {
     text-decoration: none;
+    font-weight: normal;
     color: #b8b8b8;
   }
 `;
+
 const OpenedModal = styled.div`
   text-decoration: none;
   color: inherit;
@@ -50,6 +45,7 @@ const OpenedModal = styled.div`
     color: #b8b8b8;
   }
 `;
+
 const NavTask = styled.li`
   display: flex;
   align-items: center;
@@ -75,11 +71,16 @@ const NavTask = styled.li`
     font-size: 20px;
   }
 `;
+
+const NavUserProfileImg = styled.img`
+  width: 50px;
+  border-radius: 25px;
+`;
 export {
-  NavAlign,
+  NavInner,
   NavDesign,
-  NavTaskWrapper,
   StyledLink,
   NavTask,
   OpenedModal,
+  NavUserProfileImg,
 };
