@@ -43,6 +43,15 @@ export const Guestbook = () => {
   //   }, 3000);
   // }, []);
 
+  const handleImageOnClick = (id: string, type: 'github' | 'instagram') => {
+    if (type === 'github') {
+      window.open(`https://www.github.com/${id}`);
+    }
+    if (type === 'instagram') {
+      window.open(`https://www.instagram.com/${id}`);
+    }
+  };
+
   return (
     <LayoutContainer>
       <AnimatePresence>
@@ -71,8 +80,21 @@ export const Guestbook = () => {
                     <TopTextSection>
                       <CardTitleSection>
                         <CardTitle>{guidebook.name}</CardTitle>
-                        <SmallLogo src={githubLogo}></SmallLogo>
-                        <SmallLogo src={instagramLogo}></SmallLogo>
+                        <SmallLogo
+                          src={githubLogo}
+                          onClick={() =>
+                            handleImageOnClick(guidebook.githubId, 'github')
+                          }
+                        ></SmallLogo>
+                        <SmallLogo
+                          src={instagramLogo}
+                          onClick={() =>
+                            handleImageOnClick(
+                              guidebook.instagramId,
+                              'instagram',
+                            )
+                          }
+                        ></SmallLogo>
                       </CardTitleSection>
                       <Organizer>{guidebook.affiliation}</Organizer>
                     </TopTextSection>

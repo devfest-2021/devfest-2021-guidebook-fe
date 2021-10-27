@@ -21,6 +21,7 @@ import { modalState, MODAL_KEY } from 'src/store/modal';
 import { userState } from 'src/store/user';
 import { getStyles } from '../modalError';
 import { Modal, Button } from 'react-rainbow-components';
+import '../customStyle.css';
 
 const NOT_REGISTERED = '등록되지 않은 email';
 
@@ -72,9 +73,9 @@ const Signin = () => {
   return (
     <>
       <Modal
-        isOpen={modal.signUp}
+        isOpen={modal.signIn}
         onRequestClose={() =>
-          setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false })
+          setModal({ ...modal, [MODAL_KEY.SIGN_IN]: false })
         }
         // style={}
       >
