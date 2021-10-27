@@ -72,9 +72,9 @@ const Signin = () => {
   return (
     <>
       <Modal
-        isOpen={modal.signUp}
+        isOpen={modal.signIn}
         onRequestClose={() =>
-          setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false })
+          setModal({ ...modal, [MODAL_KEY.SIGN_IN]: false })
         }
         // style={}
       >
