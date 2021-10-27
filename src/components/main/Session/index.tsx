@@ -15,6 +15,7 @@ import {
   CardContentInModal,
   TopTextSection,
   Organizer,
+  LottieWrapper,
 } from './styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { add, format } from 'date-fns';
@@ -29,12 +30,16 @@ import { MODAL_KEY, userState } from 'src/store/user';
 import { modalState } from 'src/store/modal';
 import Api from 'src/api';
 import { SchoolLogo } from './components/Logo';
+import Lottie from 'react-lottie';
+import animationData from 'src/assets/sample.json';
 
 export const Session = () => {
   const [range, setRange] = useState<any>([]);
   const [selectedId, setSelectedId] = useState<number | undefined>(0);
   const [user, setUser] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
+  const [lottiePause, setLottiePause] = useState(true);
+
   const { data } = useGetSessions({
     startAt: range[0]?.getTime(),
     endAt: range[1]?.getTime(),
@@ -57,6 +62,12 @@ export const Session = () => {
     },
   };
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+  };
+
   const handleOnClick = async (sessionId: number) => {
     if (!user.user_id) {
       setModal({ ...modal, [MODAL_KEY.SIGN_IN]: true });
@@ -64,6 +75,10 @@ export const Session = () => {
     }
     try {
       await Api.attend({ userId: user.user_id, sessionId: sessionId });
+      setLottiePause(false);
+      setTimeout(() => {
+        setLottiePause(true);
+      }, 2500);
     } catch (error) {
       console.log(error);
     }
@@ -71,6 +86,11 @@ export const Session = () => {
 
   return (
     <LayoutContainer>
+      {!lottiePause && (
+        <LottieWrapper>
+          <Lottie options={defaultOptions} isPaused={lottiePause} />
+        </LottieWrapper>
+      )}
       <FilterSection>
         <Application
           className="rainbow-align-content_center rainbow-m-vertical_large  rainbow-m_auto"

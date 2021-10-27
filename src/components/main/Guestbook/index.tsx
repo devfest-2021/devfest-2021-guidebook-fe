@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BottomSection,
   CardContent,
@@ -14,6 +14,7 @@ import {
   Organizer,
   CardTitleSection,
   SmallLogo,
+  LottieWrapper,
 } from '../Session/styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
@@ -22,13 +23,37 @@ import instagramLogo from 'src/assets/instagram.png';
 import { useGetGuestBook } from 'src/api/hooks/useGetGuestBook';
 import DefaultImage from 'src/assets/school/14.jpg';
 import { listAnimate, listItemAnimate } from 'src/styles/framer';
+import { GiantReactionMotionWrapper } from './GiantReactionMotion';
+import Emoji from 'src/assets/heart.json';
+import Lottie from 'react-lottie';
 
 export const Guestbook = () => {
   const { data } = useGetGuestBook();
+  const [showEmoji, setShowEmoji] = useState(true);
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: Emoji,
+  };
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShowEmoji(false);
+  //   }, 3000);
+  // }, []);
 
   return (
     <LayoutContainer>
-      <FilterSection></FilterSection>
+      <AnimatePresence>
+        {showEmoji && (
+          <GiantReactionMotionWrapper motionKey={'1'}>
+            <div>
+              <Lottie options={defaultOptions} />
+            </div>
+          </GiantReactionMotionWrapper>
+        )}
+      </AnimatePresence>
       <AnimateSharedLayout type="crossfade">
         <List variants={listAnimate} initial="start" animate="end">
           {data &&
