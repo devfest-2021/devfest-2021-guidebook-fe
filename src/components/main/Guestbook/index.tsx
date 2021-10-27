@@ -29,7 +29,7 @@ import Lottie from 'react-lottie';
 
 export const Guestbook = () => {
   const { data } = useGetGuestBook();
-  const [showEmoji, setShowEmoji] = useState(true);
+  const [showEmoji, setShowEmoji] = useState(false);
 
   const defaultOptions = {
     loop: true,
