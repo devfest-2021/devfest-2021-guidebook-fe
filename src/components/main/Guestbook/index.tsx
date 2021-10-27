@@ -177,7 +177,11 @@ export const Guestbook = () => {
                         handleLikeClick(guidebook.user_id, 'thumbs_up');
                       }}
                     >
-                      <LikeButton src={ThumbsUpImage} />
+                      <LikeButton
+                        src={ThumbsUpImage}
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 3 }}
+                      />
                     </LikeButtonWrapper>
                     <LikeButtonWrapper
                       onClick={(e) => {
@@ -185,7 +189,11 @@ export const Guestbook = () => {
                         handleLikeClick(guidebook.user_id, 'heart');
                       }}
                     >
-                      <LikeButton src={heartImage} />
+                      <LikeButton
+                        src={heartImage}
+                        whileHover={{ scale: 1.5 }}
+                        whileTap={{ scale: 3 }}
+                      />
                     </LikeButtonWrapper>
                   </LikeContainer>
                 </SessionCard>

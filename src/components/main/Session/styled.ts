@@ -138,7 +138,7 @@ export const LikeButtonWrapper = styled.div`
   align-items: center;
 `;
 
-export const LikeButton = styled.img`
+export const LikeButton = styled(motion.img)`
   width: 24px;
   height: 24px;
   padding-right: 4px;
