@@ -43,7 +43,11 @@ const Signin = () => {
         setModal({ ...modal, [MODAL_KEY.SIGN_IN]: false });
       } catch (error: any) {
         if (error && error.response.data.detail === NOT_REGISTERED) {
-          setModal({ [MODAL_KEY.SIGN_IN]: false, [MODAL_KEY.SIGN_UP]: true });
+          setModal({
+            [MODAL_KEY.SIGN_IN]: false,
+            [MODAL_KEY.SIGN_UP]: true,
+            [MODAL_KEY.USER_INFORMATION]: false,
+          });
         }
       }
     },

@@ -108,4 +108,20 @@ const StyledErrorMessage = styled(ErrorMessage)`
     font-size: 15px;
   }
 `;
-export { MainTitle, SubTitle, HighLightSign, Close, StyledErrorMessage };
+const NavUserName = styled.div`
+  font-size: 18px;
+  color: black;
+`;
+const NavUserEmail = styled.div`
+  font-size: 15px;
+  color: #555555;
+`;
+export {
+  MainTitle,
+  SubTitle,
+  HighLightSign,
+  Close,
+  StyledErrorMessage,
+  NavUserName,
+  NavUserEmail,
+};

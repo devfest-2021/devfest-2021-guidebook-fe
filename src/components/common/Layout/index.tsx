@@ -6,6 +6,7 @@ import SignUp from 'src/components/common/Modal/SignUp';
 import { useRecoilState } from 'recoil';
 import { modalState } from 'src/store/modal';
 import SignIn from '../Modal/SignIn';
+import UserInfomation from '../Modal/UserInformation';
 
 export const Layout = () => {
   const [modal, _] = useRecoilState(modalState);
@@ -14,7 +15,7 @@ export const Layout = () => {
       <Navigation />
       {modal.signUp && <SignUp />}
       {modal.signIn && <SignIn />}
-
+      {modal.userInformation && <UserInfomation />}
       <Switch>
         <Route path={''} component={Main} />
       </Switch>

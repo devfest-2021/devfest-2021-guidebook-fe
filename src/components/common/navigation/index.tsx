@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modalState, MODAL_KEY } from 'src/store/modal';
+import { UserNameWrapper, NavTaskWrapper } from '../wrapper/Wrapper';
 import {
   NavDesign,
-  NavAlign,
+  NavInner,
   StyledLink,
-  NavTaskWrapper,
   NavTask,
   OpenedModal,
+  NavUserProfileImg,
 } from './styled';
+import { NavUserEmail, NavUserName } from '../text/Title';
+import { userState } from '../../../store/user';
 
 const Navigation: React.FC = () => {
   const [modal, setModal] = useRecoilState(modalState);
-  const [activeNav, setActiveNav] = useState<string>('session');
-  console.log('activeNav: ' + activeNav);
+  const [user, setUser] = useRecoilState(userState);
+  // const [activeNav, setActiveNav] = useState<string>('session');
+  // console.log('activeNav: ' + activeNav);
   return (
     <NavDesign>
-      <NavAlign>
+      <NavInner>
         <NavTaskWrapper>
           <NavTask>
             <StyledLink to={'/'}>세션</StyledLink>
@@ -26,15 +30,31 @@ const Navigation: React.FC = () => {
           </NavTask>
         </NavTaskWrapper>
         <NavTaskWrapper>
-          <NavTask>
-            <OpenedModal
-              onClick={() => setModal({ ...modal, [MODAL_KEY.SIGN_UP]: true })}
+          {user.email.length > 5 && user.nickname.length > 1 ? (
+            <NavTask
+              onClick={() => {
+                setModal({ ...modal, [MODAL_KEY.USER_INFORMATION]: true });
+              }}
             >
-              프로필 만들기
-            </OpenedModal>
-          </NavTask>
+              <NavUserProfileImg src={user.avaterURL}></NavUserProfileImg>
+              <UserNameWrapper>
+                <NavUserName>{user.nickname}</NavUserName>
+                <NavUserEmail>{user.email}</NavUserEmail>
+              </UserNameWrapper>
+            </NavTask>
+          ) : (
+            <NavTask>
+              <OpenedModal
+                onClick={() =>
+                  setModal({ ...modal, [MODAL_KEY.SIGN_UP]: true })
+                }
+              >
+                프로필 만들기
+              </OpenedModal>
+            </NavTask>
+          )}
         </NavTaskWrapper>
-      </NavAlign>
+      </NavInner>
     </NavDesign>
   );
 };
