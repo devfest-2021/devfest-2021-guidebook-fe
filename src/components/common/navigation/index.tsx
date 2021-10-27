@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modalState, MODAL_KEY } from 'src/store/modal';
 import {
@@ -12,7 +12,8 @@ import {
 
 const Navigation: React.FC = () => {
   const [modal, setModal] = useRecoilState(modalState);
-
+  const [activeNav, setActiveNav] = useState<string>('session');
+  console.log('activeNav: ' + activeNav);
   return (
     <NavDesign>
       <NavAlign>
