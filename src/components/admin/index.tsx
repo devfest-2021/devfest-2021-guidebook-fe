@@ -62,6 +62,7 @@ const Admin: FC = () => {
               setSchool({ ...school, value: value?.label?.toString() ?? '' })
             }
             onSearch={onSearchSchool}
+            onClick={() => onSearchSchool('')}
           />
         </FormContainer>
       </FilterRow>
