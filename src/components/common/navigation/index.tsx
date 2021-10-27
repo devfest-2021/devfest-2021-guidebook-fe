@@ -29,7 +29,6 @@ const Navigation: React.FC = () => {
           </NavTask>
         </NavTaskWrapper>
         <NavTaskWrapper>
-
           {user.email.length > 5 && user.nickname.length > 1 ? (
             <NavTask
               onClick={() => {
@@ -62,7 +61,6 @@ const Navigation: React.FC = () => {
               프로필 만들기
             </OpenedModal>
           </NavTask> */}
-
         </NavTaskWrapper>
       </NavInner>
     </NavDesign>
