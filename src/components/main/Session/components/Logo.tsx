@@ -17,6 +17,7 @@ import { Logo } from '../styled';
 
 interface Props {
   name: string;
+  layoutId: string;
 }
 
 const Url = (name: string) => {
@@ -63,5 +64,9 @@ const Url = (name: string) => {
 };
 
 export const SchoolLogo = (props: Props) => {
-  return Url(props.name) ? <Logo src={Url(props.name)} /> : <></>;
+  return Url(props.name) ? (
+    <Logo layoutId={props.layoutId} src={Url(props.name)} />
+  ) : (
+    <></>
+  );
 };

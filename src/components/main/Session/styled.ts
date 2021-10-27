@@ -59,12 +59,12 @@ export const Modal = styled(motion.div)`
   }
 `;
 
-export const TopSection = styled.div`
+export const TopSection = styled(motion.div)`
   display: flex;
   margin-bottom: 10px;
 `;
 
-export const TopTextSection = styled.div`
+export const TopTextSection = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding-left: 12px;
@@ -80,7 +80,7 @@ export const SmallLogo = styled.img`
   height: 20px;
 `;
 
-export const Logo = styled.img`
+export const Logo = styled(motion.img)`
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -100,7 +100,7 @@ export const CardTitle = styled.h3`
   margin-right: 8px;
 `;
 
-export const CardContent = styled.p`
+export const CardContent = styled(motion.p)`
   font-weight: 500;
   font-size: 15px;
   color: #555;
@@ -127,7 +127,7 @@ export const BottomSection = styled.div`
   align-items: center;
 `;
 
-export const ChipSection = styled.div`
+export const ChipSection = styled(motion.div)`
   overflow: scroll;
   white-space: nowrap;
   &::-webkit-scrollbar {
