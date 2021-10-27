@@ -22,6 +22,7 @@ import { userState } from 'src/store/user';
 import { getStyles } from '../modalError';
 import { Modal, Button } from 'react-rainbow-components';
 import '../customStyle.css';
+import { StyledModal } from '../styled';
 
 const NOT_REGISTERED = '등록되지 않은 email';
 
@@ -72,7 +73,7 @@ const Signin = () => {
   }, []);
   return (
     <>
-      <Modal
+      <StyledModal
         isOpen={modal.signIn}
         onRequestClose={() =>
           setModal({ ...modal, [MODAL_KEY.SIGN_IN]: false })
@@ -97,7 +98,7 @@ const Signin = () => {
             </ButtonWrapper>
           </Form>
         </FormikProvider>
-      </Modal>
+      </StyledModal>
     </>
   );
 };

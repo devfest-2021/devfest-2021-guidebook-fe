@@ -10,6 +10,7 @@ import {
   OpenedModal,
   StyledLink,
 } from './styled';
+import NavUserInfomation from './NavUserInfo/index';
 import { NavUserEmail, NavUserName } from '../text/Title';
 import { userState } from '../../../store/user';
 
@@ -30,17 +31,7 @@ const Navigation: React.FC = () => {
         </NavTaskWrapper>
         <NavTaskWrapper>
           {user.email.length > 5 && user.nickname.length > 1 ? (
-            <NavTask
-              onClick={() => {
-                setModal({ ...modal, [MODAL_KEY.USER_INFORMATION]: true });
-              }}
-            >
-              <NavUserProfileImg src={user.avaterURL}></NavUserProfileImg>
-              <UserNameWrapper>
-                <NavUserName>{user.nickname}</NavUserName>
-                <NavUserEmail>{user.email}</NavUserEmail>
-              </UserNameWrapper>
-            </NavTask>
+            <NavUserInfomation />
           ) : (
             <NavTask>
               <OpenedModal
@@ -55,7 +46,7 @@ const Navigation: React.FC = () => {
           {/* 프로필 생성되면 살려주세요 */}
           {/* <NavTask>
             <OpenedModal
-              onClick={() => setModal({ ...modal, [MODAL_KEY.SIGN_UP]: true })}
+              onClick={() => setModal({ ...Modal, [MODAL_KEY.SIGN_UP]: true })}
             >
               프로필 만들기
             </OpenedModal>
