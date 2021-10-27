@@ -78,7 +78,7 @@ export const Session = () => {
       setLottiePause(false);
       setTimeout(() => {
         setLottiePause(true);
-      }, 2500);
+      }, 4000);
     } catch (error) {
       console.log(error);
     }

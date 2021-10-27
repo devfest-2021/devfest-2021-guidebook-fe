@@ -156,8 +156,9 @@ export const AttendButton = styled(motion.button)`
 `;
 
 export const LottieWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
+  top: 0;
 `;
 
 export const BigFloatingReactionItemContainer = styled(motion.div)`
