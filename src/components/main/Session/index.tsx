@@ -15,6 +15,7 @@ import {
   CardContentInModal,
   TopTextSection,
   Organizer,
+  LottieWrapper,
 } from './styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { add, format } from 'date-fns';
@@ -29,17 +30,20 @@ import { MODAL_KEY, userState } from 'src/store/user';
 import { modalState } from 'src/store/modal';
 import Api from 'src/api';
 import { SchoolLogo } from './components/Logo';
+import Lottie from 'react-lottie';
+import animationData from 'src/assets/sample.json';
 
 export const Session = () => {
-  // 데이터확인되면 지우기
-  const { data } = useGetSessions({
-    startAt: +new Date('2021-11-01'),
-    endAt: +new Date('2021-11-02'),
-  });
-  const [range, setRange] = useState<Date>();
+  const [range, setRange] = useState<any>([]);
   const [selectedId, setSelectedId] = useState<number | undefined>(0);
   const [user, setUser] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
+  const [lottiePause, setLottiePause] = useState(true);
+
+  const { data } = useGetSessions({
+    startAt: range[0]?.getTime(),
+    endAt: range[1]?.getTime(),
+  });
 
   const [selected, setSelected] = useState({
     title: '',
@@ -50,10 +54,6 @@ export const Session = () => {
     running_time: 60,
   });
 
-  useEffect(() => {
-    console.log(range);
-  }, [range]);
-
   const theme = {
     rainbow: {
       palette: {
@@ -62,25 +62,35 @@ export const Session = () => {
     },
   };
 
-  useEffect(() => {
-    if (!user.user_id) {
-      setModal({ ...modal, [MODAL_KEY.SIGN_IN]: true });
-    }
-  }, [user]);
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+  };
 
   const handleOnClick = async (sessionId: number) => {
+    if (!user.user_id) {
+      setModal({ ...modal, [MODAL_KEY.SIGN_IN]: true });
+      return;
+    }
     try {
       await Api.attend({ userId: user.user_id, sessionId: sessionId });
+      setLottiePause(false);
+      setTimeout(() => {
+        setLottiePause(true);
+      }, 4000);
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <LayoutContainer>
+      {!lottiePause && (
+        <LottieWrapper>
+          <Lottie options={defaultOptions} isPaused={lottiePause} />
+        </LottieWrapper>
+      )}
       <FilterSection>
         <Application
           className="rainbow-align-content_center rainbow-m-vertical_large  rainbow-m_auto"
@@ -102,9 +112,9 @@ export const Session = () => {
         </Application>
       </FilterSection>
       <AnimateSharedLayout type="crossfade">
-        <List variants={listAnimate} initial="start" animate="end">
-          {data &&
-            data.map((session) => (
+        {data && (
+          <List variants={listAnimate} initial="start" animate="end">
+            {data.map((session) => (
               <AnimatePresence key={session.session_id}>
                 <SessionCard
                   key={session.session_id}
@@ -158,7 +168,8 @@ export const Session = () => {
                 </SessionCard>
               </AnimatePresence>
             ))}
-        </List>
+          </List>
+        )}
 
         <AnimatePresence>
           {selectedId && selected && (

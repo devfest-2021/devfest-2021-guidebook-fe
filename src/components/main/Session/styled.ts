@@ -117,6 +117,8 @@ export const CardContent = styled.p`
 
 export const CardContentInModal = styled(CardContent)`
   margin-bottom: 28px;
+  max-height: 10em;
+  -webkit-line-clamp: 6;
 `;
 
 export const BottomSection = styled.div`
@@ -151,4 +153,19 @@ export const AttendButton = styled(motion.button)`
   padding: 5px 12px;
   font-size: 15px;
   border-radius: 6px;
+`;
+
+export const LottieWrapper = styled.div`
+  position: fixed;
+  width: 100%;
+  top: 0;
+`;
+
+export const BigFloatingReactionItemContainer = styled(motion.div)`
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 300px;
+  left: 30%;
+  pointer-events: none;
 `;

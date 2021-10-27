@@ -12,6 +12,7 @@ import 동의 from 'src/assets/school/10.png';
 import 대진 from 'src/assets/school/11.png';
 import 시립 from 'src/assets/school/12.png';
 import 숙명 from 'src/assets/school/13.png';
+import Default from 'src/assets/school/14.jpg';
 import { Logo } from '../styled';
 
 interface Props {
@@ -58,7 +59,7 @@ const Url = (name: string) => {
   if (name === '숙명여자대학교') {
     return 숙명;
   }
-  return '';
+  return Default;
 };
 
 export const SchoolLogo = (props: Props) => {

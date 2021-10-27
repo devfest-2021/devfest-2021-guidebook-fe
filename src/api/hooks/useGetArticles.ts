@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import Api from '../index';
 import { sessionList } from '../mock';
+import qs from 'query-string';
 
 async function getSessions(url: string) {
   const res = await Api.getSessions(url);
@@ -14,7 +15,14 @@ export function useGetSessions({
   startAt?: number;
   endAt?: number;
 }) {
-  const query = `session-list?startAt=${startAt}&endAt=${endAt}`;
+  const params = {
+    startAt,
+    endAt,
+  };
+  const stringParams = qs.stringify(params);
+  const query = stringParams
+    ? `session-list/filter?${qs.stringify(params)}`
+    : 'session-list';
   const { data, error } = useSWR<typeof sessionList>([query], getSessions);
   return {
     data: data && data,

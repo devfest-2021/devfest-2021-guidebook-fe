@@ -29,6 +29,7 @@ const Navigation: React.FC = () => {
           </NavTask>
         </NavTaskWrapper>
         <NavTaskWrapper>
+
           {user.email.length > 5 && user.nickname.length > 1 ? (
             <NavTask
               onClick={() => {
@@ -52,6 +53,16 @@ const Navigation: React.FC = () => {
               </OpenedModal>
             </NavTask>
           )}
+
+          {/* 프로필 생성되면 살려주세요 */}
+          {/* <NavTask>
+            <OpenedModal
+              onClick={() => setModal({ ...modal, [MODAL_KEY.SIGN_UP]: true })}
+            >
+              프로필 만들기
+            </OpenedModal>
+          </NavTask> */}
+
         </NavTaskWrapper>
       </NavInner>
     </NavDesign>
