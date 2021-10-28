@@ -13,10 +13,13 @@ const NavInner = styled.div`
   display: flex;
   flex: 1;
   width: 95%;
-  height: 90px;
+  height: 100px;
   justify-content: space-between;
   align-items: center;
   margin: auto;
+  @media (max-width: 500px) {
+    height: 70px;
+  }
 `;
 
 const StyledLink = styled(Link)`

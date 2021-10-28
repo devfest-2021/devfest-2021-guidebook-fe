@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-const MODAL = 'modal';
+const MODAL = 'Modal';
 export const MODAL_KEY = {
   SIGN_IN: 'signIn',
   SIGN_UP: 'signUp',
