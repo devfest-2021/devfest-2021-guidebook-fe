@@ -34,7 +34,7 @@ const FailAlert: React.FC = () => {
     <>
       <FailAlertWrapper
         variants={variants}
-        animate={alert.fail ? 'active' : 'unActive'}
+        animate={toggle ? 'active' : 'unActive'}
         initial={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.4 }}
       >
