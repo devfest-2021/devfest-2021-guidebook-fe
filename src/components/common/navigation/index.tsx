@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from 'src/store/modal';
-import { NavTaskWrapper, UserNameWrapper } from '../wrapper/Wrapper';
+import { NavTaskWrapper } from '../wrapper/Wrapper';
 import {
   NavDesign,
   NavInner,
   NavTask,
-  NavUserProfileImg,
   OpenedModal,
   StyledLink,
 } from './styled';
 import NavUserInfomation from './NavUserInfo/index';
-import { NavUserEmail, NavUserName } from '../text/Title';
 import { userState } from '../../../store/user';
 import '../Modal/UserInformation/UserInfomation.css';
 
@@ -42,7 +40,6 @@ const Navigation: React.FC = () => {
               className={routeStyle == 'guestbook' ? 'active' : 'noneActive'}
               onClick={() => {
                 setRoutStyle('guestbook');
-                console.log(routeStyle);
               }}
             >
               방명록
@@ -56,7 +53,7 @@ const Navigation: React.FC = () => {
             <NavTask>
               <OpenedModal
                 onClick={() =>
-                  setModal({ ...modal, [MODAL_KEY.SIGN_UP]: true })
+                  setModal({ ...modal, [MODAL_KEY.SIGN_IN]: true })
                 }
               >
                 프로필 만들기
