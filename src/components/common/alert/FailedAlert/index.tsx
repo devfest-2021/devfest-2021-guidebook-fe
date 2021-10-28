@@ -28,7 +28,7 @@ const FailAlert: React.FC = () => {
     }, 5000);
     setTimeout(() => {
       setAlert({ ...alert, [ALERT_KEY.FAIL_KEY]: false });
-    }, 5000);
+    }, 6000);
   }, []);
   return (
     <>
