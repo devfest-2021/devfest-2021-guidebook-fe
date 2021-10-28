@@ -4,8 +4,31 @@ import { Slider, Input, Lookup } from 'react-rainbow-components';
 import { FilterRow, FormContainer, FormLabel, FullWidth } from './styled';
 import { LookupValue } from 'react-rainbow-components/components/types';
 import inko from 'src/utils/inko';
+import UserTable, { UserList } from './UserTable';
 
 const SchoolList = [{ label: '숭실대' }, { label: '서울대' }];
+const userList: UserList = [
+  {
+    email: 'gomjellie@gmail.com',
+    group: '숭실대',
+    nickname: '곰젤리',
+    github: 'gomjellie',
+    instagram: 'gomjellie',
+    avatarURL: 'https://avatars.githubusercontent.com/u/13645032?v=4',
+    promise: 'string',
+    attend_cnt: '2',
+  },
+  {
+    email: 'HyeokE@gmail.com',
+    group: '대진대학교',
+    nickname: '준혁',
+    github: 'HyeokE',
+    instagram: 'HyeokE',
+    avatarURL: 'https://avatars.githubusercontent.com/u/61281239?v=4',
+    promise: 'string',
+    attend_cnt: '5',
+  },
+];
 
 const Admin: FC = () => {
   const [attendanceCount, setAttendanceCount] = useState(0);
@@ -69,6 +92,7 @@ const Admin: FC = () => {
           />
         </FormContainer>
       </FilterRow>
+      <UserTable userList={userList} />
     </LayoutContainer>
   );
 };
