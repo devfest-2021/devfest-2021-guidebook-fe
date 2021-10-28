@@ -53,7 +53,7 @@ const Navigation: React.FC = () => {
             <NavTask>
               <OpenedModal
                 onClick={() =>
-                  setModal({ ...modal, [MODAL_KEY.SIGN_IN]: true })
+                  setModal({ ...modal, [MODAL_KEY.SIGN_UP]: true })
                 }
               >
                 프로필 만들기
