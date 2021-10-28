@@ -18,6 +18,8 @@ import {
   LikeButtonWrapper,
   LikeButton,
   LikeContainer,
+  LottieWrapper,
+  Count,
 } from '../Session/styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
@@ -64,7 +66,7 @@ function FloatingReactionItem({ emojiType }: { emojiType: string }) {
 }
 
 export const Guestbook = () => {
-  const { data } = useGetGuestBook();
+  const { data, mutate } = useGetGuestBook();
   const [emoji, setEmoji] = useState(0);
   const [heart, setHeart] = useState(0);
 
@@ -88,6 +90,7 @@ export const Guestbook = () => {
       setHeart(heart + 1);
     }
 
+    mutate();
     try {
       await Api.like({ user_id: userId });
     } catch (error) {
@@ -195,6 +198,7 @@ export const Guestbook = () => {
                         whileTap={{ scale: 3 }}
                       />
                     </LikeButtonWrapper>
+                    <Count>{guidebook.like !== 0 && guidebook.like}</Count>
                   </LikeContainer>
                 </SessionCard>
               </AnimatePresence>

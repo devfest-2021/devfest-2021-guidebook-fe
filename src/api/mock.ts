@@ -129,6 +129,7 @@ export const guidebookList = [
     profileImageUrl: 'https://picsum.photos/200',
     githubId: '',
     instagramId: '',
+    like: 0,
     sessionList: [
       {
         session_id: 1,

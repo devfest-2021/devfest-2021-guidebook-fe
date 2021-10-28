@@ -83,7 +83,6 @@ export const Session = () => {
         setLottiePause(true);
       }, 4000);
     } catch (error) {
-      console.log(error);
       setAlert({ ...alert, [ALERT_KEY.FAIL_KEY]: true });
     }
   };

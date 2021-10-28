@@ -129,6 +129,7 @@ export const BottomSection = styled.div`
 
 export const LikeContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const LikeButtonWrapper = styled.div`
@@ -142,11 +143,14 @@ export const LikeButton = styled(motion.img)`
   width: 24px;
   height: 24px;
   padding-right: 4px;
+  outline: none;
+  border: none;
 `;
 
-export const Count = styled.span`
-  font-size: 11px;
-  color: ${(props) => props.theme.color.gray350};
+export const Count = styled.p`
+  font-size: 16px;
+  padding-top: 8px;
+  color: #55af7a;
 `;
 
 export const ChipSection = styled(motion.div)`

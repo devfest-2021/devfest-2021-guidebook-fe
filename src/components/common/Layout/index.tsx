@@ -8,6 +8,15 @@ import { modalState } from 'src/store/modal';
 import SignIn from '../Modal/SignIn';
 import UserInfomation from '../Modal/UserInformation';
 import Alert from '../alert';
+import {
+  Footer,
+  FooterContent,
+  FooterLogo,
+  FooterSubTitle,
+  FooterTitle,
+} from 'src/styles/layout';
+import gdsc from 'src/assets/gdsc.png';
+import campus from 'src/assets/campus.png';
 
 export const Layout = () => {
   const [modal, _] = useRecoilState(modalState);
@@ -22,6 +31,20 @@ export const Layout = () => {
       <Switch>
         <Route path={''} component={Main} />
       </Switch>
+      <Footer>
+        <FooterContent>
+          <FooterTitle>주최</FooterTitle>
+          <FooterLogo src={campus}></FooterLogo>
+          <FooterTitle>주관</FooterTitle>
+          <FooterLogo src={campus}></FooterLogo>
+          <FooterLogo src={gdsc}></FooterLogo>
+
+          <FooterTitle>제작</FooterTitle>
+          <FooterSubTitle>
+            박상은, 이정윤, 정준혁, 김현균, 오인규, 김민영
+          </FooterSubTitle>
+        </FooterContent>
+      </Footer>
     </>
   );
 };

@@ -11,7 +11,16 @@ function App() {
     <ThemeProvider theme={theme}>
       <SWRConfig>
         <RecoilRoot>
-          <Layout />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: '1 0 auto',
+              height: '100vh',
+            }}
+          >
+            <Layout />
+          </div>
         </RecoilRoot>
       </SWRConfig>
     </ThemeProvider>
