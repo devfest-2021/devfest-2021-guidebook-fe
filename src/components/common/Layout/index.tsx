@@ -7,12 +7,15 @@ import { useRecoilState } from 'recoil';
 import { modalState } from 'src/store/modal';
 import SignIn from '../Modal/SignIn';
 import UserInfomation from '../Modal/UserInformation';
+import Alert from '../alert';
 
 export const Layout = () => {
   const [modal, _] = useRecoilState(modalState);
+
   return (
     <>
       <Navigation />
+      <Alert />
       {modal.signUp && <SignUp />}
       {modal.signIn && <SignIn />}
       {modal.userInformation && <UserInfomation />}

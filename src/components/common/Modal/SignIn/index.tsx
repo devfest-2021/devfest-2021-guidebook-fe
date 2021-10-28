@@ -23,12 +23,14 @@ import { getStyles } from '../modalError';
 import { Modal, Button } from 'react-rainbow-components';
 import '../customStyle.css';
 import { StyledModal } from '../styled';
+import { ALERT_KEY, alertState } from '../../../../store/alert';
 
 const NOT_REGISTERED = '등록되지 않은 email';
 
 const Signin = () => {
   const [modal, setModal] = useRecoilState(modalState);
   const [user, setUser] = useRecoilState(userState);
+  const [alert, setAlert] = useRecoilState(alertState);
 
   useEffect(() => {
     console.log(user);
@@ -43,6 +45,7 @@ const Signin = () => {
         const response = await Api.signIn(values);
         setUser({ ...user, ...response.data });
         setModal({ ...modal, [MODAL_KEY.SIGN_IN]: false });
+        setAlert({ ...alert, [ALERT_KEY.SUCCESS_KEY]: true });
       } catch (error: any) {
         if (error && error.response.data.detail === NOT_REGISTERED) {
           setModal({

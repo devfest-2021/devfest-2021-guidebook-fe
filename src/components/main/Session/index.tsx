@@ -33,6 +33,7 @@ import Api from 'src/api';
 import { SchoolLogo } from './components/Logo';
 import Lottie from 'react-lottie';
 import animationData from 'src/assets/sample.json';
+import { ALERT_KEY, alertState } from '../../../store/alert';
 
 export const Session = () => {
   const [range, setRange] = useState<any>([]);
@@ -40,6 +41,7 @@ export const Session = () => {
   const [user, setUser] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
   const [lottiePause, setLottiePause] = useState(true);
+  const [alert, setAlert] = useRecoilState(alertState);
 
   const { data } = useGetSessions({
     startAt: range[0]?.getTime(),
@@ -82,6 +84,7 @@ export const Session = () => {
       }, 4000);
     } catch (error) {
       console.log(error);
+      setAlert({ ...alert, [ALERT_KEY.FAIL_KEY]: true });
     }
   };
 

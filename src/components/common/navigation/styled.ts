@@ -43,7 +43,7 @@ const OpenedModal = styled.div`
   color: inherit;
   list-style: none;
   &:hover {
-    color: #4e4e4e;
+    color: #55af7a;
     font-weight: bold;
     text-decoration: none;
   }
