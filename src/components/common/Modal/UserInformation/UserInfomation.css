@@ -1,0 +1,36 @@
+a {
+    text-decoration: none;
+    color: #b8b8b8 !important;
+}
+a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+a:focus {
+    text-decoration: none;
+}
+a:hover,
+a:active {
+    text-decoration: none;
+}
+.active{
+    color: #55af7a !important;
+
+}
+.active :focus{
+    color: #55af7a !important;
+}
+.nonActive{
+    color: #b8b8b8;
+    text-decoration: none;
+    list-style: none;
+    font-weight: normal;
+}
+
+.nonActive :focus :active{
+    text-decoration: none;
+}
+
+
