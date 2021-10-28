@@ -3,6 +3,7 @@ import { LayoutContainer } from 'src/styles/layout';
 import { Slider, Input, Lookup } from 'react-rainbow-components';
 import { FilterRow, FormContainer, FormLabel, FullWidth } from './styled';
 import { LookupValue } from 'react-rainbow-components/components/types';
+import inko from 'src/utils/inko';
 
 const SchoolList = [{ label: '숭실대' }, { label: '서울대' }];
 
@@ -21,7 +22,9 @@ const Admin: FC = () => {
     value: '',
   });
   const onSearchSchool = (value: string) => {
-    const options = SchoolList.filter((item) => item.label.includes(value));
+    const options = SchoolList.filter((item) => {
+      return inko.ko2en(item.label).includes(inko.ko2en(value));
+    });
     setSchool({ options, value });
   };
 
