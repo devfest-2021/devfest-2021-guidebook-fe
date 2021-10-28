@@ -5,11 +5,17 @@ const UserModalTitle = styled.div`
   @media (max-width: 320px) {
     font-size: 18px;
   }
+  @media (max-width: 400px) {
+    font-size: 18px;
+  }
 `;
 const UserModalSubTitle = styled.div`
   color: ${(props) => props.theme.color.gray500};
   font-size: 16px;
   @media (max-width: 320px) {
+    font-size: 13px;
+  }
+  @media (max-width: 400px) {
     font-size: 13px;
   }
 `;
