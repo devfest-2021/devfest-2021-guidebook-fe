@@ -4,10 +4,10 @@ import { Slider, Input, Lookup } from 'react-rainbow-components';
 import { FilterRow, FormContainer, FormLabel, FullWidth } from './styled';
 import { LookupValue } from 'react-rainbow-components/components/types';
 import inko from 'src/utils/inko';
-import UserTable, { UserList } from './UserTable';
+import UserTable, { User } from './UserTable';
 
 const SchoolList = [{ label: '숭실대' }, { label: '서울대' }];
-const userList: UserList = [
+const userList: User[] = [
   {
     email: 'gomjellie@gmail.com',
     group: '숭실대',

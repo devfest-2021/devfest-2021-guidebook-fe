@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { Table, Column } from 'react-rainbow-components';
 
-export type UserList = {
+export type User = {
   email: string;
   group: string;
   nickname: string;
@@ -10,10 +10,10 @@ export type UserList = {
   avatarURL: string;
   promise: string;
   attend_cnt: string;
-}[];
+};
 
 type UserTableProps = {
-  userList: UserList;
+  userList: User[];
 };
 
 const Avatar: FC<{ value: string }> = ({ value }) => (
@@ -21,8 +21,56 @@ const Avatar: FC<{ value: string }> = ({ value }) => (
 );
 
 const UserTable: FC<UserTableProps> = ({ userList }) => {
+  const [users, setUsers] = useState(userList);
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+  const [sortBy, setSortBy] = useState<keyof User>('attend_cnt');
+
+  const handleOnSort = useCallback(
+    (
+      event: React.MouseEvent<HTMLElement, MouseEvent>,
+      field: string,
+      nextSortDirection: string,
+    ) => {
+      const data = [...userList];
+      const nextSortDirectionNumber = nextSortDirection === 'asc' ? 1 : -1;
+
+      data.sort((a, b) => {
+        switch (field) {
+          case 'attend_cnt':
+            return (
+              (parseInt(a.attend_cnt, 10) - parseInt(b.attend_cnt, 10)) *
+              nextSortDirectionNumber
+            );
+          case 'nickname':
+            return (
+              a.nickname.localeCompare(b.nickname) * nextSortDirectionNumber
+            );
+          case 'group':
+            return a.group.localeCompare(b.group) * nextSortDirectionNumber;
+          case 'email':
+            return a.email.localeCompare(b.email) * nextSortDirectionNumber;
+
+          case 'github':
+            return a.github.localeCompare(b.github) * nextSortDirectionNumber;
+          default:
+            return nextSortDirectionNumber;
+        }
+      });
+      setSortBy(field as keyof User);
+      setUsers(data);
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    },
+    [userList, sortDirection],
+  );
+
   return (
-    <Table keyField="email" data={userList}>
+    <Table
+      keyField="email"
+      data={users}
+      onSort={handleOnSort}
+      sortDirection={sortDirection}
+      sortedBy={sortBy}
+    >
       <Column header="참석수" field="attend_cnt" width={120} sortable />
       <Column
         header="아바타"
@@ -33,8 +81,8 @@ const UserTable: FC<UserTableProps> = ({ userList }) => {
       />
       <Column header="닉네임" field="nickname" sortable />
       <Column header="그룹" field="group" sortable />
-      <Column header="이메일" field="email" />
-      <Column header="깃허브" field="github" />
+      <Column header="이메일" field="email" sortable />
+      <Column header="깃허브" field="github" sortable />
       <Column header="인스타그램" field="instagram" />
     </Table>
   );
