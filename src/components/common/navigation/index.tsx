@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from 'src/store/modal';
 import { NavTaskWrapper, UserNameWrapper } from '../wrapper/Wrapper';
@@ -13,20 +13,40 @@ import {
 import NavUserInfomation from './NavUserInfo/index';
 import { NavUserEmail, NavUserName } from '../text/Title';
 import { userState } from '../../../store/user';
+import '../Modal/UserInformation/UserInfomation.css';
 
 const Navigation: React.FC = () => {
   const [modal, setModal] = useRecoilState(modalState);
   const [user, setUser] = useRecoilState(userState);
+  const [routeStyle, setRoutStyle] = useState('session');
 
   return (
     <NavDesign>
       <NavInner>
         <NavTaskWrapper>
           <NavTask>
-            <StyledLink to={'/'}>세션</StyledLink>
+            <StyledLink
+              to={'/'}
+              className={routeStyle == 'session' ? 'active' : 'noneActive'}
+              onClick={() => {
+                setRoutStyle('session');
+                console.log(routeStyle);
+              }}
+            >
+              세션
+            </StyledLink>
           </NavTask>
           <NavTask>
-            <StyledLink to={'/guestbook'}>방명록</StyledLink>
+            <StyledLink
+              to={'/guestbook'}
+              className={routeStyle == 'guestbook' ? 'active' : 'noneActive'}
+              onClick={() => {
+                setRoutStyle('guestbook');
+                console.log(routeStyle);
+              }}
+            >
+              방명록
+            </StyledLink>
           </NavTask>
         </NavTaskWrapper>
         <NavTaskWrapper>

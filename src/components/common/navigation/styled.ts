@@ -24,10 +24,10 @@ const NavInner = styled.div`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #b8b8b8;
   list-style: none;
+
   &:hover {
-    color: #4e4e4e;
+    color: #55af7a;
     font-weight: bold;
     text-decoration: none;
   }

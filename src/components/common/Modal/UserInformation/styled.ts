@@ -23,6 +23,9 @@ const UserModalTaskWrapper = styled.div`
   margin-top: 5px;
   display: flex;
   align-items: center;
+  @media (max-width: 280px) {
+    justify-content: center;
+  }
 `;
 const UserModalStyledImg = styled.img`
   width: 150px;
@@ -48,11 +51,18 @@ const UserModalUserInfoWrapper = styled.div`
   @media (max-width: 400px) {
     margin-left: 20px;
   }
+  @media (max-width: 280px) {
+    margin: 0px;
+  }
 `;
 const UserModalInnerWrapper = styled.div`
   display: flex;
   margin-top: 20px;
   margin-bottom: 30px;
+  @media (max-width: 280px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 const UserModalWrapper = styled.div`
   display: flex;

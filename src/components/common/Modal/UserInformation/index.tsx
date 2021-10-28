@@ -24,7 +24,6 @@ const Index = () => {
   return (
     <>
       <StyledModal
-        style={{ padding: '10px' }}
         isOpen={modal.userInformation}
         size={'small'}
         onRequestClose={() =>
