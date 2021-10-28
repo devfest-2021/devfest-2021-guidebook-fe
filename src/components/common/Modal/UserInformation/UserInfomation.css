@@ -17,16 +17,13 @@ a:active {
 }
 .active{
     color: #55af7a !important;
+}
+.active:hover{
+    font-weight: bold;
+}
 
-}
-.active :focus{
-    color: #55af7a !important;
-}
 .nonActive{
     color: #b8b8b8;
-    text-decoration: none;
-    list-style: none;
-    font-weight: normal;
 }
 
 .nonActive :focus :active{
