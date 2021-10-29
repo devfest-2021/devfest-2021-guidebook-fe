@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { LayoutContainer } from 'src/styles/layout';
 import { Slider, Input, Lookup } from 'react-rainbow-components';
 import { FilterRow, FormContainer, FormLabel, FullWidth } from './styled';
-import { LookupValue } from 'react-rainbow-components/components/types';
 import inko from 'src/utils/inko';
 import UserTable, { User } from './UserTable';
+import { useRecoilState } from 'recoil';
+import { adminState } from 'src/store/admin';
 
 const SchoolList = [{ label: '숭실대' }, { label: '서울대' }];
 const userList: User[] = [
@@ -31,24 +32,22 @@ const userList: User[] = [
 ];
 
 const Admin: FC = () => {
-  const [attendanceCount, setAttendanceCount] = useState(0);
-  const [email, setEmail] = useState<string>('');
-  const onAttendanceChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setAttendanceCount(Number(event.target.value));
-  const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setEmail(event.target.value);
-  const [school, setSchool] = useState<{
-    options: LookupValue[];
-    value: string;
-  }>({
-    options: [],
-    value: '',
-  });
+  const [admin, setAdmin] = useRecoilState(adminState);
+  const { attendanceCount, email, school } = admin;
   const onSearchSchool = (value: string) => {
     const options = SchoolList.filter((item) => {
       return inko.ko2en(item.label).includes(inko.ko2en(value));
     });
-    setSchool({ options, value });
+    setAdmin({ ...admin, school: { options, value } });
+  };
+  const onAttendanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAdmin({ ...admin, attendanceCount: Number(event.target.value) });
+  };
+  const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAdmin({ ...admin, email: event.target.value });
+  };
+  const setSchool = (value: string) => {
+    setAdmin({ ...admin, school: { options: SchoolList, value } });
   };
 
   useEffect(() => {
@@ -85,7 +84,8 @@ const Admin: FC = () => {
             options={school.options}
             value={school.options.find((item) => item.label === school.value)}
             onChange={(value) =>
-              setSchool({ ...school, value: value?.label?.toString() ?? '' })
+              // setSchool({ ...school, value: value?.label?.toString() ?? '' })
+              setSchool(value?.label?.toString() ?? '')
             }
             onSearch={onSearchSchool}
             onClick={() => onSearchSchool('')}
