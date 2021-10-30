@@ -70,6 +70,7 @@ const UserTable: FC<UserTableProps> = ({ userList }) => {
       onSort={handleOnSort}
       sortDirection={sortDirection}
       sortedBy={sortBy}
+      style={{ height: 'auto' }}
     >
       <Column header="참석수" field="attend_cnt" width={120} sortable />
       <Column
