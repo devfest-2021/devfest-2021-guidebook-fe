@@ -28,7 +28,6 @@ const Navigation: React.FC = () => {
               className={routeStyle == 'session' ? 'active' : 'noneActive'}
               onClick={() => {
                 setRoutStyle('session');
-                console.log(routeStyle);
               }}
             >
               세션

@@ -20,7 +20,6 @@ const Index = () => {
   const [userInfo, setUserInfo] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
   // const UserSessionList = {data.map( (userInfo)=> userInfo.name)? null : null}
-  console.log(data);
   return (
     <>
       <StyledModal

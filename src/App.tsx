@@ -5,8 +5,9 @@ import { theme } from './styles/theme';
 import { SWRConfig } from 'swr';
 import { RecoilRoot } from 'recoil';
 import { Layout } from './components/common/Layout';
-
+import ReactGA from 'react-ga';
 function App() {
+  ReactGA.initialize('G-TR1T8MX80V');
   return (
     <ThemeProvider theme={theme}>
       <SWRConfig>
