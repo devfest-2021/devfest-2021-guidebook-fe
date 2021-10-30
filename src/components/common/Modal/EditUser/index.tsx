@@ -18,9 +18,11 @@ import { StyledJoinButton } from '../../button/Button';
 import { useRecoilState } from 'recoil';
 import { getStyles } from '../modalError';
 import { EditStyledInput } from './styled';
+import { userState } from '../../../../store/user';
 
 const EditUser = () => {
   const [modal, setModal] = useRecoilState(modalState);
+  const [user] = useRecoilState(userState);
 
   return (
     <>
@@ -35,16 +37,28 @@ const EditUser = () => {
           참가자 이름
           <HighLightSign />
         </SubTitle>
-        <EditStyledInput name={'nickname'} type={'nickname'} />
+        <EditStyledInput
+          name={'nickname'}
+          type={'nickname'}
+          value={user.nickname}
+        />
         <SubTitle>Github</SubTitle>
-        <EditStyledInput name={'Github'} type={'Github'} />
+        <EditStyledInput name={'Github'} type={'Github'} value={user.github} />
         <SubTitle>Instagram</SubTitle>
-        <EditStyledInput name={'Instagram'} type={'Instagram'} />
+        <EditStyledInput
+          name={'Instagram'}
+          type={'Instagram'}
+          value={user.instagram}
+        />
         <SubTitle>
           응원의 한마디
           <HighLightSign />
         </SubTitle>
-        <EditStyledInput name={'promise'} type={'promise'} />
+        <EditStyledInput
+          name={'promise'}
+          type={'promise'}
+          value={user.promise}
+        />
         <ButtonWrapper>
           <StyledJoinButton name={'submit'} type={'submit'}>
             설정하기
