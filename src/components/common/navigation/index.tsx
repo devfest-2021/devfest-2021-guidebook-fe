@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { MODAL_KEY, modalState } from 'src/store/modal';
 import { NavTaskWrapper } from '../wrapper/Wrapper';
@@ -12,12 +12,16 @@ import {
 import NavUserInfomation from './NavUserInfo/index';
 import { userState } from '../../../store/user';
 import '../Modal/UserInformation/UserInfomation.css';
+import { useLocation } from 'react-router';
 
 const Navigation: React.FC = () => {
+  const location = useLocation();
   const [modal, setModal] = useRecoilState(modalState);
   const [user, setUser] = useRecoilState(userState);
-  const [routeStyle, setRoutStyle] = useState('session');
+  const [routeStyle, setRoutStyle] = useState<string>();
+  useEffect(() => setRoutStyle(location.pathname), [location]);
 
+  console.log(routeStyle);
   return (
     <NavDesign>
       <NavInner>
@@ -25,11 +29,7 @@ const Navigation: React.FC = () => {
           <NavTask>
             <StyledLink
               to={'/'}
-              className={routeStyle == 'session' ? 'active' : 'noneActive'}
-              onClick={() => {
-                setRoutStyle('session');
-                console.log(routeStyle);
-              }}
+              className={routeStyle == '/' ? 'active' : 'noneActive'}
             >
               세션
             </StyledLink>
@@ -37,10 +37,7 @@ const Navigation: React.FC = () => {
           <NavTask>
             <StyledLink
               to={'/guestbook'}
-              className={routeStyle == 'guestbook' ? 'active' : 'noneActive'}
-              onClick={() => {
-                setRoutStyle('guestbook');
-              }}
+              className={routeStyle == '/guestbook' ? 'active' : 'noneActive'}
             >
               방명록
             </StyledLink>
