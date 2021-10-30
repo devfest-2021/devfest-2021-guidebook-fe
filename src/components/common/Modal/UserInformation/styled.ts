@@ -20,12 +20,15 @@ const UserModalSubTitle = styled.div`
   }
 `;
 const UserModalTaskWrapper = styled.div`
-  margin-top: 5px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   @media (max-width: 280px) {
     justify-content: center;
   }
+`;
+const ButtonWrapper = styled.div`
+  margin-top: 10px;
 `;
 const UserModalStyledImg = styled.img`
   width: 150px;
@@ -69,6 +72,7 @@ const UserModalWrapper = styled.div`
   justify-content: center;
 `;
 export {
+  ButtonWrapper,
   UserModalTaskWrapper,
   UserModalUserInfoWrapper,
   UserModalSubTitle,

@@ -19,9 +19,9 @@ const Navigation: React.FC = () => {
   const [modal, setModal] = useRecoilState(modalState);
   const [user, setUser] = useRecoilState(userState);
   const [routeStyle, setRoutStyle] = useState<string>();
+
   useEffect(() => setRoutStyle(location.pathname), [location]);
 
-  console.log(routeStyle);
   return (
     <NavDesign>
       <NavInner>
