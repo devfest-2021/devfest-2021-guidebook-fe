@@ -3,24 +3,31 @@ import { Link } from 'react-router-dom';
 
 const NavDesign = styled.div`
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.03);
-  position: static;
+  background: white;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 1;
 `;
 const NavInner = styled.div`
   display: flex;
   flex: 1;
   width: 95%;
-  height: 90px;
+  height: 100px;
   justify-content: space-between;
   align-items: center;
   margin: auto;
+  @media (max-width: 500px) {
+    height: 70px;
+  }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #b8b8b8;
   list-style: none;
+
   &:hover {
-    color: #4e4e4e;
+    color: #55af7a;
     font-weight: bold;
     text-decoration: none;
   }
@@ -36,7 +43,7 @@ const OpenedModal = styled.div`
   color: inherit;
   list-style: none;
   &:hover {
-    color: #4e4e4e;
+    color: #55af7a;
     font-weight: bold;
     text-decoration: none;
   }

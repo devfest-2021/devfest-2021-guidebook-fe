@@ -156,6 +156,9 @@ const UserNameWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   margin-left: 15px;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 export {
   NavTaskWrapper,

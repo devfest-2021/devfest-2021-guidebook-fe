@@ -16,6 +16,7 @@ import {
   TopTextSection,
   Organizer,
   LottieWrapper,
+  LottieContainer,
 } from './styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { add, format } from 'date-fns';
@@ -32,6 +33,7 @@ import Api from 'src/api';
 import { SchoolLogo } from './components/Logo';
 import Lottie from 'react-lottie';
 import animationData from 'src/assets/sample.json';
+import { ALERT_KEY, alertState } from '../../../store/alert';
 
 export const Session = () => {
   const [range, setRange] = useState<any>([]);
@@ -39,6 +41,7 @@ export const Session = () => {
   const [user, setUser] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
   const [lottiePause, setLottiePause] = useState(true);
+  const [alert, setAlert] = useRecoilState(alertState);
 
   const { data } = useGetSessions({
     startAt: range[0]?.getTime(),
@@ -80,17 +83,19 @@ export const Session = () => {
         setLottiePause(true);
       }, 4000);
     } catch (error) {
-      console.log(error);
+      setAlert({ ...alert, [ALERT_KEY.FAIL_KEY]: true });
     }
   };
 
   return (
     <LayoutContainer>
-      {!lottiePause && (
-        <LottieWrapper>
-          <Lottie options={defaultOptions} isPaused={lottiePause} />
-        </LottieWrapper>
-      )}
+      <LottieContainer>
+        {!lottiePause && (
+          <LottieWrapper>
+            <Lottie options={defaultOptions} isPaused={lottiePause} />
+          </LottieWrapper>
+        )}
+      </LottieContainer>
       <FilterSection>
         <Application
           className="rainbow-align-content_center rainbow-m-vertical_large  rainbow-m_auto"
@@ -126,15 +131,22 @@ export const Session = () => {
                   layoutId={String(session.session_id)}
                 >
                   <TopSection>
-                    <SchoolLogo name={session.organizer}></SchoolLogo>
-                    <TopTextSection>
+                    <SchoolLogo
+                      layoutId={`logo-section-${session.session_id}`}
+                      name={session.organizer}
+                    ></SchoolLogo>
+                    <TopTextSection
+                      layoutId={`top-text-section-${session.session_id}`}
+                    >
                       <CardTitle>{session.title}</CardTitle>
                       <Organizer>{session.organizer}</Organizer>
                     </TopTextSection>
                   </TopSection>
-                  <CardContent>{session.description}</CardContent>
+                  <CardContent layoutId={`content-${session.session_id}`}>
+                    {session.description}
+                  </CardContent>
                   <BottomSection>
-                    <ChipSection>
+                    <ChipSection layoutId={`chip-${session.session_id}`}>
                       <Chip>
                         {format(
                           new Date(session.start_at.replace('.000Z', '')),
@@ -156,6 +168,7 @@ export const Session = () => {
                       </Chip>
                     </ChipSection>
                     <AttendButton
+                      layoutId={`button-${session.session_id}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         handleOnClick(session.session_id);
@@ -179,18 +192,25 @@ export const Session = () => {
               >
                 <Modal layoutId={String(selectedId)}>
                   <TopSection>
-                    <SchoolLogo name={selected.organizer}></SchoolLogo>
-                    <TopTextSection>
+                    <SchoolLogo
+                      name={selected.organizer}
+                      layoutId={`logo-section-${String(selectedId)}`}
+                    ></SchoolLogo>
+                    <TopTextSection
+                      layoutId={`top-text-section-${String(selectedId)}`}
+                    >
                       <CardTitle>{selected.title}</CardTitle>
                       <Organizer>{selected.organizer}</Organizer>
                     </TopTextSection>
                   </TopSection>
 
-                  <CardContentInModal>
+                  <CardContentInModal
+                    layoutId={`content-${String(selectedId)}`}
+                  >
                     {selected.description}
                   </CardContentInModal>
                   <BottomSection>
-                    <ChipSection>
+                    <ChipSection layoutId={`chip-${String(selectedId)}`}>
                       <Chip>
                         {format(
                           new Date(selected.start_at.replace('.000Z', '')),
@@ -215,6 +235,7 @@ export const Session = () => {
                       </Chip>
                     </ChipSection>
                     <AttendButton
+                      layoutId={`button-${String(selectedId)}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         handleOnClick(selectedId);

@@ -23,6 +23,9 @@ import { userState } from 'src/store/user';
 import { Simulate } from 'react-dom/test-utils';
 import { getStyles } from '../modalError';
 import { Modal, Button } from 'react-rainbow-components';
+import '../customStyle.css';
+import { StyledModal } from '../styled';
+
 const error = Simulate.error;
 
 const SignUp = () => {
@@ -81,7 +84,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Modal
+      <StyledModal
         isOpen={modal.signUp}
         onRequestClose={() =>
           setModal({ ...modal, [MODAL_KEY.SIGN_UP]: false })
@@ -140,7 +143,7 @@ const SignUp = () => {
             </ButtonWrapper>
           </Form>
         </FormikProvider>
-      </Modal>
+      </StyledModal>
     </>
     // <div>
     //   <ModalOverlay />

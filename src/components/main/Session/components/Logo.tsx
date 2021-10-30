@@ -17,6 +17,7 @@ import { Logo } from '../styled';
 
 interface Props {
   name: string;
+  layoutId: string;
 }
 
 const Url = (name: string) => {
@@ -26,13 +27,13 @@ const Url = (name: string) => {
   if (name === '이화여자대학교') {
     return 이화;
   }
-  if (name === '인하대') {
+  if (name === '인하대학교') {
     return 인하;
   }
-  if (name === '숭실대') {
+  if (name === '숭실대학교') {
     return 숭실;
   }
-  if (name === '성신여대') {
+  if (name === '성신여자대학교') {
     return 성신;
   }
   if (name === '한국외국어대학교') {
@@ -63,5 +64,9 @@ const Url = (name: string) => {
 };
 
 export const SchoolLogo = (props: Props) => {
-  return Url(props.name) ? <Logo src={Url(props.name)} /> : <></>;
+  return Url(props.name) ? (
+    <Logo layoutId={props.layoutId} src={Url(props.name)} />
+  ) : (
+    <></>
+  );
 };

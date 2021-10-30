@@ -111,10 +111,16 @@ const StyledErrorMessage = styled(ErrorMessage)`
 const NavUserName = styled.div`
   font-size: 18px;
   color: black;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 const NavUserEmail = styled.div`
   font-size: 15px;
   color: #555555;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 export {
   MainTitle,

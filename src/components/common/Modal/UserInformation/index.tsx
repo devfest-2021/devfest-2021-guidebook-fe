@@ -9,9 +9,11 @@ import {
   UserModalTaskWrapper,
   UserModalTitle,
   UserModalUserInfoWrapper,
+  UserModalInnerWrapper,
   UserModalWrapper,
 } from './styled';
 import { useGetGuestBook } from '../../../../api/hooks/useGetGuestBook';
+import { StyledModal } from '../styled';
 
 const Index = () => {
   const { data } = useGetGuestBook();
@@ -21,8 +23,7 @@ const Index = () => {
   console.log(data);
   return (
     <>
-      <Modal
-        style={{ padding: '10px' }}
+      <StyledModal
         isOpen={modal.userInformation}
         size={'small'}
         onRequestClose={() =>
@@ -30,9 +31,11 @@ const Index = () => {
         }
       >
         <UserModalTitle>프로필</UserModalTitle>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <UserModalWrapper>
-            <UserModalStyledImg src={userInfo.avaterURL} />
+        <UserModalWrapper>
+          <UserModalInnerWrapper>
+            <UserModalTaskWrapper>
+              <UserModalStyledImg src={userInfo.avaterURL} />
+            </UserModalTaskWrapper>
             <UserModalUserInfoWrapper>
               <UserModalTaskWrapper>
                 <UserModalTitle>{userInfo.nickname}</UserModalTitle>
@@ -47,19 +50,9 @@ const Index = () => {
                 <UserModalSubTitle>{userInfo.promise}</UserModalSubTitle>
               </UserModalTaskWrapper>
             </UserModalUserInfoWrapper>
-          </UserModalWrapper>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-          }}
-        >
-          {/*<UserModalTitle>응원의 한마디</UserModalTitle>*/}
-        </div>
-      </Modal>
+          </UserModalInnerWrapper>
+        </UserModalWrapper>
+      </StyledModal>
     </>
   );
 };
