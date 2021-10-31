@@ -10,6 +10,14 @@ export interface SignUpRequest {
   instagram: string | null;
   promise: string | null;
 }
+export interface UserEditRequest {
+  email: string | null;
+  group: string | null;
+  nickname: string | null;
+  github: string | null;
+  instagram: string | null;
+  promise: string | null;
+}
 
 export interface UserResponse {
   email: string;
