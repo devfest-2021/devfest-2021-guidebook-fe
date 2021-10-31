@@ -7,6 +7,7 @@ import {
   UserModalStyledImg,
   UserModalSubTitle,
   UserModalTaskWrapper,
+  ButtonWrapper,
   UserModalTitle,
   UserModalUserInfoWrapper,
   UserModalInnerWrapper,
@@ -14,12 +15,14 @@ import {
 } from './styled';
 import { useGetGuestBook } from '../../../../api/hooks/useGetGuestBook';
 import { StyledModal } from '../styled';
+import { StyledJoinButton } from '../../button/Button';
 
 const Index = () => {
   const { data } = useGetGuestBook();
   const [userInfo, setUserInfo] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
   // const UserSessionList = {data.map( (userInfo)=> userInfo.name)? null : null}
+
   return (
     <>
       <StyledModal
@@ -47,6 +50,17 @@ const Index = () => {
               </UserModalTaskWrapper>
               <UserModalTaskWrapper>
                 <UserModalSubTitle>{userInfo.promise}</UserModalSubTitle>
+              </UserModalTaskWrapper>
+              <UserModalTaskWrapper>
+                <ButtonWrapper>
+                  <StyledJoinButton
+                    onClick={() => {
+                      setModal({ ...modal, [MODAL_KEY.EDIT_USER]: true });
+                    }}
+                  >
+                    프로필 수정
+                  </StyledJoinButton>
+                </ButtonWrapper>
               </UserModalTaskWrapper>
             </UserModalUserInfoWrapper>
           </UserModalInnerWrapper>

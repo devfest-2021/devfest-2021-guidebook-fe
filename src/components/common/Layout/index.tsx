@@ -8,6 +8,8 @@ import { modalState } from 'src/store/modal';
 import SignIn from '../Modal/SignIn';
 import UserInfomation from '../Modal/UserInformation';
 import Alert from '../alert';
+import EditUser from '../Modal/EditUser';
+
 import {
   Footer,
   FooterContent,
@@ -17,6 +19,7 @@ import {
 } from 'src/styles/layout';
 import gdsc from 'src/assets/gdsc.png';
 import campus from 'src/assets/campus.png';
+
 
 export const Layout = () => {
   const [modal, _] = useRecoilState(modalState);
@@ -28,6 +31,7 @@ export const Layout = () => {
       {modal.signUp && <SignUp />}
       {modal.signIn && <SignIn />}
       {modal.userInformation && <UserInfomation />}
+      {modal.editUser && <EditUser />}
       <Switch>
         <Route path={''} component={Main} />
       </Switch>
