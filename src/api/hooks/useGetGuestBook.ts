@@ -8,7 +8,7 @@ async function getGuestBooks() {
 }
 
 export function useGetGuestBook() {
-  const { data, error } = useSWR<typeof guidebookList>(
+  const { data, error, mutate } = useSWR<typeof guidebookList>(
     [`/attendance`],
     getGuestBooks,
   );
@@ -16,5 +16,6 @@ export function useGetGuestBook() {
     data: data && data,
     error,
     loading: !error && !data,
+    mutate,
   };
 }

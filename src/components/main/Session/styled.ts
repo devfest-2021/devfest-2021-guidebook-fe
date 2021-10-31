@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const FilterSection = styled.div``;
@@ -127,6 +127,32 @@ export const BottomSection = styled.div`
   align-items: center;
 `;
 
+export const LikeContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const LikeButtonWrapper = styled.div`
+  margin-top: 8px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+`;
+
+export const LikeButton = styled(motion.img)`
+  width: 24px;
+  height: 24px;
+  padding-right: 4px;
+  outline: none;
+  border: none;
+`;
+
+export const Count = styled.p`
+  font-size: 16px;
+  padding-top: 8px;
+  color: #55af7a;
+`;
+
 export const ChipSection = styled(motion.div)`
   overflow: scroll;
   white-space: nowrap;
@@ -164,6 +190,7 @@ export const LottieWrapper = styled.div`
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 9999;
 
   @media (min-width: ${(props) => props.theme.windowSize.desk}px) {
     width: 50%;
@@ -171,10 +198,42 @@ export const LottieWrapper = styled.div`
 `;
 
 export const BigFloatingReactionItemContainer = styled(motion.div)`
-  width: 400px;
-  height: 400px;
-  position: absolute;
-  top: 300px;
+  position: fixed;
+  top: 100%;
   left: 30%;
   pointer-events: none;
+`;
+
+export const FloatingTrackContainer = styled.div`
+  position: fixed;
+  right: 0px;
+  bottom: 0;
+  width: 150px;
+  z-index: 100;
+`;
+
+export const floatingAnimation = keyframes`
+  0% {
+    bottom: -100px;
+    opacity: 1;
+    visibility: visible;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 90vh;
+    opacity: 0;
+    visibility: hidden;
+  }
+`;
+export const FloatingReactionItemContainer = styled.div<{ xPos: number }>`
+  position: absolute;
+  pointer-events: none;
+  width: 40px;
+  height: 40px;
+  bottom: -100px;
+  left: ${({ xPos }) => `${xPos}px`};
+  visibility: hidden;
+  animation: ${floatingAnimation} 8s ease-out;
 `;

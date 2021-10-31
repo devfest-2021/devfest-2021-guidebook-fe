@@ -32,3 +32,7 @@ export interface AttendRequest {
   userId: number;
   sessionId: number;
 }
+
+export interface LikeRequest {
+  user_id: number;
+}

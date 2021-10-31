@@ -15,7 +15,7 @@ const enterAnimationObj = {
     type: 'spring',
     duration: 1.5,
     ease: [0.5, 0.5, 0.4, 0.5],
-    delay: 1,
+    delay: 0,
     times: [0, 0.1, 0.3, 0.8],
   },
 };

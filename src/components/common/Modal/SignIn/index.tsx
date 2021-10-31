@@ -32,10 +32,6 @@ const Signin = () => {
   const [user, setUser] = useRecoilState(userState);
   const [alert, setAlert] = useRecoilState(alertState);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   const formik = useFormik({
     initialValues: {
       email: '',

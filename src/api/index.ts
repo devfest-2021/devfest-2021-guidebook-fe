@@ -3,9 +3,11 @@ import { UserState } from 'src/store/user';
 import { guidebookList, sessionList } from './mock';
 import {
   AttendRequest,
+  UserEditRequest,
+  LikeRequest,
   SignInRequest,
   SignUpRequest,
-  UserEditRequest,
+
 } from './types';
 
 export class GuestBookApi {
@@ -37,8 +39,14 @@ export class GuestBookApi {
   attend = (payload: AttendRequest) => {
     return axios.post(`${this.API}/attendance/post`, payload);
   };
+
   editUser = (payload: UserEditRequest) => {
     return axios.put<typeof UserState>(`${this.API}/user`, payload);
+
+
+  like = (payload: LikeRequest) => {
+    return axios.post(`${this.API}/user/like`, payload);
+
   };
 }
 
