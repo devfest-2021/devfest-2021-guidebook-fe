@@ -53,8 +53,8 @@ const Index = () => {
                 <UserModalStyledImg src={user.avaterURL} />
               </UserImageWrapper>
               <CountWrapper>
-                <CountText>출석한 세션</CountText>
-                <Count>{count}</Count>
+                <CountText>출석일 수</CountText>
+                <Count>추후 업데이트</Count>
               </CountWrapper>
             </UserInfoWrapper>
             <UserModalUserInfoWrapper>
