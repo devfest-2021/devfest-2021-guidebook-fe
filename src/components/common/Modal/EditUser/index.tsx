@@ -61,21 +61,21 @@ const EditUser = () => {
       }
     },
 
-    // validationSchema: Yup.object({
-    //   email: Yup.string()
-    //     .matches(
-    //       /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-    //       '이메일 형식에 맞게 작성해주세요',
-    //     )
-    //     .required('필수입력란입니다.'),
-    //   nickname: Yup.string()
-    //     .min(2, '2글자이상 작성해주세요')
-    //     .max(15, '2~15사이의 길이로 입력해주세요')
-    //     .required('필수입력란입니다.'),
-    //   promise: Yup.string()
-    //     .min(10, '10글자 이상 작성해주세요')
-    //     .required('필수입력란입니다.'),
-    // }),
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .matches(
+          /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+          '이메일 형식에 맞게 작성해주세요',
+        )
+        .required('필수입력란입니다.'),
+      nickname: Yup.string()
+        .min(2, '2글자이상 작성해주세요')
+        .max(15, '2~15사이의 길이로 입력해주세요')
+        .required('필수입력란입니다.'),
+      promise: Yup.string()
+        .min(10, '10글자 이상 작성해주세요')
+        .required('필수입력란입니다.'),
+    }),
   });
 
   return (
@@ -93,12 +93,14 @@ const EditUser = () => {
               참가자 이름
               <HighLightSign />
             </SubTitle>
-            <EditStyledInput
+            <StyledInput
               name={'nickname'}
               type={'nickname'}
               value={formik.values.nickname}
               onChange={formik.handleChange}
+              style={getStyles(formik.errors, 'nickname')}
             />
+            <StyledErrorMessage name="nickname" component="div" />
             <SubTitle>Github</SubTitle>
             <EditStyledInput
               name={'Github'}
@@ -117,12 +119,14 @@ const EditUser = () => {
               응원의 한마디
               <HighLightSign />
             </SubTitle>
-            <EditStyledInput
+            <StyledInput
               name={'promise'}
               type={'promise'}
               value={formik.values.promise}
               onChange={formik.handleChange}
+              style={getStyles(formik.errors, 'promise')}
             />
+            <StyledErrorMessage name="promise" component="div" />
             <SubTitle>소속</SubTitle>
             <EditStyledInput
               name={'group'}
