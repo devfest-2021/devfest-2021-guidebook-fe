@@ -20,7 +20,6 @@ import {
 import gdsc from 'src/assets/gdsc.png';
 import campus from 'src/assets/campus.png';
 
-
 export const Layout = () => {
   const [modal, _] = useRecoilState(modalState);
 
