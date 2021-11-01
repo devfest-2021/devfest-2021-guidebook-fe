@@ -26,6 +26,9 @@ export class GuestBookApi {
   checkUser = () => {
     return axios.get(`${this.API}/user`);
   };
+  getCheckUser = (userid: number) => {
+    return axios.get(`${this.API}/user?user_id=${userid}`);
+  };
 
   signUp = (payload: SignUpRequest) => {
     return axios.post<typeof UserState>(`${this.API}/user/signup`, payload);
@@ -42,6 +45,7 @@ export class GuestBookApi {
   editUser = (payload: UserEditRequest) => {
     return axios.put<typeof UserState>(`${this.API}/user`, payload);
   };
+
   like = (payload: LikeRequest) => {
     return axios.post(`${this.API}/user/like`, payload);
   };

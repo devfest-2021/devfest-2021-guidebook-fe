@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-rainbow-components';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../../../store/user';
@@ -9,19 +9,32 @@ import {
   UserModalTaskWrapper,
   ButtonWrapper,
   UserModalTitle,
+  UserInfoWrapper,
   UserModalUserInfoWrapper,
   UserModalInnerWrapper,
   UserModalWrapper,
+  UserImageWrapper,
+  CountWrapper,
+  CountText,
+  Count,
 } from './styled';
 import { useGetGuestBook } from '../../../../api/hooks/useGetGuestBook';
 import { StyledModal } from '../styled';
 import { StyledJoinButton } from '../../button/Button';
+import Api from '../../../../api';
 
 const Index = () => {
-  const { data } = useGetGuestBook();
-  const [userInfo, setUserInfo] = useRecoilState(userState);
+  const [user, setUser] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
   // const UserSessionList = {data.map( (userInfo)=> userInfo.name)? null : null}
+  const [count, setCount] = useState();
+  const getCount = async () => {
+    const { data }: any = await Api.getCheckUser(user.user_id);
+    setCount(data.count);
+  };
+  useEffect(() => {
+    getCount();
+  });
 
   return (
     <>
@@ -35,21 +48,27 @@ const Index = () => {
         <UserModalTitle>프로필</UserModalTitle>
         <UserModalWrapper>
           <UserModalInnerWrapper>
-            <UserModalTaskWrapper>
-              <UserModalStyledImg src={userInfo.avaterURL} />
-            </UserModalTaskWrapper>
+            <UserInfoWrapper>
+              <UserImageWrapper>
+                <UserModalStyledImg src={user.avaterURL} />
+              </UserImageWrapper>
+              <CountWrapper>
+                <CountText>출석한 세션</CountText>
+                <Count>{count}</Count>
+              </CountWrapper>
+            </UserInfoWrapper>
             <UserModalUserInfoWrapper>
               <UserModalTaskWrapper>
-                <UserModalTitle>{userInfo.nickname}</UserModalTitle>
+                <UserModalTitle>{user.nickname}</UserModalTitle>
               </UserModalTaskWrapper>
               <UserModalTaskWrapper>
-                <UserModalSubTitle>{userInfo.group}</UserModalSubTitle>
+                <UserModalSubTitle>{user.group}</UserModalSubTitle>
               </UserModalTaskWrapper>
               <UserModalTaskWrapper>
-                <UserModalSubTitle>{userInfo.email}</UserModalSubTitle>
+                <UserModalSubTitle>{user.email}</UserModalSubTitle>
               </UserModalTaskWrapper>
               <UserModalTaskWrapper>
-                <UserModalSubTitle>{userInfo.promise}</UserModalSubTitle>
+                <UserModalSubTitle>{user.promise}</UserModalSubTitle>
               </UserModalTaskWrapper>
               <UserModalTaskWrapper>
                 <ButtonWrapper>

@@ -13,15 +13,18 @@ import NavUserInfomation from './NavUserInfo/index';
 import { userState } from '../../../store/user';
 import '../Modal/UserInformation/UserInfomation.css';
 import { useLocation } from 'react-router';
+import Api from 'src/api';
+import { useCheckUser } from '../../../api/hooks/useCheckUser';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
   const [modal, setModal] = useRecoilState(modalState);
   const [user, setUser] = useRecoilState(userState);
   const [routeStyle, setRoutStyle] = useState<string>();
+  const [count, setCount] = useState<number | undefined>();
 
   useEffect(() => setRoutStyle(location.pathname), [location]);
-
+  console.log(user);
   return (
     <NavDesign>
       <NavInner>
