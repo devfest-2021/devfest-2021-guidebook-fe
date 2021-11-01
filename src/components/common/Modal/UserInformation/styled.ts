@@ -59,15 +59,15 @@ const CountWrapper = styled.div`
 const CountText = styled.div`
   font-weight: bold;
   font-size: 30px;
-  @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
+  @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
     font-size: 20px;
   }
 `;
 const Count = styled.div`
   font-weight: bold;
-  font-size: 15px;
+  font-size: 40px;
   @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
-    font-size: 15px;
+    font-size: 35px;
   }
 `;
 const ButtonWrapper = styled.div`
