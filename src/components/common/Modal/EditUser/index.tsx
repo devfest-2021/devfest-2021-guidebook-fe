@@ -103,15 +103,15 @@ const EditUser = () => {
             <StyledErrorMessage name="nickname" component="div" />
             <SubTitle>Github</SubTitle>
             <EditStyledInput
-              name={'Github'}
-              type={'Github'}
+              name={'github'}
+              type={'github'}
               value={formik.values.github}
               onChange={formik.handleChange}
             />
             <SubTitle>Instagram</SubTitle>
             <EditStyledInput
-              name={'Instagram'}
-              type={'Instagram'}
+              name={'instagram'}
+              type={'instagram'}
               value={formik.values.instagram}
               onChange={formik.handleChange}
             />
