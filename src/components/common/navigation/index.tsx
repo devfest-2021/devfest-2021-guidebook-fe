@@ -24,7 +24,7 @@ const Navigation: React.FC = () => {
   const [count, setCount] = useState<number | undefined>();
 
   useEffect(() => setRoutStyle(location.pathname), [location]);
-  console.log(user);
+
   return (
     <NavDesign>
       <NavInner>
