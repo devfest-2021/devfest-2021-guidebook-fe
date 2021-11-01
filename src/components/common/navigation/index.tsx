@@ -30,11 +30,6 @@ const Navigation: React.FC = () => {
             <StyledLink
               to={'/'}
               className={routeStyle == '/' ? 'active' : 'noneActive'}
-              className={routeStyle == 'session' ? 'active' : 'noneActive'}
-              onClick={() => {
-                setRoutStyle('session');
-              }}
-
             >
               세션
             </StyledLink>

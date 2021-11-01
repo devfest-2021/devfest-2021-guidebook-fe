@@ -7,7 +7,6 @@ import {
   LikeRequest,
   SignInRequest,
   SignUpRequest,
-
 } from './types';
 
 export class GuestBookApi {
@@ -42,11 +41,9 @@ export class GuestBookApi {
 
   editUser = (payload: UserEditRequest) => {
     return axios.put<typeof UserState>(`${this.API}/user`, payload);
-
-
+  };
   like = (payload: LikeRequest) => {
     return axios.post(`${this.API}/user/like`, payload);
-
   };
 }
 
