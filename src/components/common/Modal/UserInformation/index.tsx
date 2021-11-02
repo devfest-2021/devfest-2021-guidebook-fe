@@ -54,7 +54,7 @@ const Index = () => {
               </UserImageWrapper>
               <CountWrapper>
                 <CountText>출석 횟수</CountText>
-                <Count>{count}</Count>
+                <Count>추후 업데이트</Count>
               </CountWrapper>
             </UserInfoWrapper>
             <UserModalUserInfoWrapper>
