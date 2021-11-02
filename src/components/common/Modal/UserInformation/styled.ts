@@ -65,9 +65,9 @@ const CountText = styled.div`
 `;
 const Count = styled.div`
   font-weight: bold;
-  font-size: 40px;
+  font-size: 20px;
   @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
-    font-size: 35px;
+    font-size: 15px;
   }
 `;
 const ButtonWrapper = styled.div`
