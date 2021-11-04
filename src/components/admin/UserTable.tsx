@@ -19,32 +19,30 @@ const UserTable: FC = () => {
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [sortBy, setSortBy] = useState<keyof AdminUser>('count');
   const [users, setUsers] = useState<AdminUser[]>(userList ?? []);
-  const reduceSorter = useCallback(
-    (key: keyof AdminUser) => {
-      return (a: AdminUser, b: AdminUser) => {
-        const nextSortDirectionNumber = sortDirection === 'asc' ? -1 : 1;
-        switch (key) {
-          case 'count':
-            return (a.count - b.count) * nextSortDirectionNumber;
-          case 'nickname':
-            return (
-              a.nickname.localeCompare(b.nickname) * nextSortDirectionNumber
-            );
-          case 'group':
-            return a.group.localeCompare(b.group) * nextSortDirectionNumber;
-          case 'email':
-            return a.email.localeCompare(b.email) * nextSortDirectionNumber;
-          default:
-            return nextSortDirectionNumber;
-        }
-      };
-    },
-    [sortDirection],
-  );
+  const reduceSorter = (
+    key: keyof AdminUser,
+    sortDirection: 'asc' | 'desc',
+  ) => {
+    return (a: AdminUser, b: AdminUser) => {
+      const nextSortDirectionNumber = sortDirection === 'asc' ? 1 : -1;
+      switch (key) {
+        case 'count':
+          return (a.count - b.count) * nextSortDirectionNumber;
+        case 'nickname':
+          return a.nickname.localeCompare(b.nickname) * nextSortDirectionNumber;
+        case 'group':
+          return a.group.localeCompare(b.group) * nextSortDirectionNumber;
+        case 'email':
+          return a.email.localeCompare(b.email) * nextSortDirectionNumber;
+        default:
+          return nextSortDirectionNumber;
+      }
+    };
+  };
 
   useEffect(() => {
     if (!userList) return;
-    const sorter = reduceSorter(sortBy);
+    const sorter = reduceSorter(sortBy, sortDirection);
     const filteredUsers = userList
       .filter((user) => {
         if (school.value !== '') {
@@ -63,7 +61,7 @@ const UserTable: FC = () => {
       })
       .sort(sorter);
     setUsers(filteredUsers);
-  }, [userList, school.value, attendanceCount, sortBy]);
+  }, [userList, school.value, attendanceCount, sortBy, sortDirection]);
 
   const handleOnSort = useCallback(
     (
@@ -74,10 +72,10 @@ const UserTable: FC = () => {
       if (!users) return;
       const data = [...users];
 
-      const sorter = reduceSorter(field as keyof AdminUser);
+      const sorter = reduceSorter(field as keyof AdminUser, sortDirection);
+      data.sort(sorter);
       setSortBy(field as keyof AdminUser);
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-      data.sort(sorter);
       setUsers(data);
     },
     [users, sortDirection],
