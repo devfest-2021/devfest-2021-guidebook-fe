@@ -44,7 +44,7 @@ const Admin: FC = () => {
       <h1>출석필터</h1>
       <FilterRow>
         <FormContainer>
-          <FormLabel>출석일</FormLabel>
+          <FormLabel>참석수</FormLabel>
           <Slider
             value={attendanceCount}
             min={1}
@@ -59,6 +59,7 @@ const Admin: FC = () => {
             placeholder="example@gmail.com"
             style={FullWidth}
             onChange={onEmailChange}
+            disabled
           />
         </FormContainer>
         <FormContainer>

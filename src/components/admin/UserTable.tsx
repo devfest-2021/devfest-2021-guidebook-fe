@@ -15,27 +15,31 @@ export type AdminUser = {
 
 const UserTable: FC = () => {
   const { data: userList } = useAdminUserList();
-  const { school } = useRecoilValue(adminState);
+  const { attendanceCount, school } = useRecoilValue(adminState);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [sortBy, setSortBy] = useState<keyof AdminUser>('count');
   const [users, setUsers] = useState<AdminUser[]>(userList ?? []);
 
   useEffect(() => {
     if (!userList) return;
-    asyncFilter(userList, (user) => {
-      if (school.value !== '') {
-        if (user.group.includes(school.value)) {
+    const filteredUsers = userList
+      .filter((user) => {
+        if (school.value !== '') {
+          if (user.group.includes(school.value)) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      })
+      .filter((user) => {
+        if (attendanceCount < user.count) {
           return true;
         }
         return false;
-      }
-      return true;
-    })
-      .then((filteredUsers) => {
-        setUsers(filteredUsers ?? []);
-      })
-      .catch(console.error);
-  }, [userList, school.value]);
+      });
+    setUsers(filteredUsers);
+  }, [userList, school.value, attendanceCount]);
 
   const handleOnSort = useCallback(
     (

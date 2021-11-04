@@ -6,7 +6,7 @@ const { persistAtom } = recoilPersist();
 const ADMIN = 'admin';
 
 export const AdminState = {
-  attendanceCount: 0,
+  attendanceCount: 1,
   email: '',
   school: {
     options: [] as LookupValue[],
