@@ -49,8 +49,8 @@ const UserTable: FC = () => {
       field: string,
       nextSortDirection: string,
     ) => {
-      if (!userList) return;
-      const data = [...userList];
+      if (!users) return;
+      const data = [...users];
       const nextSortDirectionNumber = nextSortDirection === 'asc' ? 1 : -1;
 
       data.sort((a, b) => {
@@ -73,7 +73,7 @@ const UserTable: FC = () => {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
       setUsers(data);
     },
-    [userList, sortDirection],
+    [users, sortDirection],
   );
 
   return (
