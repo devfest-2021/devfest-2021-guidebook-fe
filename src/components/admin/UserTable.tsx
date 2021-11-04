@@ -3,7 +3,6 @@ import { Table, Column } from 'react-rainbow-components';
 import { useRecoilValue } from 'recoil';
 import { useAdminUserList } from 'src/api/hooks/useAdmin';
 import { adminState } from 'src/store/admin';
-import { asyncFilter } from 'src/utils/filter';
 
 export type AdminUser = {
   user_id: number;
