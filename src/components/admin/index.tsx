@@ -3,35 +3,15 @@ import { LayoutContainer } from 'src/styles/layout';
 import { Slider, Input, Lookup } from 'react-rainbow-components';
 import { FilterRow, FormContainer, FormLabel, FullWidth } from './styled';
 import inko from 'src/utils/inko';
-import UserTable, { User } from './UserTable';
+import UserTable from './UserTable';
 import { useRecoilState } from 'recoil';
 import { adminState } from 'src/store/admin';
+import { useAdminUserList } from 'src/api/hooks/useAdmin';
 
 const SchoolList = [{ label: '숭실대' }, { label: '서울대' }];
-const userList: User[] = [
-  {
-    email: 'gomjellie@gmail.com',
-    group: '숭실대',
-    nickname: '곰젤리',
-    github: 'gomjellie',
-    instagram: 'gomjellie',
-    avatarURL: 'https://avatars.githubusercontent.com/u/13645032?v=4',
-    promise: 'string',
-    attend_cnt: '2',
-  },
-  {
-    email: 'HyeokE@gmail.com',
-    group: '대진대학교',
-    nickname: '준혁',
-    github: 'HyeokE',
-    instagram: 'HyeokE',
-    avatarURL: 'https://avatars.githubusercontent.com/u/61281239?v=4',
-    promise: 'string',
-    attend_cnt: '5',
-  },
-];
 
 const Admin: FC = () => {
+  const { data: userList } = useAdminUserList();
   const [admin, setAdmin] = useRecoilState(adminState);
   const { attendanceCount, email, school } = admin;
   const onSearchSchool = (value: string) => {
@@ -92,7 +72,7 @@ const Admin: FC = () => {
           />
         </FormContainer>
       </FilterRow>
-      <UserTable userList={userList} />
+      {userList && <UserTable />}
     </LayoutContainer>
   );
 };

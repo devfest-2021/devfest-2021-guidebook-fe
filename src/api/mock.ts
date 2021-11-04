@@ -1,3 +1,5 @@
+import { AdminUser } from "src/components/admin/UserTable";
+
 export const sessionList = [
   {
     session_id: 1,
@@ -140,5 +142,22 @@ export const guidebookList = [
         session_name: '나는 어쩌다 개발자',
       },
     ],
+  },
+];
+
+export const adminUserList: AdminUser[] = [
+  {
+    user_id: 1,
+    email: 'gomjellie@gmail.com',
+    group: '숭실대',
+    nickname: '곰젤리',
+    count: 3,
+  },
+  {
+    user_id: 2,
+    email: 'HyeokE@gmail.com',
+    group: '대진대학교',
+    nickname: '준혁',
+    count: 2,
   },
 ];
