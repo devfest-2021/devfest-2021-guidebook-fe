@@ -1,6 +1,10 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Table, Column } from 'react-rainbow-components';
+import { useRecoilValue } from 'recoil';
 import { useAdminUserList } from 'src/api/hooks/useAdmin';
+import { adminState } from 'src/store/admin';
+import { asyncFilter } from 'src/utils/filter';
+import useDebounce from 'src/utils/hooks/debouncer';
 
 export type AdminUser = {
   user_id: number;
@@ -16,9 +20,28 @@ const Avatar: FC<{ value: string }> = ({ value }) => (
 
 const UserTable: FC = () => {
   const { data: userList, loading } = useAdminUserList();
-  const [users, setUsers] = useState<AdminUser[]>(userList ?? []);
+  const { attendanceCount, email, school } = useRecoilValue(adminState);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [sortBy, setSortBy] = useState<keyof AdminUser>('count');
+  const [users, setUsers] = useState<AdminUser[]>(userList ?? []);
+  const debouncedSetUsers = useDebounce(setUsers, 500);
+
+  useEffect(() => {
+    if (!userList) return;
+    asyncFilter(userList, (user) => {
+      if (school.value !== '') {
+        if (user.group.includes(school.value)) {
+          return true;
+        }
+        return false;
+      }
+      return true;
+    })
+      .then((filteredUsers) => {
+        debouncedSetUsers(filteredUsers ?? []);
+      })
+      .catch(console.log);
+  }, [userList, school]);
 
   const handleOnSort = useCallback(
     (
@@ -55,13 +78,13 @@ const UserTable: FC = () => {
 
   return (
     <Table
-      keyField="user_id"
+      keyField="this_makes_bug"
       data={users}
       onSort={handleOnSort}
       sortDirection={sortDirection}
       sortedBy={sortBy}
       style={{ height: 'auto' }}
-      isLoading={loading}
+      isLoading={users.length === 0}
     >
       <Column header="참석수" field="count" width={120} sortable />
       <Column header="user_id" field="user_id" />

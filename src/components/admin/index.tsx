@@ -7,6 +7,7 @@ import UserTable from './UserTable';
 import { useRecoilState } from 'recoil';
 import { adminState } from 'src/store/admin';
 import { useAdminUserList } from 'src/api/hooks/useAdmin';
+import useDebounce from 'src/utils/hooks/debouncer';
 
 const SchoolList = [{ label: '숭실대' }, { label: '서울대' }];
 
@@ -20,6 +21,7 @@ const Admin: FC = () => {
     });
     setAdmin({ ...admin, school: { options, value } });
   };
+  const debouncedSearchSchool = useDebounce(onSearchSchool, 500);
   const onAttendanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAdmin({ ...admin, attendanceCount: Number(event.target.value) });
   };
@@ -29,10 +31,7 @@ const Admin: FC = () => {
   const setSchool = (value: string) => {
     setAdmin({ ...admin, school: { options: SchoolList, value } });
   };
-
-  useEffect(() => {
-    console.log(email, school.value);
-  });
+  const debouncedSetSchool = useDebounce(setSchool, 500);
 
   return (
     <LayoutContainer>
@@ -65,10 +64,10 @@ const Admin: FC = () => {
             value={school.options.find((item) => item.label === school.value)}
             onChange={(value) =>
               // setSchool({ ...school, value: value?.label?.toString() ?? '' })
-              setSchool(value?.label?.toString() ?? '')
+              debouncedSetSchool(value?.label?.toString() ?? '')
             }
-            onSearch={onSearchSchool}
-            onClick={() => onSearchSchool('')}
+            onSearch={debouncedSearchSchool}
+            // onClick={() => onSearchSchool('')}
           />
         </FormContainer>
       </FilterRow>

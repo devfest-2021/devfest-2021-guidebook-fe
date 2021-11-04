@@ -5,19 +5,7 @@ const { persistAtom } = recoilPersist();
 
 const ADMIN = 'admin';
 
-const UserDefault = {
-  email: '',
-  group: '',
-  nickname: '',
-  github: '',
-  instagram: '',
-  avatarURL: '',
-  promise: '',
-  attend_cnt: '',
-};
-
 export const AdminState = {
-  users: [UserDefault],
   attendanceCount: 0,
   email: '',
   school: {
