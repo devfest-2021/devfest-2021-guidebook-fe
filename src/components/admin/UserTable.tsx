@@ -19,40 +19,11 @@ const UserTable: FC = () => {
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [sortBy, setSortBy] = useState<keyof AdminUser>('count');
   const [users, setUsers] = useState<AdminUser[]>(userList ?? []);
-
-  useEffect(() => {
-    if (!userList) return;
-    const filteredUsers = userList
-      .filter((user) => {
-        if (school.value !== '') {
-          if (user.group.includes(school.value)) {
-            return true;
-          }
-          return false;
-        }
-        return true;
-      })
-      .filter((user) => {
-        if (attendanceCount < user.count) {
-          return true;
-        }
-        return false;
-      });
-    setUsers(filteredUsers);
-  }, [userList, school.value, attendanceCount]);
-
-  const handleOnSort = useCallback(
-    (
-      event: React.MouseEvent<HTMLElement, MouseEvent>,
-      field: string,
-      nextSortDirection: string,
-    ) => {
-      if (!users) return;
-      const data = [...users];
-      const nextSortDirectionNumber = nextSortDirection === 'asc' ? 1 : -1;
-
-      data.sort((a, b) => {
-        switch (field as keyof AdminUser) {
+  const reduceSorter = useCallback(
+    (key: keyof AdminUser) => {
+      return (a: AdminUser, b: AdminUser) => {
+        const nextSortDirectionNumber = sortDirection === 'asc' ? -1 : 1;
+        switch (key) {
           case 'count':
             return (a.count - b.count) * nextSortDirectionNumber;
           case 'nickname':
@@ -66,9 +37,47 @@ const UserTable: FC = () => {
           default:
             return nextSortDirectionNumber;
         }
-      });
+      };
+    },
+    [sortDirection],
+  );
+
+  useEffect(() => {
+    if (!userList) return;
+    const sorter = reduceSorter(sortBy);
+    const filteredUsers = userList
+      .filter((user) => {
+        if (school.value !== '') {
+          if (user.group.includes(school.value)) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      })
+      .filter((user) => {
+        if (attendanceCount <= user.count) {
+          return true;
+        }
+        return false;
+      })
+      .sort(sorter);
+    setUsers(filteredUsers);
+  }, [userList, school.value, attendanceCount, sortBy]);
+
+  const handleOnSort = useCallback(
+    (
+      event: React.MouseEvent<HTMLElement, MouseEvent>,
+      field: string,
+      nextSortDirection: string,
+    ) => {
+      if (!users) return;
+      const data = [...users];
+
+      const sorter = reduceSorter(field as keyof AdminUser);
       setSortBy(field as keyof AdminUser);
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+      data.sort(sorter);
       setUsers(data);
     },
     [users, sortDirection],
