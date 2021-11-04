@@ -7,7 +7,7 @@ const NavDesign = styled.div`
   position: sticky;
   width: 100%;
   top: 0;
-  z-index: 1;
+  z-index: 99;
 `;
 const NavInner = styled.div`
   display: flex;

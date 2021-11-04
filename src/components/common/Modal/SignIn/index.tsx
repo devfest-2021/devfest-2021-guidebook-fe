@@ -32,10 +32,6 @@ const Signin = () => {
   const [user, setUser] = useRecoilState(userState);
   const [alert, setAlert] = useRecoilState(alertState);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -52,6 +48,7 @@ const Signin = () => {
             [MODAL_KEY.SIGN_IN]: false,
             [MODAL_KEY.SIGN_UP]: true,
             [MODAL_KEY.USER_INFORMATION]: false,
+            [MODAL_KEY.EDIT_USER]: false,
           });
         }
       }

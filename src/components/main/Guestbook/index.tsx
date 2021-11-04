@@ -144,21 +144,25 @@ export const Guestbook = () => {
                     <TopTextSection>
                       <CardTitleSection>
                         <CardTitle>{guidebook.name}</CardTitle>
-                        <SmallLogo
-                          src={githubLogo}
-                          onClick={() =>
-                            handleImageOnClick(guidebook.githubId, 'github')
-                          }
-                        ></SmallLogo>
-                        <SmallLogo
-                          src={instagramLogo}
-                          onClick={() =>
-                            handleImageOnClick(
-                              guidebook.instagramId,
-                              'instagram',
-                            )
-                          }
-                        ></SmallLogo>
+                        {guidebook.githubId && (
+                          <SmallLogo
+                            src={githubLogo}
+                            onClick={() =>
+                              handleImageOnClick(guidebook.githubId, 'github')
+                            }
+                          ></SmallLogo>
+                        )}
+                        {guidebook.instagramId && (
+                          <SmallLogo
+                            src={instagramLogo}
+                            onClick={() =>
+                              handleImageOnClick(
+                                guidebook.instagramId,
+                                'instagram',
+                              )
+                            }
+                          ></SmallLogo>
+                        )}
                       </CardTitleSection>
                       <Organizer>{guidebook.affiliation}</Organizer>
                     </TopTextSection>
