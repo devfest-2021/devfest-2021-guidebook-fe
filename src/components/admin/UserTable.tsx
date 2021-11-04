@@ -4,7 +4,6 @@ import { useRecoilValue } from 'recoil';
 import { useAdminUserList } from 'src/api/hooks/useAdmin';
 import { adminState } from 'src/store/admin';
 import { asyncFilter } from 'src/utils/filter';
-import useDebounce from 'src/utils/hooks/debouncer';
 
 export type AdminUser = {
   user_id: number;
@@ -14,13 +13,9 @@ export type AdminUser = {
   count: number;
 };
 
-const Avatar: FC<{ value: string }> = ({ value }) => (
-  <img src={value} alt="avatar" style={{ width: '45px' }} />
-);
-
 const UserTable: FC = () => {
   const { data: userList } = useAdminUserList();
-  const { attendanceCount, email, school } = useRecoilValue(adminState);
+  const { school } = useRecoilValue(adminState);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [sortBy, setSortBy] = useState<keyof AdminUser>('count');
   const [users, setUsers] = useState<AdminUser[]>(userList ?? []);

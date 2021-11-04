@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { LayoutContainer } from 'src/styles/layout';
 import { Slider, Input, Lookup } from 'react-rainbow-components';
 import { FilterRow, FormContainer, FormLabel, FullWidth } from './styled';
@@ -14,7 +14,7 @@ const SchoolList = [{ label: '숭실대' }, { label: '서울대' }];
 const Admin: FC = () => {
   const { data: userList } = useAdminUserList();
   const [admin, setAdmin] = useRecoilState(adminState);
-  const { attendanceCount, email, school } = admin;
+  const { attendanceCount, school } = admin;
   const onSearchSchool = (value: string) => {
     const options = SchoolList.filter((item) => {
       return inko.ko2en(item.label).includes(inko.ko2en(value));
