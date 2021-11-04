@@ -6,18 +6,22 @@ import inko from 'src/utils/inko';
 import UserTable from './UserTable';
 import { useRecoilState } from 'recoil';
 import { adminState } from 'src/store/admin';
-import { useAdminUserList } from 'src/api/hooks/useAdmin';
+import { useAdminGroupList, useAdminUserList } from 'src/api/hooks/useAdmin';
 import useDebounce from 'src/utils/hooks/debouncer';
 
-const SchoolList = [{ label: '숭실대' }, { label: '서울대' }];
+const DefaultSchoolList = [{ label: '숭실대' }, { label: '서울대' }];
 
 const Admin: FC = () => {
   const { data: userList } = useAdminUserList();
   const [admin, setAdmin] = useRecoilState(adminState);
   const { attendanceCount, school } = admin;
+  const { data: SchoolList } = useAdminGroupList();
   const onSearchSchool = (value: string) => {
-    const options = SchoolList.filter((item) => {
-      return inko.ko2en(item.label).includes(inko.ko2en(value));
+    const options = (SchoolList ?? DefaultSchoolList).filter((item) => {
+      return inko
+        .ko2en(item.label)
+        .toLowerCase()
+        .includes(inko.ko2en(value).toLowerCase());
     });
     setAdmin({ ...admin, school: { options, value } });
   };
@@ -28,7 +32,10 @@ const Admin: FC = () => {
     setAdmin({ ...admin, email: event.target.value });
   };
   const setSchool = (value: string) => {
-    setAdmin({ ...admin, school: { options: SchoolList, value } });
+    setAdmin({
+      ...admin,
+      school: { options: SchoolList ?? DefaultSchoolList, value },
+    });
   };
   const debouncedSetSchool = useDebounce(setSchool, 200);
 
