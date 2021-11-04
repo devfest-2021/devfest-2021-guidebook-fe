@@ -21,7 +21,6 @@ const Admin: FC = () => {
     });
     setAdmin({ ...admin, school: { options, value } });
   };
-  const debouncedSearchSchool = useDebounce(onSearchSchool, 500);
   const onAttendanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAdmin({ ...admin, attendanceCount: Number(event.target.value) });
   };
@@ -31,7 +30,7 @@ const Admin: FC = () => {
   const setSchool = (value: string) => {
     setAdmin({ ...admin, school: { options: SchoolList, value } });
   };
-  const debouncedSetSchool = useDebounce(setSchool, 500);
+  const debouncedSetSchool = useDebounce(setSchool, 200);
 
   return (
     <LayoutContainer>
@@ -62,12 +61,13 @@ const Admin: FC = () => {
             style={FullWidth}
             options={school.options}
             value={school.options.find((item) => item.label === school.value)}
+            onSearch={onSearchSchool}
             onChange={(value) =>
-              // setSchool({ ...school, value: value?.label?.toString() ?? '' })
               debouncedSetSchool(value?.label?.toString() ?? '')
             }
-            onSearch={debouncedSearchSchool}
-            // onClick={() => onSearchSchool('')}
+            onFocus={(value) =>
+              debouncedSetSchool(value?.label?.toString() ?? '')
+            }
           />
         </FormContainer>
       </FilterRow>

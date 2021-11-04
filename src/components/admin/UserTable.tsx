@@ -19,12 +19,11 @@ const Avatar: FC<{ value: string }> = ({ value }) => (
 );
 
 const UserTable: FC = () => {
-  const { data: userList, loading } = useAdminUserList();
+  const { data: userList } = useAdminUserList();
   const { attendanceCount, email, school } = useRecoilValue(adminState);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [sortBy, setSortBy] = useState<keyof AdminUser>('count');
   const [users, setUsers] = useState<AdminUser[]>(userList ?? []);
-  const debouncedSetUsers = useDebounce(setUsers, 500);
 
   useEffect(() => {
     if (!userList) return;
@@ -38,10 +37,10 @@ const UserTable: FC = () => {
       return true;
     })
       .then((filteredUsers) => {
-        debouncedSetUsers(filteredUsers ?? []);
+        setUsers(filteredUsers ?? []);
       })
-      .catch(console.log);
-  }, [userList, school]);
+      .catch(console.error);
+  }, [userList, school.value]);
 
   const handleOnSort = useCallback(
     (
