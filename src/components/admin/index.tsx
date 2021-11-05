@@ -47,7 +47,7 @@ const Admin: FC = () => {
           <FormLabel>참석수</FormLabel>
           <Slider
             value={attendanceCount}
-            min={1}
+            min={0}
             max={14}
             style={FullWidth}
             onChange={onAttendanceChange}
@@ -65,7 +65,7 @@ const Admin: FC = () => {
         <FormContainer>
           <FormLabel>소속</FormLabel>
           <Lookup
-            placeholder="숭실대"
+            placeholder="구글대학교"
             style={FullWidth}
             options={school.options}
             value={school.options.find((item) => item.label === school.value)}
