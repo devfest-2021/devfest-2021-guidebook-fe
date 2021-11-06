@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { UserState } from 'src/store/user';
-import { guidebookList, sessionList } from './mock';
+import { guidebookList, guidebookListTest, sessionList } from './mock';
 import {
   AttendRequest,
   UserEditRequest,
@@ -21,6 +21,10 @@ export class GuestBookApi {
 
   getGuestBooks = () => {
     return axios.get<typeof guidebookList>(`${this.API}/attendance`);
+  };
+
+  getGuestBooksWithPagination = (url: string) => {
+    return axios.get<typeof guidebookListTest>(`${this.API}/${url}`);
   };
 
   checkUser = () => {

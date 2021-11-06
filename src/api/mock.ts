@@ -142,3 +142,9 @@ export const guidebookList = [
     ],
   },
 ];
+
+export const guidebookListTest = {
+  data: [...guidebookList],
+  totalPage: 0,
+  currentPage: '0',
+};
