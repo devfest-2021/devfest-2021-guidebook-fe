@@ -53,8 +53,6 @@ export function useGetGuestBookWithPagination({ _limit }: { _limit: number }) {
   const isReachingEnd =
     isEmpty || (data && data[data.length - 1]?.length + 1 < limit);
 
-  console.log(data && data[data.length - 1]?.length + 1);
-
   return {
     guideBooks: guideBooks,
     error,

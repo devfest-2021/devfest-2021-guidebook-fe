@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { InView } from 'react-intersection-observer';
 
 interface InfiniteScrollProps extends IntersectionObserverInit {
@@ -18,7 +18,7 @@ export function InfiniteScroll({
   loading = false,
 }: InfiniteScrollProps) {
   const handleViewChange = (inView: any) => {
-    if (inView && onFetch) onFetch();
+    if (inView && !loading && onFetch) onFetch();
   };
 
   return (

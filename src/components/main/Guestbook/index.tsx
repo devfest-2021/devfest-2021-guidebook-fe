@@ -48,18 +48,10 @@ function FloatingReactionItem({ emojiType }: { emojiType: string }) {
 }
 
 export const Guestbook = () => {
-  console.log('1');
-  const {
-    guideBooks,
-    loading,
-    mutate,
-    isLoadingMore,
-    size,
-    setSize,
-    isReachingEnd,
-  } = useGetGuestBookWithPagination({
-    _limit: 20,
-  });
+  const { guideBooks, loading, mutate, size, setSize, isReachingEnd } =
+    useGetGuestBookWithPagination({
+      _limit: 20,
+    });
   const [emoji, setEmoji] = useState(0);
   const [heart, setHeart] = useState(0);
   const handleFetch = useCallback(() => {
@@ -67,11 +59,11 @@ export const Guestbook = () => {
   }, [setSize, size]);
 
   const hasMore = useMemo(() => {
-    if (isLoadingMore || isReachingEnd) return false;
+    if (isReachingEnd) return false;
     if (loading) return true;
 
-    return !isLoadingMore && !isReachingEnd;
-  }, [isLoadingMore, isReachingEnd, loading]);
+    return !isReachingEnd;
+  }, [isReachingEnd, loading]);
 
   return (
     <LayoutContainer>
@@ -106,7 +98,9 @@ export const Guestbook = () => {
         <InfiniteScroll
           loading={loading}
           loader={
-            <Loader style={{ position: 'relative', margin: '0 0 20px' }} />
+            <Loader
+              style={{ position: 'relative', margin: '20px 0px 100px' }}
+            />
           }
           onFetch={handleFetch}
           hasMore={hasMore}
