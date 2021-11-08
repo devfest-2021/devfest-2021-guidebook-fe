@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'react-rainbow-components';
 import { useRecoilState } from 'recoil';
 import { userState } from '../../../../store/user';
 import { MODAL_KEY, modalState } from '../../../../store/modal';
 import {
+  ButtonWrapper,
+  Count,
+  CountText,
+  CountWrapper,
+  StyledElementWrapper,
+  UserImageWrapper,
+  UserInfoWrapper,
+  UserModalInnerWrapper,
   UserModalStyledImg,
   UserModalSubTitle,
   UserModalTaskWrapper,
-  ButtonWrapper,
   UserModalTitle,
-  UserInfoWrapper,
   UserModalUserInfoWrapper,
-  UserModalInnerWrapper,
   UserModalWrapper,
-  UserImageWrapper,
-  CountWrapper,
-  CountText,
-  Count,
-  StyledElementWrapper,
 } from './styled';
-import { useGetGuestBook } from '../../../../api/hooks/useGetGuestBook';
 import { StyledModal } from '../styled';
 import { StyledJoinButton } from '../../button/Button';
 import Api from '../../../../api';
