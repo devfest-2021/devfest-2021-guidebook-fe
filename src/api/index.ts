@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { UserState } from 'src/store/user';
-<<<<<<< HEAD
-import { guidebookList, sessionList, adminUserList } from './mock';
-=======
-import { guidebookList, guidebookListTest, sessionList } from './mock';
->>>>>>> origin/master
+import {
+  guidebookList,
+  sessionList,
+  adminUserList,
+  guidebookListTest,
+} from './mock';
 import {
   AttendRequest,
   UserEditRequest,
