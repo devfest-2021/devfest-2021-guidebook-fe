@@ -1,39 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  BottomSection,
-  CardContent,
-  CardTitle,
-  SessionCard,
-  TopSection,
-  Chip,
-  ChipSection,
-  List,
-  Logo,
-  TopTextSection,
-  Organizer,
-  CardTitleSection,
-  SmallLogo,
   FloatingReactionItemContainer,
   FloatingTrackContainer,
-  LikeButtonWrapper,
-  LikeButton,
-  LikeContainer,
-  LottieWrapper,
-  Count,
 } from '../Session/styled';
 import { LayoutContainer } from 'src/styles/layout';
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion';
-import githubLogo from 'src/assets/github.png';
-import instagramLogo from 'src/assets/instagram.png';
-import { useGetGuestBook } from 'src/api/hooks/useGetGuestBook';
-import DefaultImage from 'src/assets/school/14.jpg';
-import { listAnimate, listItemAnimate } from 'src/styles/framer';
+import {
+  useGetGuestBook,
+  useGetGuestBookWithPagination,
+} from 'src/api/hooks/useGetGuestBook';
 import { GiantReactionMotionWrapper } from './GiantReactionMotion';
 import Lottie from 'react-lottie';
 import Like from 'src/assets/like.json';
-import ThumbsUpImage from 'src/assets/thumbs-up.png';
 import heartImage from 'src/assets/heart.png';
-import Api from 'src/api';
+import { GuideBookList } from './components/GuideBookList';
+import { Loader } from 'src/components/common/Loader';
+import { InfiniteScroll } from 'src/components/common/InfiniteScroll';
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -66,37 +48,22 @@ function FloatingReactionItem({ emojiType }: { emojiType: string }) {
 }
 
 export const Guestbook = () => {
-  const { data, mutate } = useGetGuestBook();
+  const { guideBooks, loading, mutate, size, setSize, isReachingEnd } =
+    useGetGuestBookWithPagination({
+      _limit: 20,
+    });
   const [emoji, setEmoji] = useState(0);
   const [heart, setHeart] = useState(0);
+  const handleFetch = useCallback(() => {
+    setSize(size + 1);
+  }, [setSize, size]);
 
-  const handleImageOnClick = (id: string, type: 'github' | 'instagram') => {
-    if (type === 'github') {
-      window.open(`https://www.github.com/${id}`);
-    }
-    if (type === 'instagram') {
-      window.open(`https://www.instagram.com/${id}`);
-    }
-  };
+  const hasMore = useMemo(() => {
+    if (isReachingEnd) return false;
+    if (loading) return true;
 
-  const handleLikeClick = async (
-    userId: number,
-    emojiType: 'thumbs_up' | 'heart',
-  ) => {
-    if (emojiType === 'thumbs_up') {
-      setEmoji(emoji + 1);
-    }
-    if (emojiType === 'heart') {
-      setHeart(heart + 1);
-    }
-
-    mutate();
-    try {
-      await Api.like({ user_id: userId });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    return !isReachingEnd;
+  }, [isReachingEnd, loading]);
 
   return (
     <LayoutContainer>
@@ -128,86 +95,25 @@ export const Guestbook = () => {
       </AnimatePresence>
 
       <AnimateSharedLayout type="crossfade">
-        <List variants={listAnimate} initial="start" animate="end">
-          {data &&
-            data.map((guidebook) => (
-              <AnimatePresence key={guidebook.user_id}>
-                <SessionCard
-                  key={guidebook.user_id}
-                  variants={listItemAnimate}
-                  layoutId={String(guidebook.user_id)}
-                >
-                  <TopSection>
-                    <Logo
-                      src={guidebook.profileImageUrl || DefaultImage}
-                    ></Logo>
-                    <TopTextSection>
-                      <CardTitleSection>
-                        <CardTitle>{guidebook.name}</CardTitle>
-                        {guidebook.githubId && (
-                          <SmallLogo
-                            src={githubLogo}
-                            onClick={() =>
-                              handleImageOnClick(guidebook.githubId, 'github')
-                            }
-                          ></SmallLogo>
-                        )}
-                        {guidebook.instagramId && (
-                          <SmallLogo
-                            src={instagramLogo}
-                            onClick={() =>
-                              handleImageOnClick(
-                                guidebook.instagramId,
-                                'instagram',
-                              )
-                            }
-                          ></SmallLogo>
-                        )}
-                      </CardTitleSection>
-                      <Organizer>{guidebook.affiliation}</Organizer>
-                    </TopTextSection>
-                  </TopSection>
-                  <CardContent>{guidebook.description}</CardContent>
-                  <BottomSection>
-                    <ChipSection>
-                      {guidebook.sessionList.map((session) => (
-                        <Chip key={session.session_id}>
-                          {session.session_name}
-                        </Chip>
-                      ))}
-                    </ChipSection>
-                  </BottomSection>
-                  <LikeContainer>
-                    <LikeButtonWrapper
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleLikeClick(guidebook.user_id, 'thumbs_up');
-                      }}
-                    >
-                      <LikeButton
-                        src={ThumbsUpImage}
-                        whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 3 }}
-                      />
-                    </LikeButtonWrapper>
-                    <LikeButtonWrapper
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleLikeClick(guidebook.user_id, 'heart');
-                      }}
-                    >
-                      <LikeButton
-                        src={heartImage}
-                        whileHover={{ scale: 1.5 }}
-                        whileTap={{ scale: 3 }}
-                      />
-                    </LikeButtonWrapper>
-                    <Count>{guidebook.like !== 0 && guidebook.like}</Count>
-                  </LikeContainer>
-                </SessionCard>
-              </AnimatePresence>
-            ))}
-        </List>
+        <InfiniteScroll
+          loading={loading}
+          loader={
+            <Loader
+              style={{ position: 'relative', margin: '20px 0px 100px' }}
+            />
+          }
+          onFetch={handleFetch}
+          hasMore={hasMore}
+        >
+          <GuideBookList
+            data={guideBooks}
+            mutate={mutate}
+            setEmoji={setEmoji}
+            setHeart={setHeart}
+            emoji={emoji}
+            heart={heart}
+          />
+        </InfiniteScroll>
       </AnimateSharedLayout>
     </LayoutContainer>
   );

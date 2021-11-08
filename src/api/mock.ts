@@ -145,6 +145,7 @@ export const guidebookList = [
   },
 ];
 
+<<<<<<< HEAD
 export const adminUserList: AdminUser[] = [
   {
     user_id: 1,
@@ -161,3 +162,10 @@ export const adminUserList: AdminUser[] = [
     count: 2,
   },
 ];
+=======
+export const guidebookListTest = {
+  data: [...guidebookList],
+  totalPage: 0,
+  currentPage: '0',
+};
+>>>>>>> origin/master
