@@ -17,6 +17,7 @@ import {
   CountWrapper,
   CountText,
   Count,
+  StyledElementWrapper,
 } from './styled';
 import { useGetGuestBook } from '../../../../api/hooks/useGetGuestBook';
 import { StyledModal } from '../styled';
@@ -27,7 +28,7 @@ const Index = () => {
   const [user, setUser] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
   // const UserSessionList = {data.map( (userInfo)=> userInfo.name)? null : null}
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(13);
   const getCount = async () => {
     const { data }: any = await Api.getCheckUser(user.user_id);
     setCount(data.count);
@@ -53,8 +54,33 @@ const Index = () => {
                 <UserModalStyledImg src={user.avaterURL} />
               </UserImageWrapper>
               <CountWrapper>
-                <CountText>출석 횟수</CountText>
-                <Count>추후 업데이트</Count>
+                <StyledElementWrapper>
+                  <CountText>출석 횟수</CountText>
+                </StyledElementWrapper>
+                <StyledElementWrapper>
+                  <Count>추후 업데이트</Count>
+                </StyledElementWrapper>
+                {count > 11 && count < 14 ? (
+                  <StyledJoinButton
+                    onClick={() => {
+                      window.location.href =
+                        'https://devfest-2021-guestbook.netlify.app/';
+                    }}
+                  >
+                    출석 상품 신청하기
+                  </StyledJoinButton>
+                ) : null}
+                {count === 14 ? (
+                  <StyledJoinButton
+                    onClick={() => {
+                      window.location.href =
+                        'https://devfest-2021-guestbook.netlify.app/';
+                    }}
+                  >
+                    14일 출석 상품 <br />
+                    신청하기
+                  </StyledJoinButton>
+                ) : null}
               </CountWrapper>
             </UserInfoWrapper>
             <UserModalUserInfoWrapper>

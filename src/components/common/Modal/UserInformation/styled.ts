@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const UserModalTitle = styled.div`
+export const UserModalTitle = styled.div`
   font-size: 20px;
   @media (max-width: 320px) {
     font-size: 18px;
@@ -9,7 +9,7 @@ const UserModalTitle = styled.div`
     font-size: 18px;
   }
 `;
-const UserModalSubTitle = styled.div`
+export const UserModalSubTitle = styled.div`
   color: ${(props) => props.theme.color.gray500};
   font-size: 16px;
   @media (max-width: 320px) {
@@ -19,7 +19,7 @@ const UserModalSubTitle = styled.div`
     font-size: 13px;
   }
 `;
-const UserModalTaskWrapper = styled.div`
+export const UserModalTaskWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@ const UserModalTaskWrapper = styled.div`
     justify-content: center;
   }
 `;
-const UserInfoWrapper = styled.div`
+export const UserInfoWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -36,11 +36,11 @@ const UserInfoWrapper = styled.div`
     justify-content: center;
   }
 `;
-const UserImageWrapper = styled.div`
+export const UserImageWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-const CountWrapper = styled.div`
+export const CountWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,26 +56,26 @@ const CountWrapper = styled.div`
     margin-left: 30px;
   }
 `;
-const CountText = styled.div`
+export const CountText = styled.div`
   font-weight: bold;
   font-size: 30px;
   @media (max-width: ${(props) => props.theme.windowSize.mobile}px) {
     font-size: 20px;
   }
 `;
-const Count = styled.div`
+export const Count = styled.div`
   font-weight: bold;
   font-size: 20px;
   @media (max-width: ${(props) => props.theme.windowSize.tablet}px) {
     font-size: 15px;
   }
 `;
-const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
 `;
-const UserModalStyledImg = styled.img`
+export const UserModalStyledImg = styled.img`
   width: 150px;
   border-radius: 75px;
   @media (max-width: 500px) {
@@ -94,7 +94,7 @@ const UserModalStyledImg = styled.img`
     border-radius: 50px;
   }
 `;
-const UserModalUserInfoWrapper = styled.div`
+export const UserModalUserInfoWrapper = styled.div`
   margin-top: 10px;
   @media (max-width: 400px) {
     margin-left: 10px;
@@ -103,7 +103,7 @@ const UserModalUserInfoWrapper = styled.div`
     margin: 0px;
   }
 `;
-const UserModalInnerWrapper = styled.div`
+export const UserModalInnerWrapper = styled.div`
   display: flex;
   margin-top: 20px;
   margin-bottom: 30px;
@@ -114,22 +114,10 @@ const UserModalInnerWrapper = styled.div`
     justify-content: center;
   }
 `;
-const UserModalWrapper = styled.div`
+export const UserModalWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-export {
-  ButtonWrapper,
-  UserModalTaskWrapper,
-  UserModalUserInfoWrapper,
-  UserInfoWrapper,
-  UserModalSubTitle,
-  UserModalTitle,
-  UserModalStyledImg,
-  UserModalInnerWrapper,
-  UserModalWrapper,
-  UserImageWrapper,
-  CountWrapper,
-  CountText,
-  Count,
-};
+export const StyledElementWrapper = styled.div`
+  margin-bottom: 10px;
+`;
