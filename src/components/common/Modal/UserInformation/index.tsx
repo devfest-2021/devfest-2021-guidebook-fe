@@ -53,10 +53,10 @@ const Index = () => {
               </UserImageWrapper>
               <CountWrapper>
                 <StyledElementWrapper>
-                  <CountText>출석 횟수</CountText>
+                  {/*<CountText>출석 횟수</CountText>*/}
                 </StyledElementWrapper>
                 <StyledElementWrapper>
-                  <Count>{count}</Count>
+                  {/*<Count>{count}</Count>*/}
                 </StyledElementWrapper>
                 {/*{count > 11 && count < 14 ? (*/}
                 {/*  <StyledJoinButton*/}

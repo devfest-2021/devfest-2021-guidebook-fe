@@ -22,7 +22,7 @@ export const UserModalSubTitle = styled.div`
 export const UserModalTaskWrapper = styled.div`
   margin-top: 10px;
   display: flex;
-  align-items: center;
+  //align-items: center;
   @media (max-width: 280px) {
     justify-content: center;
   }
@@ -30,7 +30,6 @@ export const UserModalTaskWrapper = styled.div`
 export const UserInfoWrapper = styled.div`
   margin-top: 10px;
   display: flex;
-  align-items: center;
 
   @media (max-width: 280px) {
     justify-content: center;
