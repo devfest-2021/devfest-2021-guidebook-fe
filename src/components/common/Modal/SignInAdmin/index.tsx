@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ButtonWrapper } from '../../wrapper/Wrapper';
 import {
   HighLightSign,
@@ -25,6 +25,7 @@ const SigninAdmin = () => {
   const [modal, setModal] = useRecoilState(modalState);
   const [admin, setAdmin] = useRecoilState(adminState);
   const [alert, setAlert] = useRecoilState(alertState);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -38,13 +39,7 @@ const SigninAdmin = () => {
         setAlert({ ...alert, [ALERT_KEY.SUCCESS_KEY]: true });
       } catch (error: any) {
         if (error && error.response.data.detail === NOT_REGISTERED) {
-          setModal({
-            [MODAL_KEY.SIGN_IN]: false,
-            [MODAL_KEY.SIGN_IN_ADMIN]: true,
-            [MODAL_KEY.SIGN_UP]: false,
-            [MODAL_KEY.USER_INFORMATION]: false,
-            [MODAL_KEY.EDIT_USER]: false,
-          });
+          setErrorMessage(NOT_REGISTERED);
         }
       }
     },
@@ -88,6 +83,7 @@ const SigninAdmin = () => {
               style={getStyles(formik.errors, 'email')}
             />
             <StyledErrorMessage name="email" component="div" />
+            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
             <ButtonWrapper>
               <StyledJoinButton>관리자 로그인</StyledJoinButton>
             </ButtonWrapper>

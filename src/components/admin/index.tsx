@@ -50,9 +50,9 @@ const Admin: FC = () => {
 
   if (!auth?.email) {
     return (
-      <div>
-        <h2>로그인이 필요합니다.</h2>
-      </div>
+      <LayoutContainer>
+        <h1>로그인이 필요합니다.</h1>
+      </LayoutContainer>
     );
   }
 
