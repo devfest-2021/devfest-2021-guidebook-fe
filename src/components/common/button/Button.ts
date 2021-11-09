@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledJoinButton = styled.button`
+export const StyledJoinButton = styled.button`
   background: #55af7a;
   color: #fff;
   font-size: 21px;
@@ -26,5 +26,3 @@ const StyledJoinButton = styled.button`
     padding: 7px 12px;
   }
 `;
-
-export { StyledJoinButton };
