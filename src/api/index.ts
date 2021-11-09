@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { UserState } from 'src/store/user';
-import { guidebookList, guidebookListTest, sessionList } from './mock';
+import { AdminState } from 'src/store/admin';
+import {
+  guidebookList,
+  sessionList,
+  adminUserList,
+  guidebookListTest,
+} from './mock';
 import {
   AttendRequest,
   UserEditRequest,
@@ -34,12 +40,23 @@ export class GuestBookApi {
     return axios.get(`${this.API}/user?user_id=${userid}`);
   };
 
+  getAdminUser = () => {
+    return axios.get<typeof adminUserList>(`${this.API}/user-admin`);
+  };
+
   signUp = (payload: SignUpRequest) => {
     return axios.post<typeof UserState>(`${this.API}/user/signup`, payload);
   };
 
   signIn = (payload: SignInRequest) => {
     return axios.post<typeof UserState>(`${this.API}/user/signin`, payload);
+  };
+
+  signInAdmin = (payload: SignInRequest) => {
+    return axios.post<typeof AdminState.auth>(
+      `${this.API}/user-admin/signin`,
+      payload,
+    );
   };
 
   attend = (payload: AttendRequest) => {
