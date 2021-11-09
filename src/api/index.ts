@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { UserState } from 'src/store/user';
+import { AdminState } from 'src/store/admin';
 import {
   guidebookList,
   sessionList,
@@ -49,6 +50,13 @@ export class GuestBookApi {
 
   signIn = (payload: SignInRequest) => {
     return axios.post<typeof UserState>(`${this.API}/user/signin`, payload);
+  };
+
+  signInAdmin = (payload: SignInRequest) => {
+    return axios.post<typeof AdminState.auth>(
+      `${this.API}/user-admin/signin`,
+      payload,
+    );
   };
 
   attend = (payload: AttendRequest) => {

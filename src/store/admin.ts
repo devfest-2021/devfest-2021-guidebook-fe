@@ -12,6 +12,11 @@ export const AdminState = {
     options: [] as LookupValue[],
     value: '',
   },
+  auth: {
+    id: '',
+    email: '',
+    nickname: '',
+  },
 };
 
 export const adminState = atom<typeof AdminState>({

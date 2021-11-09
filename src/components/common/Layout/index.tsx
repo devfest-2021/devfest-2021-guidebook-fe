@@ -20,6 +20,7 @@ import {
 } from 'src/styles/layout';
 import gdsc from 'src/assets/gdsc.png';
 import campus from 'src/assets/campus.png';
+import SigninAdmin from '../Modal/SignInAdmin';
 
 export const Layout = () => {
   const [modal, _] = useRecoilState(modalState);
@@ -30,6 +31,7 @@ export const Layout = () => {
       <Alert />
       {modal.signUp && <SignUp />}
       {modal.signIn && <SignIn />}
+      {modal.signInAdmin && <SigninAdmin />}
       {modal.userInformation && <UserInfomation />}
       {modal.editUser && <EditUser />}
       <Switch>

@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  ButtonWrapper,
-  BoxElementWrapper,
-  StyledBox,
-  ModalOverlay,
-} from '../../wrapper/Wrapper';
+import { ButtonWrapper } from '../../wrapper/Wrapper';
 import {
   HighLightSign,
   MainTitle,
@@ -18,18 +13,17 @@ import * as Yup from 'yup';
 import Api from 'src/api/index';
 import { useRecoilState } from 'recoil';
 import { modalState, MODAL_KEY } from 'src/store/modal';
-import { userState } from 'src/store/user';
+import { adminState } from 'src/store/admin';
 import { getStyles } from '../modalError';
-import { Modal, Button } from 'react-rainbow-components';
 import '../customStyle.css';
 import { StyledModal } from '../styled';
 import { ALERT_KEY, alertState } from '../../../../store/alert';
 
 const NOT_REGISTERED = '등록되지 않은 email';
 
-const Signin = () => {
+const SigninAdmin = () => {
   const [modal, setModal] = useRecoilState(modalState);
-  const [user, setUser] = useRecoilState(userState);
+  const [admin, setAdmin] = useRecoilState(adminState);
   const [alert, setAlert] = useRecoilState(alertState);
 
   const formik = useFormik({
@@ -38,16 +32,16 @@ const Signin = () => {
     },
     onSubmit: async (values) => {
       try {
-        const response = await Api.signIn(values);
-        setUser({ ...user, ...response.data });
-        setModal({ ...modal, [MODAL_KEY.SIGN_IN]: false });
+        const response = await Api.signInAdmin(values);
+        setAdmin({ ...admin, auth: response.data });
+        setModal({ ...modal, [MODAL_KEY.SIGN_IN_ADMIN]: false });
         setAlert({ ...alert, [ALERT_KEY.SUCCESS_KEY]: true });
       } catch (error: any) {
         if (error && error.response.data.detail === NOT_REGISTERED) {
           setModal({
             [MODAL_KEY.SIGN_IN]: false,
-            [MODAL_KEY.SIGN_UP]: true,
-            [MODAL_KEY.SIGN_IN_ADMIN]: false,
+            [MODAL_KEY.SIGN_IN_ADMIN]: true,
+            [MODAL_KEY.SIGN_UP]: false,
             [MODAL_KEY.USER_INFORMATION]: false,
             [MODAL_KEY.EDIT_USER]: false,
           });
@@ -75,9 +69,9 @@ const Signin = () => {
   return (
     <>
       <StyledModal
-        isOpen={modal.signIn}
+        isOpen={modal.signInAdmin}
         onRequestClose={() =>
-          setModal({ ...modal, [MODAL_KEY.SIGN_IN]: false })
+          setModal({ ...modal, [MODAL_KEY.SIGN_IN_ADMIN]: false })
         }
         // style={}
       >
@@ -95,7 +89,7 @@ const Signin = () => {
             />
             <StyledErrorMessage name="email" component="div" />
             <ButtonWrapper>
-              <StyledJoinButton>참석하기</StyledJoinButton>
+              <StyledJoinButton>관리자 로그인</StyledJoinButton>
             </ButtonWrapper>
           </Form>
         </FormikProvider>
@@ -104,4 +98,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SigninAdmin;
