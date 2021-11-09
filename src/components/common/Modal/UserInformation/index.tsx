@@ -26,7 +26,7 @@ const Index = () => {
   const [user, setUser] = useRecoilState(userState);
   const [modal, setModal] = useRecoilState(modalState);
   // const UserSessionList = {data.map( (userInfo)=> userInfo.name)? null : null}
-  const [count, setCount] = useState(13);
+  const [count, setCount] = useState(0);
   const getCount = async () => {
     const { data }: any = await Api.getCheckUser(user.user_id);
     setCount(data.count);
@@ -56,13 +56,13 @@ const Index = () => {
                   <CountText>출석 횟수</CountText>
                 </StyledElementWrapper>
                 <StyledElementWrapper>
-                  <Count>추후 업데이트</Count>
+                  <Count>{count}</Count>
                 </StyledElementWrapper>
                 {count > 11 && count < 14 ? (
                   <StyledJoinButton
                     onClick={() => {
                       window.location.href =
-                        'https://devfest-2021-guestbook.netlify.app/';
+                        'https://docs.google.com/forms/d/e/1FAIpQLSecS-iNMmBcqlfeVBtmzokW35b-ixjmRakdJD-oPBgz5R6_Ig/viewform?usp=sf_link';
                     }}
                   >
                     출석 상품 신청하기
@@ -72,11 +72,10 @@ const Index = () => {
                   <StyledJoinButton
                     onClick={() => {
                       window.location.href =
-                        'https://devfest-2021-guestbook.netlify.app/';
+                        'https://docs.google.com/forms/d/e/1FAIpQLScb5Yw6DcuobhRHI-urVqB-rTEhmEbS4yOHbhSsutb0qb97hQ/viewform?usp=sf_link';
                     }}
                   >
-                    14일 출석 상품 <br />
-                    신청하기
+                    Full 출석 상품 신청하기
                   </StyledJoinButton>
                 ) : null}
               </CountWrapper>
