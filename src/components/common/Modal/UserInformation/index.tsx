@@ -58,26 +58,6 @@ const Index = () => {
                 <StyledElementWrapper>
                   {/*<Count>{count}</Count>*/}
                 </StyledElementWrapper>
-                {/*{count > 11 && count < 14 ? (*/}
-                {/*  <StyledJoinButton*/}
-                {/*    onClick={() => {*/}
-                {/*      window.location.href =*/}
-                {/*        'https://docs.google.com/forms/d/e/1FAIpQLSecS-iNMmBcqlfeVBtmzokW35b-ixjmRakdJD-oPBgz5R6_Ig/viewform?usp=sf_link';*/}
-                {/*    }}*/}
-                {/*  >*/}
-                {/*    출석 상품 신청하기*/}
-                {/*  </StyledJoinButton>*/}
-                {/*) : null}*/}
-                {/*{count === 14 ? (*/}
-                {/*  <StyledJoinButton*/}
-                {/*    onClick={() => {*/}
-                {/*      window.location.href =*/}
-                {/*        'https://docs.google.com/forms/d/e/1FAIpQLScb5Yw6DcuobhRHI-urVqB-rTEhmEbS4yOHbhSsutb0qb97hQ/viewform?usp=sf_link';*/}
-                {/*    }}*/}
-                {/*  >*/}
-                {/*    Full 출석 상품 신청하기*/}
-                {/*  </StyledJoinButton>*/}
-                {/*) : null}*/}
               </CountWrapper>
             </UserInfoWrapper>
             <UserModalUserInfoWrapper>
@@ -103,6 +83,28 @@ const Index = () => {
                     프로필 수정
                   </StyledJoinButton>
                 </ButtonWrapper>
+              </UserModalTaskWrapper>
+              <UserModalTaskWrapper>
+                {count > 11 && count < 14 ? (
+                  <StyledJoinButton
+                    onClick={() => {
+                      window.location.href =
+                        'https://docs.google.com/forms/d/e/1FAIpQLSecS-iNMmBcqlfeVBtmzokW35b-ixjmRakdJD-oPBgz5R6_Ig/viewform?usp=sf_link';
+                    }}
+                  >
+                    출석 상품 신청하기
+                  </StyledJoinButton>
+                ) : null}
+                {count === 14 ? (
+                  <StyledJoinButton
+                    onClick={() => {
+                      window.location.href =
+                        'https://docs.google.com/forms/d/e/1FAIpQLScb5Yw6DcuobhRHI-urVqB-rTEhmEbS4yOHbhSsutb0qb97hQ/viewform?usp=sf_link';
+                    }}
+                  >
+                    Full 출석 상품 신청하기
+                  </StyledJoinButton>
+                ) : null}
               </UserModalTaskWrapper>
             </UserModalUserInfoWrapper>
           </UserModalInnerWrapper>
