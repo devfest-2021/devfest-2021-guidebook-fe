@@ -85,24 +85,34 @@ const Index = () => {
                 </ButtonWrapper>
               </UserModalTaskWrapper>
               <UserModalTaskWrapper>
-                {count > 11 && count < 14 ? (
+                {count > 7 && count < 10 ? (
                   <StyledJoinButton
                     onClick={() => {
                       window.location.href =
-                        'https://docs.google.com/forms/d/e/1FAIpQLSecS-iNMmBcqlfeVBtmzokW35b-ixjmRakdJD-oPBgz5R6_Ig/viewform?usp=sf_link';
+                        'https://forms.gle/wkZLWWofKZRczg127';
                     }}
                   >
-                    출석 상품 신청하기
+                    8회 출석 상품 신청하기
                   </StyledJoinButton>
                 ) : null}
-                {count === 14 ? (
+                {count > 9 && count < 12 ? (
                   <StyledJoinButton
                     onClick={() => {
                       window.location.href =
-                        'https://docs.google.com/forms/d/e/1FAIpQLScb5Yw6DcuobhRHI-urVqB-rTEhmEbS4yOHbhSsutb0qb97hQ/viewform?usp=sf_link';
+                        'https://forms.gle/Sf9GddStqf7jC7gQ9';
                     }}
                   >
-                    Full 출석 상품 신청하기
+                    10회 출석 상품 신청하기
+                  </StyledJoinButton>
+                ) : null}
+                {count > 11 ? (
+                  <StyledJoinButton
+                    onClick={() => {
+                      window.location.href =
+                        'https://forms.gle/E2T6oqUs5romQZYG7';
+                    }}
+                  >
+                    12회 출석 상품 신청하기
                   </StyledJoinButton>
                 ) : null}
               </UserModalTaskWrapper>
