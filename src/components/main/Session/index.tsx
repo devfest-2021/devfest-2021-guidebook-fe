@@ -167,16 +167,6 @@ export const Session = () => {
                         )}
                       </Chip>
                     </ChipSection>
-                    <AttendButton
-                      layoutId={`button-${session.session_id}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleOnClick(session.session_id);
-                      }}
-                      whileTap={{ scale: 3 }}
-                    >
-                      출석
-                    </AttendButton>
                   </BottomSection>
                 </SessionCard>
               </AnimatePresence>
@@ -234,15 +224,6 @@ export const Session = () => {
                         )}
                       </Chip>
                     </ChipSection>
-                    <AttendButton
-                      layoutId={`button-${String(selectedId)}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleOnClick(selectedId);
-                      }}
-                    >
-                      출석
-                    </AttendButton>
                   </BottomSection>
                 </Modal>
               </OutsideClickHandler>
